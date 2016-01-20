@@ -2,6 +2,7 @@
 <resources>
 
     <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:statusBarColor">@color/holo_blue_light</item>
     </style>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">

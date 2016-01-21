@@ -22,6 +22,8 @@ public final class Constants {
     public static final String FIREBASE_PROPERTY_TIMESTAMP_LAST_CHANGED = "timestampLastChanged";
     public static final String FIREBASE_PROPERTY_TIMESTAMP = "timestamp";
     public static final String FIREBASE_PROPERTY_ITEM_NAME = "itemName";
+    public static final String FIREBASE_PROPERTY_EMAIL = "email";
+    public static final String FIREBASE_PROPERTY_USER_HAS_LOGGED_IN_WITH_PASSWORD = "hasLoggedInWithPassword";
 
     /**
     * Constants for Firebase URL

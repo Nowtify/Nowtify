@@ -2,6 +2,7 @@ package com.udacity.firebase.nowtify.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.ui.login.CreateAccountActivity;
 import com.udacity.firebase.nowtify.ui.login.LoginActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
+
 /**
  * BaseActivity class is used as a base class for all activities in the app
  * It implements GoogleApiClient callbacks to enable "Logout" in all activities
@@ -26,7 +28,8 @@ import com.udacity.firebase.nowtify.utils.Constants;
 public abstract class BaseActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
     protected String mProvider, mEncodedEmail;
-    /* Client used to interact with Google APIs. */
+
+    /* Client used to interact with Google APIs.*/
     protected GoogleApiClient mGoogleApiClient;
     protected Firebase.AuthStateListener mAuthListener;
     protected Firebase mFirebaseRef;
@@ -114,11 +117,11 @@ public abstract class BaseActivity extends AppCompatActivity implements
         /**
          * Set different background image for landscape and portrait layouts
          */
-/*        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             linearLayout.setBackgroundResource(R.drawable.background_loginscreen_land);
         } else {
             linearLayout.setBackgroundResource(R.drawable.background_loginscreen);
-        }*/
+        }
     }
 
     /**

@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.UserRecoverableAuthException;
@@ -27,6 +29,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.Scope;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
+import com.udacity.firebase.nowtify.ui.MainActivity;
+import com.udacity.firebase.nowtify.utils.Constants;
 
 import java.io.IOException;
 
@@ -39,6 +43,7 @@ public class LoginActivity extends BaseActivity {
     /* A dialog that is presented until the Firebase authentication finished. */
     private ProgressDialog mAuthProgressDialog;
     private EditText mEditTextEmailInput, mEditTextPasswordInput;
+    private Firebase mFirebaseRef;
 
     /**
      * Variables related to Google Login
@@ -54,6 +59,11 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        /**
+         * Create Firebase references
+         */
+        mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
 
         /**
          * Link layout elements from XML and setup progress dialog
@@ -124,37 +134,89 @@ public class LoginActivity extends BaseActivity {
         mAuthProgressDialog.setTitle(getString(R.string.progress_dialog_loading));
         mAuthProgressDialog.setMessage(getString(R.string.progress_dialog_authenticating_with_firebase));
         mAuthProgressDialog.setCancelable(false);
-        /* Setup Google Sign In */
-        setupGoogleSignIn();
+        /* Comment this out for now. Setup Google Sign In */
+        //setupGoogleSignIn();
     }
 
     /**
      * Sign in with Password provider (used when user taps "Done" action on keyboard)
      */
     public void signInPassword() {
-        // TODO On the client side check that the user has entered something in both the
-        // email and password.
+        String email = mEditTextEmailInput.getText().toString();
+        String password = mEditTextPasswordInput.getText().toString();
 
-        // TODO Show mAuthProgressDialog to let the user know you're logging in.
+        /**
+         * If email and password are not empty show progress dialog and try to authenticate
+         */
+        if (email.equals("")) {
+            mEditTextEmailInput.setError(getString(R.string.error_cannot_be_empty));
+            return;
+        }
 
-        // TODO Use the Firebase method to attempt the actual log in
-
+        if (password.equals("")) {
+            mEditTextPasswordInput.setError(getString(R.string.error_cannot_be_empty));
+            return;
+        }
+        mAuthProgressDialog.show();
+        mFirebaseRef.authWithPassword(email, password, new MyAuthResultHandler(Constants.PASSWORD_PROVIDER));
     }
 
-    // TODO You can either make an anonymous subclass or make an inner class here. Either
-    // way you will need to make a subclass of AuthResultHandler to react appropriately
-    // when you try to log a user in.
-    // If the user successfully logs in, you should bring them to the main activity. They
-    // should NOT be able to go back to the login page by clicking the back button --
-    // we'll implement logout in a little bit.
-    //
-    // This is where you should handle any responses from the server about the login
-    // failing because :
-    // 1. There is no connection
-    // 2. The email is invalid
-    // 3. The user does not exist
-    // 4. The password is invalid
-    
+    /**
+     * Handle user authentication that was initiated with mFirebaseRef.authWithPassword
+     * or mFirebaseRef.authWithOAuthToken
+     */
+    private class MyAuthResultHandler implements Firebase.AuthResultHandler {
+
+        private final String provider;
+
+        public MyAuthResultHandler(String provider) {
+            this.provider = provider;
+        }
+
+        /**
+         * On successful authentication call setAuthenticatedUser if it was not already
+         * called in
+         */
+        @Override
+        public void onAuthenticated(AuthData authData) {
+            mAuthProgressDialog.dismiss();
+            Log.i(LOG_TAG, provider + " " + getString(R.string.log_message_auth_successful));
+            if (authData != null) {
+                /* Go to main activity */
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        }
+
+        @Override
+        public void onAuthenticationError(FirebaseError firebaseError) {
+            mAuthProgressDialog.dismiss();
+
+            /**
+             * Use utility method to check the network connection state
+             * Show "No network connection" if there is no connection
+             * Show Firebase specific error message otherwise
+             */
+            switch (firebaseError.getCode()) {
+                case FirebaseError.INVALID_EMAIL:
+                case FirebaseError.USER_DOES_NOT_EXIST:
+                    mEditTextEmailInput.setError(getString(R.string.error_message_email_issue));
+                    break;
+                case FirebaseError.INVALID_PASSWORD:
+                    mEditTextPasswordInput.setError(firebaseError.getMessage());
+                    break;
+                case FirebaseError.NETWORK_ERROR:
+                    showErrorToast(getString(R.string.error_message_failed_sign_in_no_network));
+                    break;
+                default:
+                    showErrorToast(firebaseError.toString());
+            }
+        }
+    }
+
+
     /**
      * Helper method that makes sure a user is created if the user
      * logs in with Firebase's email/password provider.
@@ -207,28 +269,28 @@ public class LoginActivity extends BaseActivity {
      * the AsyncTask. **This is the token required by Firebase**
      */
 
-
+    /* Comment this part out first as we are not doing Google log ins now */
     /* Sets up the Google Sign In Button : https://developers.google.com/android/reference/com/google/android/gms/common/SignInButton */
-    private void setupGoogleSignIn() {
-        SignInButton signInButton = (SignInButton)findViewById(R.id.login_with_google);
-        signInButton.setSize(SignInButton.SIZE_WIDE);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSignInGooglePressed(v);
-            }
-        });
-    }
+    //private void setupGoogleSignIn() {
+      //  SignInButton signInButton = (SignInButton)findViewById(R.id.login_with_google);
+        //signInButton.setSize(SignInButton.SIZE_WIDE);
+        //signInButton.setOnClickListener(new View.OnClickListener() {
+          //  @Override
+            //public void onClick(View v) {
+                //onSignInGooglePressed(v);
+            //}
+       // });
+    //}
 
     /**
      * Sign in with Google plus when user clicks "Sign in with Google" textView (button)
      */
-    public void onSignInGooglePressed(View view) {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_GOOGLE_LOGIN);
-        mAuthProgressDialog.show();
+    //public void onSignInGooglePressed(View view) {
+      //  Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        //startActivityForResult(signInIntent, RC_GOOGLE_LOGIN);
+        //mAuthProgressDialog.show();
 
-    }
+    //}
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {

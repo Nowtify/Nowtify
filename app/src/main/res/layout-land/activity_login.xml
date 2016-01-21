@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                android:hint="@string/hint_enter_email"
+                android:hint="@string/hint_enter_email_login"
                 android:imeOptions="flagNoExtractUi"
                 android:inputType="textEmailAddress"
                 android:nextFocusDown="@+id/edit_text_password"

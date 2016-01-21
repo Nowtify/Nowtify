@@ -30,7 +30,7 @@
             android:layout_marginBottom="@dimen/lists_title_bottom_margin"
             app:hintTextAppearance="@style/HintText">
 
-            <EditText
+    <!--        <EditText
                 android:id="@+id/edit_text_username_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/black"
                 android:textColorHint="@color/dark_grey"
-                android:textSize="@dimen/login_buttons_text_size" />
+                android:textSize="@dimen/login_buttons_text_size" />-->
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                android:hint="@string/hint_enter_email"
+                android:hint="@string/hint_enter_email_registration"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/black"
@@ -68,10 +68,9 @@
             android:id="@+id/til_password_create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/HintText"
-            android:layout_marginBottom="@dimen/margin_normal">
+            app:hintTextAppearance="@style/HintText">
 
-            <EditText
+<!--            <EditText
                 android:id="@+id/edit_text_password_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +80,7 @@
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/black"
                 android:textColorHint="@color/dark_grey"
-                android:textSize="@dimen/login_buttons_text_size" />
+                android:textSize="@dimen/login_buttons_text_size" />-->
         </android.support.design.widget.TextInputLayout>
 
         <Button

@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                android:hint="@string/hint_enter_email"
+                android:hint="@string/hint_enter_email_registration"
                 android:imeOptions="flagNoExtractUi"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/edit_text_padding_land"

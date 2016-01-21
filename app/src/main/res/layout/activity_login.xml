@@ -1,16 +1,19 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background = "@drawable/shopping"
     tools:context="com.udacity.firebase.nowtify.ui.login.LoginActivity">
 
     <LinearLayout
         android:id="@+id/linear_layout_login_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -21,22 +24,27 @@
             android:layout_width="0px"
             android:layout_height="0px"
             android:focusable="true"
-            android:focusableInTouchMode="true" />
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center"/>
 
+        <!--nowtify logo -->
         <ImageView
             android:id="@+id/iv_logo_image"
             android:layout_width="@dimen/logo_image_size"
             android:layout_height="@dimen/logo_image_size"
             android:layout_marginBottom="@dimen/lists_title_bottom_margin"
             android:contentDescription="@string/image_view_logo_image"
-            android:src="@drawable/ic_shopping_list" />
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@mipmap/nowtify_logo" />
 
+        <!--text field for email -->
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/lists_title_bottom_margin"
             app:hintTextAppearance="@style/HintText">
+
 
             <EditText
                 android:id="@+id/edit_text_email"
@@ -59,6 +67,7 @@
             android:layout_marginBottom="@dimen/margin_normal"
             app:hintTextAppearance="@style/HintText">
 
+
             <EditText
                 android:id="@+id/edit_text_password"
                 android:layout_width="match_parent"
@@ -79,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/input_field_height"
             android:layout_marginBottom="@dimen/lv_header_text_size"
-            android:background="@color/primary"
+            android:background="@color/green"
             android:onClick="onSignInPressed"
             android:text="@string/button_signin_with_password"
             android:textColor="@android:color/white" />
@@ -113,4 +122,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>

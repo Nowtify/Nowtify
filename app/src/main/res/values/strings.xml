@@ -135,7 +135,7 @@
     <string name="progress_dialog_loading">Loading…</string>
     <string name="progress_dialog_authenticating_with_firebase">Logging in…</string>
     <string name="progress_dialog_creating_user_with_firebase">Attempting to create account…</string>
-    <string name="progress_dialog_check_inbox">Please check your inbox for your password.</string>
+    <string name="progress_dialog_check_inbox">Please check your inbox for your password within 24 hours.</string>
 
     <!-- Errors -->
     <string name="dialog_title_error">Error</string>

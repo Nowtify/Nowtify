@@ -1,4 +1,4 @@
-package com.udacity.firebase.nowtify.ui.login;
+package com.udacity.firebase.nowtify.model;
 
 import java.util.HashMap;
 

@@ -33,7 +33,6 @@ import com.google.android.gms.common.api.Scope;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
-import com.udacity.firebase.nowtify.ui.NowActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.Utils;
 
@@ -49,6 +48,7 @@ public class LoginActivity extends BaseActivity {
     private ProgressDialog mAuthProgressDialog;
     private EditText mEditTextEmailInput, mEditTextPasswordInput;
     private Firebase mFirebaseRef;
+    private boolean userFirstTime;
 
     /**
      * Variables related to Google Login
@@ -201,11 +201,18 @@ public class LoginActivity extends BaseActivity {
                 spe.putString(Constants.KEY_PROVIDER, authData.getProvider()).apply();
                 spe.putString(Constants.KEY_ENCODED_EMAIL, mEncodedEmail).apply();
 
-                /* Go to main activity */
-                Intent intent = new Intent(LoginActivity.this, NowActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
+                /* Go to  NowActivity or AddDetailsActivity depending on whether user first time or not */
+                if(userFirstTime){
+                    Intent intent = new Intent(LoginActivity.this, AddDetailsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, AddDetailsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }
 
@@ -286,6 +293,10 @@ public class LoginActivity extends BaseActivity {
                                 Log.d(LOG_TAG, getString(R.string.log_error_failed_to_change_password) + firebaseError);
                             }
                         });
+
+                        // check whether user is first time log in or not, to go to either NowActivity or AddDetailsActivity
+                        userFirstTime = false;
+
                     }
                 }
             }

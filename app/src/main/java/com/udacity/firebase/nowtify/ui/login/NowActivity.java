@@ -1,4 +1,4 @@
-package com.udacity.firebase.nowtify.ui;
+package com.udacity.firebase.nowtify.ui.login;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +13,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
+import com.udacity.firebase.nowtify.ui.BaseActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
 
 public class NowActivity extends BaseActivity {

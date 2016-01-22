@@ -36,7 +36,7 @@ public class CreateAccountActivity extends BaseActivity {
     private ProgressDialog mAuthProgressDialog;
     private Firebase mFirebaseRef;
     private EditText mEditTextEmailCreate, mEditTextPasswordCreate;
-    private String mUserName, mUserEmail, mPassword;
+    private String mUserEmail, mPassword;
     private SecureRandom mRandom = new SecureRandom();
 
 

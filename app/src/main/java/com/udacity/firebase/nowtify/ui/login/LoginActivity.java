@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity {
     private ProgressDialog mAuthProgressDialog;
     private EditText mEditTextEmailInput, mEditTextPasswordInput;
     private Firebase mFirebaseRef;
-    private boolean userFirstTime;
+    private boolean userFirstTime = false;
 
     /**
      * Variables related to Google Login
@@ -134,7 +134,6 @@ public class LoginActivity extends BaseActivity {
         mEditTextEmailInput = (EditText) findViewById(R.id.edit_text_email);
         mEditTextPasswordInput = (EditText) findViewById(R.id.edit_text_password);
         LinearLayout linearLayoutLoginActivity = (LinearLayout) findViewById(R.id.linear_layout_login_activity);
-        initializeBackground(linearLayoutLoginActivity);
         /* Setup the progress dialog that is displayed later when authenticating with Firebase */
         mAuthProgressDialog = new ProgressDialog(this);
         mAuthProgressDialog.setTitle(getString(R.string.progress_dialog_loading));
@@ -203,18 +202,55 @@ public class LoginActivity extends BaseActivity {
                 spe.putString(Constants.KEY_PROVIDER, authData.getProvider()).apply();
                 spe.putString(Constants.KEY_ENCODED_EMAIL, mEncodedEmail).apply();
 
-                /* Go to  NowActivity or AddDetailsActivity depending on whether user first time or not */
-                if(userFirstTime){
-                    Intent intent = new Intent(LoginActivity.this, AddDetailsActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(LoginActivity.this, NowActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
-                }
+                ///
+                final Firebase userRef = new Firebase(Constants.FIREBASE_URL_USERS).child(mEncodedEmail);
+
+                /**
+                 * Check if current user has logged in at least once
+                 */
+                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
+
+                        if (user != null) {
+
+                            /**
+                             * If recently registered user has hasLoggedInWithPassword = "false"
+                             * (never logged in using password provider)
+                             */
+                            if (!user.isHasLoggedInWithPassword()) {
+
+                            /* Go to  NowActivity or AddDetailsActivity depending on whether user first time or not */
+                                if(userFirstTime == true){
+                                    Log.v(LOG_TAG, "CP1");
+                                    Intent intent = new Intent(LoginActivity.this, AddDetailsActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                            } else {
+                                Log.v(LOG_TAG, "CP4");
+                                Intent intent = new Intent(LoginActivity.this, NowActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                        Log.e(LOG_TAG,
+                                getString(R.string.log_error_the_read_failed) +
+                                        firebaseError.getMessage());
+                    }
+                });
+                ///
+
+
+
             }
         }
 
@@ -282,12 +318,14 @@ public class LoginActivity extends BaseActivity {
                          * to make sure that user will be able to use temporary password
                          * from the email more than 24 hours
                          */
+                        userFirstTime = true;
                         mFirebaseRef.changePassword(unprocessedEmail, mEditTextPasswordInput.getText().toString(), mEditTextPasswordInput.getText().toString(), new Firebase.ResultHandler() {
                             @Override
                             public void onSuccess() {
                                 userRef.child(Constants.FIREBASE_PROPERTY_USER_HAS_LOGGED_IN_WITH_PASSWORD).setValue(true);
                                         /* The password was changed */
                                 Log.d(LOG_TAG, getString(R.string.log_message_password_changed_successfully) + mEditTextPasswordInput.getText().toString());
+                                Log.v(LOG_TAG, "CP3");
                             }
 
                             @Override
@@ -297,7 +335,8 @@ public class LoginActivity extends BaseActivity {
                         });
 
                         // check whether user is first time log in or not, to go to either NowActivity or AddDetailsActivity
-                        userFirstTime = false;
+                        Log.v(LOG_TAG, "CP2");
+                        userFirstTime = true;
 
                     }
                 }

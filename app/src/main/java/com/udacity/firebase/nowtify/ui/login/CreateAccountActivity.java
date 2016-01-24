@@ -75,7 +75,6 @@ public class CreateAccountActivity extends BaseActivity {
         mEditTextEmailCreate = (EditText) findViewById(R.id.edit_text_email_create);
         mEditTextPasswordCreate = (EditText) findViewById(R.id.edit_text_password_create);
         LinearLayout linearLayoutCreateAccountActivity = (LinearLayout) findViewById(R.id.linear_layout_create_account_activity);
-        initializeBackground(linearLayoutCreateAccountActivity);
 
         /* Setup the progress dialog that is displayed later when authenticating with Firebase */
         mAuthProgressDialog = new ProgressDialog(this);
@@ -216,7 +215,7 @@ public class CreateAccountActivity extends BaseActivity {
                     HashMap<String, Object> timestampJoined = new HashMap<>();
                     timestampJoined.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
 
-                    User newUser = new User(encodedEmail, timestampJoined, "Not Set", "Not Set");
+                    User newUser = new User(encodedEmail, timestampJoined, "Not Set", 1L, "Not Set");
                     userLocation.setValue(newUser);
                 }
             }

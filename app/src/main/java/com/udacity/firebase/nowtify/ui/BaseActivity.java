@@ -2,13 +2,11 @@ package com.udacity.firebase.nowtify.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
@@ -110,18 +108,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    protected void initializeBackground(LinearLayout linearLayout) {
-
-        /**
-         * Set different background image for landscape and portrait layouts
-         */
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            linearLayout.setBackgroundResource(R.drawable.background_loginscreen_land);
-        } else {
-            linearLayout.setBackgroundResource(R.drawable.background_loginscreen);
-        }
     }
 
     /**

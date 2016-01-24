@@ -15,7 +15,7 @@ public class FirebaseUtils{
 
     FirebaseError firebaseError;
 
-    public FirebaseError updateUserDetails(String email, AuthData authData, String gender, String occupation){
+    public FirebaseError updateUserDetails(String email, AuthData authData, String gender, long dateOfBirth, String occupation){
 
         String mEncodedEmail;
 
@@ -37,7 +37,7 @@ public class FirebaseUtils{
         timestampCreated.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
 
         /* build the User object */
-        User user = new User(unprocessedEmail, timestampCreated, gender, occupation);
+        User user = new User(unprocessedEmail, timestampCreated, gender, dateOfBirth,occupation);
 
         /* add user details */
         userRef.setValue(user, new Firebase.CompletionListener() {

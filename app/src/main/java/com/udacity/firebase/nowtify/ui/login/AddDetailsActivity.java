@@ -1,7 +1,6 @@
 package com.udacity.firebase.nowtify.ui.login;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.udacity.firebase.nowtify.R;
@@ -69,19 +67,20 @@ public class AddDetailsActivity extends BaseActivity {
         //setupGoogleSignIn();
     }
 
-    public void onSignInPressed(View view) {addUserDetails();}
+    public void onAddDetailsPressed(View view) {addUserDetails();}
 
     /**
      * Add user details to Firebase when user clicks Enter Nowtify
      */
     public void addUserDetails() {
 
+        /*
         mFirebaseRef.changeEmail(Constants.KEY_ENCODED_EMAIL, Constants.PASSWORD_PROVIDER, mCreateNewPassword1.getText().toString(), new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {
                 // email changed
 
-                /* Go to main activity */
+                /* Go to main activity
                 Intent intent = new Intent(AddDetailsActivity.this, NowActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -93,8 +92,30 @@ public class AddDetailsActivity extends BaseActivity {
             public void onError(FirebaseError firebaseError) {
                 // error encountered
             }
-        });
+        })
+        */
 
+        /*
+
+        FirebaseError checkIfUserIsUpdated;
+        FirebaseUtils firebaseUtils = new FirebaseUtils();
+        checkIfUserIsUpdated = firebaseUtils.updateUserDetails("afiq980@gmail.com", authData, "M", "Student");
+        switch (checkIfUserIsUpdated.getCode()) {
+            case FirebaseError.INVALID_EMAIL:
+            case FirebaseError.USER_DOES_NOT_EXIST:
+                mEditTextEmailInput.setError(getString(R.string.error_message_email_issue));
+                break;
+            case FirebaseError.INVALID_PASSWORD:
+                mEditTextPasswordInput.setError(checkIfUserIsUpdated.getMessage());
+                break;
+            case FirebaseError.NETWORK_ERROR:
+                showErrorToast(getString(R.string.error_message_failed_sign_in_no_network));
+                break;
+            default:
+                showErrorToast(checkIfUserIsUpdated.toString());
+        }
+        Log.v(LOG_TAG, "User details added");
+        */
     }
 
 

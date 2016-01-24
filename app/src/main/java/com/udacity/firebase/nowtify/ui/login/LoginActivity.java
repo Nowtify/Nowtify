@@ -88,6 +88,7 @@ public class LoginActivity extends BaseActivity {
                 return true;
             }
         });
+
     }
 
     @Override
@@ -189,6 +190,7 @@ public class LoginActivity extends BaseActivity {
 
             if (authData != null) {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
                 SharedPreferences.Editor spe = sp.edit();
                 /**
                  * If user has logged in with password provider
@@ -208,7 +210,7 @@ public class LoginActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Intent intent = new Intent(LoginActivity.this, AddDetailsActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, NowActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();

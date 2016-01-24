@@ -8,6 +8,8 @@ import java.util.HashMap;
 public class User {
     private String name;
     private String email;
+    private String gender;
+    private String occupation;
     private HashMap<String, Object> timestampJoined;
     private boolean hasLoggedInWithPassword;
 
@@ -25,14 +27,24 @@ public class User {
      * @param email
      * @param timestampJoined
      */
-    public User(String email, HashMap<String, Object> timestampJoined) {
+    public User(String email, HashMap<String, Object> timestampJoined, String gender, String occupation) {
         this.email = email;
         this.timestampJoined = timestampJoined;
+        this.gender = gender;
+        this.occupation = occupation;
         this.hasLoggedInWithPassword = false;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getOccupation() {
+        return occupation;
     }
 
     public HashMap<String, Object> getTimestampJoined() {

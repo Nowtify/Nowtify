@@ -115,9 +115,7 @@ public class LoginActivity extends BaseActivity {
     /**
      * Sign in with Password provider when user clicks sign in button
      */
-    public void onSignInPressed(View view) {
-        signInPassword();
-    }
+    public void onSignInPressed(View view) { signInPassword() ;}
 
     /**
      * Open CreateAccountActivity when user taps on "Sign up" TextView

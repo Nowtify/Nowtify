@@ -135,6 +135,10 @@
     <string name="hint_insert_occupation">Occupation</string>
     <string name="hint_insert_birthday">Date of birth</string>
 
+    <string name="hint_enter_new_password">Enter new password</string>
+    <string name="hint_confirm_new_password">Confirm new password</string>
+
+
 
 
 

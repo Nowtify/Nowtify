@@ -2,7 +2,9 @@ package com.udacity.firebase.nowtify.ui.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -26,7 +28,8 @@ import java.util.Date;
 /**
  * Created by MohamedAfiq on 21/1/16.
  */
-public class AddDetailsActivity extends BaseActivity {
+public class AddDetailsActivity extends BaseActivity implements
+    GoogleApiClient.OnConnectionFailedListener {
     private static final String LOG_TAG = AddDetailsActivity.class.getSimpleName();
     private ProgressDialog mAuthProgressDialog;
     private Firebase mFirebaseRef;
@@ -56,6 +59,29 @@ public class AddDetailsActivity extends BaseActivity {
             // ATTENTION: This was auto-generated to implement the App Indexing API.
             // See https://g.co/AppIndexing/AndroidStudio for more information.
             client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+            /**
+             * Getting mProvider and mEncodedEmail from SharedPreferences
+             */
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(AddDetailsActivity.this);
+        /* Get mEncodedEmail and mProvider from SharedPreferences, use null as default value */
+            mEncodedEmail = sp.getString(Constants.KEY_ENCODED_EMAIL, null);
+            mProvider = sp.getString(Constants.KEY_PROVIDER, null);
+
+
+            if (!((this instanceof AddDetailsActivity))) {
+                mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
+                mAuthListener = new Firebase.AuthStateListener() {
+                    @Override
+                    public void onAuthStateChanged(AuthData authData) {
+                     /* The user has been logged out */
+                        if (authData == null) {
+                            takeUserToLoginScreenOnUnAuth();
+                        }
+                    }
+                };
+                mFirebaseRef.addAuthStateListener(mAuthListener);
+            }
         }
 
         /**
@@ -180,6 +206,24 @@ public class AddDetailsActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
+    }
+
+    private void takeUserToLoginScreenOnUnAuth() {
+        /* Move user to LoginActivity, and remove the backstack */
+        Intent intent = new Intent(AddDetailsActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        /* Cleanup the AuthStateListener */
+        if (!((this instanceof AddDetailsActivity))) {
+            mFirebaseRef.removeAuthStateListener(mAuthListener);
+        }
+
     }
 
 

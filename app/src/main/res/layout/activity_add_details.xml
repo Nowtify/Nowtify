@@ -5,13 +5,10 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background = "@drawable/shopping"
-    tools:context="com.udacity.firebase.nowtify.ui.login.AddDetailsActivityActivity">
+    tools:context="com.udacity.firebase.nowtify.ui.login.AddDetailsActivity">
 
-    <fragment android:name="com.udacity.firebase.nowtify.ui.login.GenderDialogFragment"
-        android:id="@+id/dialog_gender_fragment"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent" />
+    <!-- container fragment -->
+    <include layout="@layout/container_add_details" />
 
     <LinearLayout
         android:id="@+id/linear_layout_add_details_activity"
@@ -94,18 +91,17 @@
                 android:textSize="@dimen/login_buttons_text_size" />
         </android.support.design.widget.TextInputLayout> -->
 
-        <!-- Gender-->
+        <!-- Gender Button-->
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="showDialog"
-            android:background="@android:color/white"
+            android:layout_gravity="center"
+            android:id="@+id/gender_button"
             android:text="Select your gender"
-            android:textColor="@color/black"
-            android:textColorHint="@color/dark_grey"
-            android:textSize="@dimen/login_buttons_text_size"
+            android:onClick="selectGender"
             />
 
+        <!--Create Account Button-->
         <Button
             android:id="@+id/btn_add_details"
             android:layout_width="match_parent"

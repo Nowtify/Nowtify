@@ -50,4 +50,6 @@
         <item name="android:layout_width">@dimen/logo_image_size</item>
     </style>
 
+
+
 </resources>

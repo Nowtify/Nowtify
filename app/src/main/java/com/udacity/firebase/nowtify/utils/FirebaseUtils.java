@@ -1,11 +1,17 @@
 package com.udacity.firebase.nowtify.utils;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
 import com.firebase.client.ServerValue;
+import com.firebase.client.ValueEventListener;
+import com.udacity.firebase.nowtify.model.EntityItemDetails;
+import com.udacity.firebase.nowtify.model.EntityParentDetails;
 import com.udacity.firebase.nowtify.model.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -48,6 +54,73 @@ public class FirebaseUtils{
         });
 
         return firebaseError;
+    }
+
+    public EntityItemDetails getEntityItemDetails (String pushId){
+        final EntityItemDetails[] entityItemDetails = new EntityItemDetails[1];
+
+        final Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(pushId);
+        firebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                entityItemDetails[0] = dataSnapshot.getValue(EntityItemDetails.class);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                entityItemDetails[0] = null;
+            }
+        });
+
+        return entityItemDetails[0];
+    }
+
+    public ArrayList<EntityItemDetails> getEntityItemDetailsList (ArrayList<String> pushIds){
+        final ArrayList<EntityItemDetails> entityItemDetailsList = new ArrayList<EntityItemDetails>();
+
+        for(int i = 0; i<pushIds.size();i++){
+            final EntityItemDetails[] entityItemDetails = new EntityItemDetails[1];
+
+            final Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS);
+            Query queryRef = firebaseRef.equalTo(pushIds.get(i));
+
+
+            queryRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    entityItemDetails[0] = dataSnapshot.getValue(EntityItemDetails.class);
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+                    entityItemDetails[0] = null;
+                }
+            });
+
+            entityItemDetailsList.add(entityItemDetails[0]);
+        }
+
+
+        return entityItemDetailsList;
+    }
+
+    public EntityParentDetails getEntityParentDetails (String pushID){
+        final EntityParentDetails[] entityParentDetails = new EntityParentDetails[1];
+
+        final Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL_ENTITY_PARENT_DETAILS).child(pushID);
+        firebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                entityParentDetails[0] = dataSnapshot.getValue(EntityParentDetails.class);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        return entityParentDetails[0];
     }
 
     private void changeUtilsMessage(FirebaseError firebaseError) {

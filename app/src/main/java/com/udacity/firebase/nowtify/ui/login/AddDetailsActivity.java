@@ -88,8 +88,8 @@ public class AddDetailsActivity extends BaseActivity implements
          * Link layout elements from XML and setup the progress dialog
          */
     public void initializeScreen() {
-        mCreateNewPassword1 = (EditText) findViewById(R.id.hint_enter_new_password_1);
-        mCreateNewPassword2 = (EditText) findViewById(R.id.hint_enter_new_password_2);
+        //mCreateNewPassword1 = (EditText) findViewById(R.id.hint_enter_new_password_1);
+        //mCreateNewPassword2 = (EditText) findViewById(R.id.hint_enter_new_password_2);
         mEditGender = (EditText) findViewById(R.id.edit_text_password);
         mEditOccupation = (EditText) findViewById(R.id.edit_text_password);
         mEditDateOfBirth = (EditText) findViewById(R.id.edit_text_password);

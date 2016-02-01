@@ -26,12 +26,12 @@ import java.util.Date;
  * Created by MohamedAfiq on 21/1/16.
  */
 public class AddDetailsActivity extends BaseActivity implements
-    GoogleApiClient.OnConnectionFailedListener {
+    GoogleApiClient.OnConnectionFailedListener{
     private static final String LOG_TAG = AddDetailsActivity.class.getSimpleName();
     private ProgressDialog mAuthProgressDialog;
     private Firebase mFirebaseRef;
-    private String mEditGender;
-    private EditText mCreateNewPassword1, mCreateNewPassword2, mEditOccupation, mEditDateOfBirth;
+    private String mEditGender, mEditDateOfBirth;
+    private EditText mCreateNewPassword1, mCreateNewPassword2, mEditOccupation;
     private String mUserEmail, mPassword;
 
         /**
@@ -66,7 +66,7 @@ public class AddDetailsActivity extends BaseActivity implements
         mCreateNewPassword1 = (EditText) findViewById(R.id.create_new_password);
         mCreateNewPassword2 = (EditText) findViewById(R.id.create_retype_password);
         mEditOccupation = (EditText) findViewById(R.id.edit_text_password);
-        mEditDateOfBirth = (EditText) findViewById(R.id.edit_text_password);
+        //mEditDateOfBirth = (EditText) findViewById(R.id.edit_text_password);
 
         LinearLayout linearLayoutAddDetailsActivity = (LinearLayout) findViewById(R.id.linear_layout_add_details_activity);
         /* Setup the progress dialog that is displayed later when authenticating with Firebase */
@@ -210,6 +210,18 @@ public class AddDetailsActivity extends BaseActivity implements
     public void setGender(String selection){
         mEditGender = (String) selection;
         Log.v(LOG_TAG, "Main activity received selection: " + mEditGender);
+    }
+
+    public void selectDateOfBirth(View view){
+        SetDateOfBirthFragment dob = new SetDateOfBirthFragment();
+        dob.show(getFragmentManager(), "dob");
+        Log.v(LOG_TAG, "HELOOOOOO");
+
+    }
+
+    public void setDateOfBirth(String selection){
+        mEditDateOfBirth = (String) selection;
+        Log.v(LOG_TAG, "Main activity received selection: " + mEditDateOfBirth);
     }
 
 

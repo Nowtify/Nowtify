@@ -102,6 +102,16 @@
             android:onClick="selectGender"
             />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/dob_button"
+            android:text="DD / MM / YYYY"
+            android:onClick="selectDateOfBirth"
+            />
+
+        <!-- date of birth
         <android.support.design.widget.TextInputLayout
             android:id="@+id/create_birthday_field"
             android:layout_width="match_parent"
@@ -114,7 +124,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                android:hint="Enter birthday"
+                android:hint="DD-MM-YYYY"
+                android:onClick="selectDateOfBirth"
                 android:imeOptions="actionDone"
                 android:inputType="date"
                 android:padding="@dimen/edit_text_padding"
@@ -122,7 +133,7 @@
                 android:textColorHint="@color/dark_grey"
                 android:textSize="@dimen/login_buttons_text_size" />
         </android.support.design.widget.TextInputLayout>
-
+        -->
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/create_occupation_field"

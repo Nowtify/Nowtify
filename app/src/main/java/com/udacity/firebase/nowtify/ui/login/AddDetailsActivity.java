@@ -2,9 +2,7 @@ package com.udacity.firebase.nowtify.ui.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -14,7 +12,6 @@ import android.widget.LinearLayout;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
@@ -29,11 +26,12 @@ import java.util.Date;
  * Created by MohamedAfiq on 21/1/16.
  */
 public class AddDetailsActivity extends BaseActivity implements
-    GoogleApiClient.OnConnectionFailedListener {
+    GoogleApiClient.OnConnectionFailedListener{
     private static final String LOG_TAG = AddDetailsActivity.class.getSimpleName();
     private ProgressDialog mAuthProgressDialog;
     private Firebase mFirebaseRef;
-    private EditText mCreateNewPassword1, mCreateNewPassword2, mEditGender, mEditOccupation, mEditDateOfBirth;
+    private String mEditGender, mEditDateOfBirth;
+    private EditText mCreateNewPassword1, mCreateNewPassword2, mEditOccupation;
     private String mUserEmail, mPassword;
 
         /**
@@ -56,32 +54,9 @@ public class AddDetailsActivity extends BaseActivity implements
              * Link layout elements from XML and setup the progress dialog
              */
             initializeScreen();
-            // ATTENTION: This was auto-generated to implement the App Indexing API.
-            // See https://g.co/AppIndexing/AndroidStudio for more information.
-            client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-            /**
-             * Getting mProvider and mEncodedEmail from SharedPreferences
-             */
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(AddDetailsActivity.this);
-        /* Get mEncodedEmail and mProvider from SharedPreferences, use null as default value */
-            mEncodedEmail = sp.getString(Constants.KEY_ENCODED_EMAIL, null);
-            mProvider = sp.getString(Constants.KEY_PROVIDER, null);
 
 
-            if (!((this instanceof AddDetailsActivity))) {
-                mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
-                mAuthListener = new Firebase.AuthStateListener() {
-                    @Override
-                    public void onAuthStateChanged(AuthData authData) {
-                     /* The user has been logged out */
-                        if (authData == null) {
-                            takeUserToLoginScreenOnUnAuth();
-                        }
-                    }
-                };
-                mFirebaseRef.addAuthStateListener(mAuthListener);
-            }
+
         }
 
         /**
@@ -92,7 +67,7 @@ public class AddDetailsActivity extends BaseActivity implements
         //mCreateNewPassword2 = (EditText) findViewById(R.id.hint_enter_new_password_2);
         mEditGender = (EditText) findViewById(R.id.edit_text_password);
         mEditOccupation = (EditText) findViewById(R.id.edit_text_password);
-        mEditDateOfBirth = (EditText) findViewById(R.id.edit_text_password);
+        //mEditDateOfBirth = (EditText) findViewById(R.id.edit_text_password);
 
         LinearLayout linearLayoutAddDetailsActivity = (LinearLayout) findViewById(R.id.linear_layout_add_details_activity);
         /* Setup the progress dialog that is displayed later when authenticating with Firebase */
@@ -224,6 +199,30 @@ public class AddDetailsActivity extends BaseActivity implements
             mFirebaseRef.removeAuthStateListener(mAuthListener);
         }
 
+    }
+
+    public void selectGender(View view){
+        SetGenderFragment gender_dialog = new SetGenderFragment();
+        gender_dialog.show(getSupportFragmentManager(), "dialog_gender_fragment");
+
+    }
+
+
+    public void setGender(String selection){
+        mEditGender = (String) selection;
+        Log.v(LOG_TAG, "Main activity received selection: " + mEditGender);
+    }
+
+    public void selectDateOfBirth(View view){
+        SetDateOfBirthFragment dob = new SetDateOfBirthFragment();
+        dob.show(getFragmentManager(), "dob");
+        Log.v(LOG_TAG, "HELOOOOOO");
+
+    }
+
+    public void setDateOfBirth(String selection){
+        mEditDateOfBirth = (String) selection;
+        Log.v(LOG_TAG, "Main activity received selection: " + mEditDateOfBirth);
     }
 
 

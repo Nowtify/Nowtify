@@ -34,6 +34,7 @@ import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
+import com.udacity.firebase.nowtify.utils.FirebaseUtilsTest;
 import com.udacity.firebase.nowtify.utils.Utils;
 
 import java.io.IOException;
@@ -88,6 +89,11 @@ public class LoginActivity extends BaseActivity {
                 return true;
             }
         });
+
+        ////////
+        FirebaseUtilsTest firebaseUtilsTest = new FirebaseUtilsTest();
+        firebaseUtilsTest.getEntityItemDetailsTest();
+        ////////
 
     }
 

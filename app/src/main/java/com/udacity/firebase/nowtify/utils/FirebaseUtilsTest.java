@@ -15,20 +15,31 @@ public class FirebaseUtilsTest extends FirebaseUtils{
 
     public void getEntityItemDetailsTest(){
         addExampleEntity("123456");
-        EntityItemDetails entityItemDetails = getEntityItemDetails("123456");
-        Log.v(LOG_TAG, entityItemDetails.getTitle());
+        EntityItemDetails entityItemDetails = (EntityItemDetails) getEntityItemDetails("-K91IGtm1KkUcw0p7cqJ");
+        Log.v(LOG_TAG, entityItemDetails.toString());
     }
 
     public void addExampleEntity(String pushId){
-        final Firebase userRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(pushId);
+        final Firebase userRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS);
+        Firebase newListRef = userRef.push();
+
+        /* Save listsRef.push() to maintain same random Id */
+        final String listId = newListRef.getKey();
+
+        Log.v(LOG_TAG, "addExampleEntity Ran");
 
         /* build the User object */
-        EntityItemDetails entityItemDetails = new EntityItemDetails(pushId,"Test","Test","Test","Test","Test","Test");
+        EntityItemDetails entityItemDetails = new EntityItemDetails("Test","Test","Test","Test","Test","Test");
+
+
+        /* Add the shopping list */
+        newListRef.setValue(entityItemDetails);
 
         /* add user details */
-        userRef.setValue(entityItemDetails, new Firebase.CompletionListener() {
+        newListRef.setValue(entityItemDetails, new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                Log.v(LOG_TAG, "Added Sample Object");
             }
         });
     }

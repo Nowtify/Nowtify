@@ -4,7 +4,6 @@ package com.udacity.firebase.nowtify.model;
  * Created by MohamedAfiq on 27/1/16.
  */
 public class EntityItemDetails {
-    String pushId;
     String parentPushId;
     String title;
     String shortDesc;
@@ -15,8 +14,7 @@ public class EntityItemDetails {
     public EntityItemDetails() {
     }
 
-    public EntityItemDetails(String pushId, String parentPushId, String title, String shortDesc, String longDesc, String tnc, String encodedImage){
-        this.pushId=pushId;
+    public EntityItemDetails(String parentPushId, String title, String shortDesc, String longDesc, String tnc, String encodedImage){
         this.parentPushId=parentPushId;
         this.title=title;
         this.shortDesc=shortDesc;
@@ -25,9 +23,6 @@ public class EntityItemDetails {
         this.encodedImage=encodedImage;
     }
 
-    public String getPushId() {
-        return pushId;
-    }
 
     public String getParentPushId() {
         return parentPushId;
@@ -51,10 +46,6 @@ public class EntityItemDetails {
 
     public String getEncodedImage() {
         return encodedImage;
-    }
-
-    public void setPushId(String pushId) {
-        this.pushId = pushId;
     }
 
     public void setShortDesc(String shortDesc) {

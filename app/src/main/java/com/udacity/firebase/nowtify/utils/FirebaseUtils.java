@@ -1,5 +1,7 @@
 package com.udacity.firebase.nowtify.utils;
 
+import android.util.Log;
+
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -20,6 +22,8 @@ import java.util.HashMap;
 public class FirebaseUtils{
 
     FirebaseError firebaseError;
+    private static final String LOG_TAG = FirebaseUtils.class.getSimpleName();
+
 
     public FirebaseError updateUserDetails(String email, AuthData authData, String gender, long dateOfBirth, String occupation){
 
@@ -58,19 +62,34 @@ public class FirebaseUtils{
 
     public EntityItemDetails getEntityItemDetails (String pushId){
         final EntityItemDetails[] entityItemDetails = new EntityItemDetails[1];
+        final boolean[] checker = {false};
 
-        final Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(pushId);
-        firebaseRef.addValueEventListener(new ValueEventListener() {
+        Log.v(LOG_TAG, "getEntityItemDetailsStart");
+
+        final Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS);
+        Query queryRef = firebaseRef.equalTo(pushId);
+
+
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 entityItemDetails[0] = dataSnapshot.getValue(EntityItemDetails.class);
+                Log.v(LOG_TAG, "onDataChange");
+                checker[0] = true;
+
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 entityItemDetails[0] = null;
+                Log.v(LOG_TAG, "onCancelled");
             }
         });
+
+        while(checker[0] ==false){
+            Log.v(LOG_TAG, "getEntityItemDetailsEnd");
+        }
+
 
         return entityItemDetails[0];
     }

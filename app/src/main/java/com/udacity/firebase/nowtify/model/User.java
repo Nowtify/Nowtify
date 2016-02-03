@@ -37,6 +37,22 @@ public class User {
         this.hasLoggedInWithPassword = false;
     }
 
+    /**
+     * Use this constructor to create new User.
+     * Takes user name, email and timestampJoined as params
+     *
+     * @param email
+     * @param timestampJoined
+     */
+    public User(String email, HashMap<String, Object> timestampJoined, String gender, long dateOfBirth, String occupation, boolean hasLoggedInWithPassword) {
+        this.email = email;
+        this.timestampJoined = timestampJoined;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.occupation = occupation;
+        this.hasLoggedInWithPassword = hasLoggedInWithPassword;
+    }
+
     public String getEmail() {
         return email;
     }

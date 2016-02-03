@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.udacity.firebase.nowtify.R;
 
@@ -52,19 +51,10 @@ public class SetGenderFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ((AddDetailsActivity)getActivity()).setGender(selection);
-                Toast.makeText(getActivity(), "You chose " + selection, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "You chose " + selection, Toast.LENGTH_SHORT).show();
 
                 Button mButton= (Button) getActivity().findViewById(R.id.gender_button);
                 mButton.setText(selection);
-
-                /*
-                LayoutInflater inflater = LayoutInflater.from(getActivity().getApplicationContext());
-                Log.v(LOG_TAG, inflater.toString());
-                View view = inflater.inflate(R.layout.activity_add_details, null);
-                Button mButton= (Button) view.findViewById(R.id.gender_button);
-                mButton.setText(selection);
-                */
-
             }
         });
 

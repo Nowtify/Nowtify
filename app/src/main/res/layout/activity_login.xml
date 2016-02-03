@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:hint="@string/hint_enter_email_login"
+                android:gravity="center"
                 android:inputType="textEmailAddress"
                 android:nextFocusDown="@+id/edit_text_password"
                 android:padding="@dimen/edit_text_padding"
@@ -80,6 +81,7 @@
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/black"
                 android:textColorHint="@color/dark_grey"
+                android:gravity="center"
                 android:textSize="@dimen/login_buttons_text_size" />
         </android.support.design.widget.TextInputLayout>
 

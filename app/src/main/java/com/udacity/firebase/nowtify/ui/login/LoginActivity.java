@@ -33,8 +33,8 @@ import com.google.android.gms.common.api.Scope;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
+import com.udacity.firebase.nowtify.ui.Explore.ExploreActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
-import com.udacity.firebase.nowtify.utils.FirebaseUtilsTest;
 import com.udacity.firebase.nowtify.utils.Utils;
 
 import java.io.IOException;
@@ -91,8 +91,8 @@ public class LoginActivity extends BaseActivity {
         });
 
         ////////
-        FirebaseUtilsTest firebaseUtilsTest = new FirebaseUtilsTest();
-        firebaseUtilsTest.getEntityItemDetailsTest();
+        //FirebaseUtilsTest firebaseUtilsTest = new FirebaseUtilsTest();
+        //firebaseUtilsTest.getEntityItemDetailsTest();
         ////////
 
     }
@@ -127,7 +127,7 @@ public class LoginActivity extends BaseActivity {
      * Open CreateAccountActivity when user taps on "Sign up" TextView
      */
     public void onSignUpPressed(View view) {
-        Intent intent = new Intent(LoginActivity.this, AddDetailsActivity.class);
+        Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
         startActivity(intent);
     }
 
@@ -236,7 +236,7 @@ public class LoginActivity extends BaseActivity {
 
                             } else {
                                 Log.v(LOG_TAG, "CP4");
-                                Intent intent = new Intent(LoginActivity.this, NowActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, ExploreActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();

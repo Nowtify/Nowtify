@@ -15,6 +15,7 @@ import com.firebase.client.FirebaseError;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
+import com.udacity.firebase.nowtify.ui.Explore.ExploreActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.FirebaseUtils;
 import com.udacity.firebase.nowtify.utils.Utils;
@@ -30,7 +31,8 @@ public class AddDetailsActivity extends BaseActivity implements
     private static final String LOG_TAG = AddDetailsActivity.class.getSimpleName();
     private ProgressDialog mAuthProgressDialog;
     private Firebase mFirebaseRef;
-    private String mEditGender, mEditDateOfBirth;
+    private String mEditGender;
+    private Long mEditDateOfBirth;
     private EditText mCreateNewPassword1, mCreateNewPassword2, mEditOccupation;
     private String mUserEmail, mPassword;
 
@@ -54,9 +56,6 @@ public class AddDetailsActivity extends BaseActivity implements
              * Link layout elements from XML and setup the progress dialog
              */
             initializeScreen();
-
-
-
         }
 
         /**
@@ -65,7 +64,7 @@ public class AddDetailsActivity extends BaseActivity implements
     public void initializeScreen() {
         //mCreateNewPassword1 = (EditText) findViewById(R.id.hint_enter_new_password_1);
         //mCreateNewPassword2 = (EditText) findViewById(R.id.hint_enter_new_password_2);
-        mEditGender = (EditText) findViewById(R.id.edit_text_password);
+        //mEditGender = (EditText) findViewById(R.id.edit_text_password);
         mEditOccupation = (EditText) findViewById(R.id.edit_text_password);
         //mEditDateOfBirth = (EditText) findViewById(R.id.edit_text_password);
 
@@ -135,7 +134,7 @@ public class AddDetailsActivity extends BaseActivity implements
         // Add details other than password
         FirebaseError checkIfUserIsUpdated;
         FirebaseUtils firebaseUtils = new FirebaseUtils();
-        checkIfUserIsUpdated = firebaseUtils.updateUserDetails("afiq980@gmail.com", authData, "M", 1000L, "FUCKEDUP");
+        checkIfUserIsUpdated = firebaseUtils.updateUserDetails(unprocessedEmail, authData, mEditGender, mEditDateOfBirth, "FUCKEDUP");
         if (checkIfUserIsUpdated != null){
             switch (checkIfUserIsUpdated.getCode()) {
                 case FirebaseError.INVALID_EMAIL:
@@ -152,7 +151,7 @@ public class AddDetailsActivity extends BaseActivity implements
                     //showErrorToast(checkIfUserIsUpdated.toString());
             }
         } else {
-            Intent intent = new Intent(AddDetailsActivity.this, NowActivity.class);
+            Intent intent = new Intent(AddDetailsActivity.this, ExploreActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -217,11 +216,10 @@ public class AddDetailsActivity extends BaseActivity implements
         SetDateOfBirthFragment dob = new SetDateOfBirthFragment();
         dob.show(getFragmentManager(), "dob");
         Log.v(LOG_TAG, "HELOOOOOO");
-
     }
 
     public void setDateOfBirth(String selection){
-        mEditDateOfBirth = (String) selection;
+        mEditDateOfBirth = Long.parseLong((String) selection,10);
         Log.v(LOG_TAG, "Main activity received selection: " + mEditDateOfBirth);
     }
 

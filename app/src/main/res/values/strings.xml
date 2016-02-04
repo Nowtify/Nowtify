@@ -130,6 +130,7 @@
     <string name="hint_enter_email_login">Email</string>
     <string name="hint_enter_username">Enter your name</string>
     <string name="hint_enter_password">Password</string>
+    <string name="hint_enter_gender">Select your gender</string>
     <string name="image_view_logo_image">Logo Image</string>
     <string name="hint_enter_new_password_1">Type your new password</string>
     <string name="hint_enter_new_password_2">Re-type your new password</string>
@@ -157,6 +158,12 @@
     <string name="error_email_taken">The email is already taken.</string>
     <string name="error_invalid_password_not_valid">Please enter a password that is at least 6 characters long.</string>
     <string name="error_cannot_be_empty">This cannot be empty.</string>
+    <string name="error_password_do_not_match">Passwords do not match.</string>
+    <string name="error_please_input_gender">Please input gender.</string>
+    <string name="error_please_input_birthdate">Please input birth date.</string>
+
+
+
 
     <!-- Google Errors -->
     <string name="google_error_recoverable_oauth_error">"Recoverable Google OAuth error: "</string>

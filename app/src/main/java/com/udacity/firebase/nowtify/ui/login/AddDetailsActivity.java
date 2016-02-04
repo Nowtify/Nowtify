@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
@@ -22,6 +23,8 @@ import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.Utils;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by MohamedAfiq on 21/1/16.
@@ -31,8 +34,7 @@ public class AddDetailsActivity extends BaseActivity implements
     private static final String LOG_TAG = AddDetailsActivity.class.getSimpleName();
     private ProgressDialog mAuthProgressDialog;
     private Firebase mFirebaseRef;
-    private String mEditGender, oldPassword;
-    private Long mEditDateOfBirth;
+    private String mEditGender, oldPassword, mEditDateOfBirth;
     private EditText mCreateNewPassword1, mCreateNewPassword2, mEditOccupation;
     private String mUserEmail, mPassword;
 
@@ -62,6 +64,7 @@ public class AddDetailsActivity extends BaseActivity implements
         mCreateNewPassword1 = (EditText) findViewById(R.id.create_new_password);
         mCreateNewPassword2 = (EditText) findViewById(R.id.create_retype_password);
         mEditOccupation = (EditText) findViewById(R.id.edit_text_password);
+        mEditGender = "";
 
         LinearLayout linearLayoutAddDetailsActivity = (LinearLayout) findViewById(R.id.linear_layout_add_details_activity);
         /* Setup the progress dialog that is displayed later when authenticating with Firebase */
@@ -78,6 +81,34 @@ public class AddDetailsActivity extends BaseActivity implements
      * Change password details to Firebase when user clicks Enter Nowtify
      */
     public void changeUserPassword() {
+
+        /**
+         * If email and password are not empty show progress dialog and try to authenticate
+         */
+        String password1 = mCreateNewPassword1.getText().toString();
+        String password2 = mCreateNewPassword2.getText().toString();
+        if (password1.equals("")) {
+            mCreateNewPassword1.setError(getString(R.string.error_cannot_be_empty));
+            return;
+        }
+        if (password2.equals("")) {
+            mCreateNewPassword1.setError(getString(R.string.error_cannot_be_empty));
+            return;
+        }
+        if (!password2.equals(password1)) {
+            mCreateNewPassword1.setError(getString(R.string.error_password_do_not_match));
+            mCreateNewPassword2.setError(getString(R.string.error_password_do_not_match));
+            return;
+        }
+        if(mEditGender.equals("ENTER YOUR GENDER") || mEditGender==null || mEditGender.equals("") ){
+            showErrorToast(getString(R.string.error_please_input_gender));
+            return;
+        }
+        if(mEditDateOfBirth==null){
+            showErrorToast(getString(R.string.error_please_input_birthdate));
+            return;
+        }
+
         final AuthData authData = mFirebaseRef.getAuth();
 
         // Change password of the user
@@ -87,8 +118,22 @@ public class AddDetailsActivity extends BaseActivity implements
          * to be able to use it as a Firebase db key
          */
         mEncodedEmail = Utils.encodeEmail(unprocessedEmail);
+
+
         mAuthProgressDialog.show();
-        mFirebaseRef.changePassword(unprocessedEmail, oldPassword, mCreateNewPassword1.getText().toString() , new Firebase.ResultHandler() {
+
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+                mAuthProgressDialog.dismiss();
+            }
+        };
+
+        timer.schedule(task, 4000);
+
+        mFirebaseRef.changePassword(unprocessedEmail, oldPassword, mCreateNewPassword1.getText().toString(), new Firebase.ResultHandler() {
 
             final Firebase userRef = new Firebase(Constants.FIREBASE_URL_USERS).child(mEncodedEmail);
 
@@ -102,6 +147,27 @@ public class AddDetailsActivity extends BaseActivity implements
 
             @Override
             public void onError(FirebaseError firebaseError) {
+
+                /**
+                 * Use utility method to check the network connection state
+                 * Show "No network connection" if there is no connection
+                 * Show Firebase specific error message otherwise
+                 */
+                switch (firebaseError.getCode()) {
+                    case FirebaseError.INVALID_EMAIL:
+                        showErrorToast(getString(R.string.error_message_email_issue));
+                    case FirebaseError.USER_DOES_NOT_EXIST:
+                        showErrorToast(getString(R.string.error_message_email_issue));
+                        break;
+                    case FirebaseError.INVALID_PASSWORD:
+                        showErrorToast(firebaseError.getMessage());
+                        break;
+                    case FirebaseError.NETWORK_ERROR:
+                        showErrorToast(getString(R.string.error_message_failed_sign_in_no_network));
+                        break;
+                    default:
+                        showErrorToast(firebaseError.toString());
+                }
                 Log.d(LOG_TAG, getString(R.string.log_error_failed_to_change_password) + firebaseError);
             }
         });
@@ -135,10 +201,18 @@ public class AddDetailsActivity extends BaseActivity implements
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                 //changeUtilsMessage(firebaseError);
-                Intent intent = new Intent(AddDetailsActivity.this, ExploreActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
+
+                if (firebaseError == null) {
+                    Intent intent = new Intent(AddDetailsActivity.this, ExploreActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    mAuthProgressDialog.dismiss();
+                    showErrorToast(firebaseError.getMessage());
+                    return;
+                }
+
             }
         });
     }
@@ -185,7 +259,6 @@ public class AddDetailsActivity extends BaseActivity implements
     public void selectGender(View view){
         SetGenderFragment gender_dialog = new SetGenderFragment();
         gender_dialog.show(getSupportFragmentManager(), "dialog_gender_fragment");
-
     }
 
 
@@ -199,8 +272,15 @@ public class AddDetailsActivity extends BaseActivity implements
     }
 
     public void setDateOfBirth(String selection){
-        mEditDateOfBirth = Long.parseLong(selection);
+        mEditDateOfBirth = selection;
         Log.d(LOG_TAG, selection);
+    }
+
+    /**
+     * Show error toast to users
+     */
+    private void showErrorToast(String message) {
+        Toast.makeText(AddDetailsActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
 

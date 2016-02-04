@@ -215,7 +215,7 @@ public class CreateAccountActivity extends BaseActivity {
                     HashMap<String, Object> timestampJoined = new HashMap<>();
                     timestampJoined.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
 
-                    User newUser = new User(encodedEmail, timestampJoined, "Not Set", 1L, "Not Set");
+                    User newUser = new User(encodedEmail, timestampJoined, "Not Set", "Not Set", "Not Set");
                     userLocation.setValue(newUser);
                 }
             }

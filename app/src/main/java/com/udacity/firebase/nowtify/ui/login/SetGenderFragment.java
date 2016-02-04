@@ -18,7 +18,7 @@ import com.udacity.firebase.nowtify.R;
 public class SetGenderFragment extends DialogFragment {
 
     final CharSequence[] genderList = {"Female", "Male", "Others"};
-    private static String selection = "nothing";
+    private static String selection = "ENTER YOUR GENDER";
     private static final String LOG_TAG = SetGenderFragment.class.getSimpleName();
 
     @Override
@@ -50,10 +50,10 @@ public class SetGenderFragment extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((AddDetailsActivity)getActivity()).setGender(selection);
+                ((AddDetailsActivity) getActivity()).setGender(selection);
                 //Toast.makeText(getActivity(), "You chose " + selection, Toast.LENGTH_SHORT).show();
 
-                Button mButton= (Button) getActivity().findViewById(R.id.gender_button);
+                Button mButton = (Button) getActivity().findViewById(R.id.gender_button);
                 mButton.setText(selection);
             }
         });

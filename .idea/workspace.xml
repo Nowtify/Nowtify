@@ -28,8 +28,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e10c1a92-9976-4254-9fa2-08faa85a97a0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/CreateAccountActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/CreateAccountActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/DateOfBirthSettings.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/DateOfBirthSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/LoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetGenderFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetGenderFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_details.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_details.xml" />
@@ -59,38 +60,70 @@
       <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.851852">
-              <caret line="329" column="28" selection-start-line="329" selection-start-column="28" selection-end-line="329" selection-end-column="28" />
+            <state vertical-scroll-proportion="-11.407408">
+              <caret line="276" column="20" selection-start-line="276" selection-start-column="20" selection-end-line="276" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9823#9868#0" expanded="true" />
+                <element signature="e#10603#10648#0" expanded="true" />
+                <element signature="e#10924#10983#0" expanded="true" />
                 <element signature="e#13547#13602#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddDetailsActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AddDetailsActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.185185">
-              <caret line="129" column="98" selection-start-line="129" selection-start-column="98" selection-end-line="129" selection-end-column="98" />
+            <state vertical-scroll-proportion="0.45638946">
+              <caret line="107" column="59" selection-start-line="107" selection-start-column="59" selection-end-line="107" selection-end-column="59" />
               <folding>
-                <element signature="e#2599#2642#0" expanded="true" />
-                <element signature="e#2684#2748#0" expanded="true" />
-                <element signature="e#3850#3911#0" expanded="true" />
-                <element signature="e#4148#4203#0" expanded="true" />
-                <element signature="e#5362#5836#0" expanded="true" />
-                <element signature="e#5835#5836#0" expanded="true" />
-                <element signature="e#5891#5892#0" expanded="true" />
-                <element signature="e#5923#5924#0" expanded="true" />
-                <element signature="e#5966#5967#0" expanded="true" />
-                <element signature="e#5997#5998#0" expanded="true" />
-                <element signature="e#6201#6202#0" expanded="true" />
-                <element signature="e#6228#6229#0" expanded="true" />
-                <element signature="e#7073#7074#0" expanded="true" />
-                <element signature="e#7121#7122#0" expanded="true" />
+                <element signature="e#2689#2732#0" expanded="true" />
+                <element signature="e#2774#2838#0" expanded="true" />
+                <element signature="e#3432#3473#0" expanded="true" />
+                <element signature="e#3583#3624#0" expanded="true" />
+                <element signature="e#3742#3789#0" expanded="true" />
+                <element signature="e#3833#3880#0" expanded="true" />
+                <element signature="e#4041#4086#0" expanded="true" />
+                <element signature="e#4783#4926#0" expanded="true" />
+                <element signature="e#4925#4926#0" expanded="true" />
+                <element signature="e#5349#5410#0" expanded="true" />
+                <element signature="e#6017#6062#0" expanded="true" />
+                <element signature="e#6164#6209#0" expanded="true" />
+                <element signature="e#6492#6551#0" expanded="true" />
+                <element signature="e#6729#6784#0" expanded="true" />
+                <element signature="e#7943#8666#0" expanded="true" />
+                <element signature="e#8665#8666#0" expanded="true" />
+                <element signature="e#8721#8722#0" expanded="true" />
+                <element signature="e#8753#8754#0" expanded="true" />
+                <element signature="e#8796#8797#0" expanded="true" />
+                <element signature="e#8827#8828#0" expanded="true" />
+                <element signature="e#9031#9032#0" expanded="true" />
+                <element signature="e#9058#9059#0" expanded="true" />
+                <element signature="e#9902#9903#0" expanded="true" />
+                <element signature="e#9950#9951#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-26.222221">
+              <caret line="162" column="67" selection-start-line="162" selection-start-column="67" selection-end-line="162" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateAccountActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/CreateAccountActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="224" column="80" selection-start-line="224" selection-start-column="80" selection-end-line="224" selection-end-column="80" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="63" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
+              <caret line="68" column="16" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -125,75 +158,35 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FirebaseUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DateOfBirthSettings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/DateOfBirthSettings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="SetGenderFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetGenderFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+            <state vertical-scroll-proportion="-0.962963">
+              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="56" />
               <folding>
-                <element signature="e#1647#2112#0" expanded="true" />
-                <element signature="e#2111#2112#0" expanded="true" />
+                <element signature="e#1657#2124#0" expanded="true" />
+                <element signature="e#2123#2124#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_add_details.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_details.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5253165">
-              <caret line="179" column="45" selection-start-line="179" selection-start-column="45" selection-end-line="179" selection-end-column="45" />
-              <folding>
-                <element signature="e#870#903#0" expanded="true" />
-                <element signature="e#932#967#0" expanded="true" />
-                <element signature="e#997#1032#0" expanded="true" />
-                <element signature="e#1060#1093#0" expanded="true" />
-                <element signature="e#1460#1481#0" expanded="true" />
-                <element signature="e#1805#1838#0" expanded="true" />
-                <element signature="e#1968#1994#0" expanded="true" />
-                <element signature="e#2223#2255#0" expanded="true" />
-                <element signature="e#2603#2624#0" expanded="true" />
-                <element signature="e#2999#3034#0" expanded="true" />
-                <element signature="e#3164#3190#0" expanded="true" />
-                <element signature="e#3371#3403#0" expanded="true" />
-                <element signature="e#4850#4871#0" expanded="true" />
-                <element signature="e#5275#5296#0" expanded="true" />
-                <element signature="e#6671#6693#0" expanded="true" />
-                <element signature="e#7200#7226#0" expanded="true" />
-                <element signature="e#7354#7386#0" expanded="true" />
-                <element signature="e#7631#7658#0" expanded="true" />
-                <element signature="e#7780#7818#0" expanded="true" />
-                <element signature="e#7901#7933#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_login.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5172415">
-              <caret line="53" column="40" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_active_list_details.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_active_list_details.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1752,7 +1745,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_choose_gender.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/Nowtify.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/CreateAccountActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/BaseActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/entityChild.java" />
@@ -1762,19 +1754,20 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/userFollowings.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/EntityItemDetails.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtilsTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/EntityChild.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/NowActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetDateOfBirthFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/DateOfBirthSettings.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetGenderFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_details.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetGenderFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/CreateAccountActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/DateOfBirthSettings.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_details.xml" />
       </list>
     </option>
   </component>
@@ -2486,12 +2479,12 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25201938" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25201938" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19178082" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16590562" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39878234" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2566,13 +2559,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.4.0/558e074f136fee609b8758480ecd00e286595137/firebase-client-jvm-2.4.0.jar!/com/firebase/client/Firebase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3549223">
-          <caret line="217" column="16" selection-start-line="217" selection-start-column="16" selection-end-line="217" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_list_details.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2751,13 +2737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/CreateAccountActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="217" column="88" selection-start-line="217" selection-start-column="88" selection-end-line="217" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2877,14 +2856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="74" selection-start-line="72" selection-start-column="74" selection-end-line="72" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_explore.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2893,25 +2864,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/DateOfBirthSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetGenderFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-          <folding>
-            <element signature="e#1647#2112#0" expanded="true" />
-            <element signature="e#2111#2112#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2926,91 +2878,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetDateOfBirthFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.851852">
-          <caret line="329" column="28" selection-start-line="329" selection-start-column="28" selection-end-line="329" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9823#9868#0" expanded="true" />
-            <element signature="e#13547#13602#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="63" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.185185">
-          <caret line="129" column="98" selection-start-line="129" selection-start-column="98" selection-end-line="129" selection-end-column="98" />
-          <folding>
-            <element signature="e#2599#2642#0" expanded="true" />
-            <element signature="e#2684#2748#0" expanded="true" />
-            <element signature="e#3850#3911#0" expanded="true" />
-            <element signature="e#4148#4203#0" expanded="true" />
-            <element signature="e#5362#5836#0" expanded="true" />
-            <element signature="e#5835#5836#0" expanded="true" />
-            <element signature="e#5891#5892#0" expanded="true" />
-            <element signature="e#5923#5924#0" expanded="true" />
-            <element signature="e#5966#5967#0" expanded="true" />
-            <element signature="e#5997#5998#0" expanded="true" />
-            <element signature="e#6201#6202#0" expanded="true" />
-            <element signature="e#6228#6229#0" expanded="true" />
-            <element signature="e#7073#7074#0" expanded="true" />
-            <element signature="e#7121#7122#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5172415">
-          <caret line="53" column="40" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42647058">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_details.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5253165">
-          <caret line="179" column="45" selection-start-line="179" selection-start-column="45" selection-end-line="179" selection-end-column="45" />
+        <state vertical-scroll-proportion="-11.172414">
+          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
           <folding>
             <element signature="e#870#903#0" expanded="true" />
             <element signature="e#932#967#0" expanded="true" />
@@ -3025,13 +2899,148 @@
             <element signature="e#3164#3190#0" expanded="true" />
             <element signature="e#3371#3403#0" expanded="true" />
             <element signature="e#4850#4871#0" expanded="true" />
-            <element signature="e#5275#5296#0" expanded="true" />
-            <element signature="e#6671#6693#0" expanded="true" />
-            <element signature="e#7200#7226#0" expanded="true" />
-            <element signature="e#7354#7386#0" expanded="true" />
-            <element signature="e#7631#7658#0" expanded="true" />
-            <element signature="e#7780#7818#0" expanded="true" />
-            <element signature="e#7901#7933#0" expanded="true" />
+            <element signature="e#5277#5298#0" expanded="true" />
+            <element signature="e#6675#6697#0" expanded="true" />
+            <element signature="e#7204#7230#0" expanded="true" />
+            <element signature="e#7358#7390#0" expanded="true" />
+            <element signature="e#7635#7662#0" expanded="true" />
+            <element signature="e#7784#7822#0" expanded="true" />
+            <element signature="e#7942#7974#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.448276">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+          <folding>
+            <element signature="e#2338#2370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/util/logging/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33270678">
+          <caret line="54" column="14" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.407408">
+          <caret line="276" column="20" selection-start-line="276" selection-start-column="20" selection-end-line="276" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9823#9868#0" expanded="true" />
+            <element signature="e#10603#10648#0" expanded="true" />
+            <element signature="e#10924#10983#0" expanded="true" />
+            <element signature="e#13547#13602#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetGenderFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.962963">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="56" />
+          <folding>
+            <element signature="e#1657#2124#0" expanded="true" />
+            <element signature="e#2123#2124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/SetDateOfBirthFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/DateOfBirthSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="16" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.222221">
+          <caret line="162" column="67" selection-start-line="162" selection-start-column="67" selection-end-line="162" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/CreateAccountActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="224" column="80" selection-start-line="224" selection-start-column="80" selection-end-line="224" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45638946">
+          <caret line="107" column="59" selection-start-line="107" selection-start-column="59" selection-end-line="107" selection-end-column="59" />
+          <folding>
+            <element signature="e#2689#2732#0" expanded="true" />
+            <element signature="e#2774#2838#0" expanded="true" />
+            <element signature="e#3432#3473#0" expanded="true" />
+            <element signature="e#3583#3624#0" expanded="true" />
+            <element signature="e#3742#3789#0" expanded="true" />
+            <element signature="e#3833#3880#0" expanded="true" />
+            <element signature="e#4041#4086#0" expanded="true" />
+            <element signature="e#4783#4926#0" expanded="true" />
+            <element signature="e#4925#4926#0" expanded="true" />
+            <element signature="e#5349#5410#0" expanded="true" />
+            <element signature="e#6017#6062#0" expanded="true" />
+            <element signature="e#6164#6209#0" expanded="true" />
+            <element signature="e#6492#6551#0" expanded="true" />
+            <element signature="e#6729#6784#0" expanded="true" />
+            <element signature="e#7943#8666#0" expanded="true" />
+            <element signature="e#8665#8666#0" expanded="true" />
+            <element signature="e#8721#8722#0" expanded="true" />
+            <element signature="e#8753#8754#0" expanded="true" />
+            <element signature="e#8796#8797#0" expanded="true" />
+            <element signature="e#8827#8828#0" expanded="true" />
+            <element signature="e#9031#9032#0" expanded="true" />
+            <element signature="e#9058#9059#0" expanded="true" />
+            <element signature="e#9902#9903#0" expanded="true" />
+            <element signature="e#9950#9951#0" expanded="true" />
           </folding>
         </state>
       </provider>

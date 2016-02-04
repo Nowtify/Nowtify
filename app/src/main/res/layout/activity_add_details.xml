@@ -107,7 +107,7 @@
         android:onClick="selectGender"
         android:background="@android:color/white"
         android:layout_marginBottom="@dimen/margin_small"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/light_black"
         />
 
     <Button
@@ -119,7 +119,7 @@
         android:onClick="selectDateOfBirth"
         android:background="@android:color/white"
         android:layout_marginBottom="@dimen/margin_small"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/light_black"
         />
 
         <!-- date of birth
@@ -179,6 +179,7 @@
             android:background="@color/green"
             android:onClick="onAddDetailsPressed"
             android:text="@string/title_activity_enter_nowtify"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
             android:textSize="@dimen/login_buttons_text_size" />
 

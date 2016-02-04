@@ -94,6 +94,7 @@
             android:background="@color/green"
             android:onClick="onSignInPressed"
             android:text="@string/button_signin_with_password"
+            android:textStyle="bold"
             android:textColor="@android:color/white" />
 
 <!--        <com.google.android.gms.common.SignInButton

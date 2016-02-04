@@ -31,7 +31,8 @@
             android:id="@+id/create_new_password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal">
+            android:layout_marginBottom="@dimen/margin_small"
+            app:hintTextAppearance="@style/HintText">
 
             <EditText
                 android:id="@+id/create_new_password"
@@ -43,7 +44,9 @@
                 android:inputType="textPassword"
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/black"
+                android:layout_gravity="center"
                 android:textColorHint="@color/dark_grey"
+                android:gravity="center"
                 android:textSize="@dimen/login_buttons_text_size" />
         </android.support.design.widget.TextInputLayout>
 
@@ -53,12 +56,13 @@
             android:id="@+id/create_retype_password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_small"
             app:hintTextAppearance="@style/HintText">
 
             <EditText
                 android:id="@+id/create_retype_password"
                 android:layout_width="match_parent"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:hint="@string/hint_confirm_new_password"
@@ -66,6 +70,7 @@
                 android:inputType="textPassword"
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/black"
+                android:gravity="center"
                 android:textColorHint="@color/dark_grey"
                 android:textSize="@dimen/login_buttons_text_size" />
         </android.support.design.widget.TextInputLayout>
@@ -93,23 +98,29 @@
 
         <!-- Gender Button-->
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/gender_button"
-            android:text="Select your gender"
-            android:onClick="selectGender"
-            />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/gender_button"
+        android:text="Select your gender"
+        android:onClick="selectGender"
+        android:background="@android:color/white"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:textColor="@color/light_black"
+        />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/dob_button"
-            android:text="DD / MM / YYYY"
-            android:onClick="selectDateOfBirth"
-            />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/dob_button"
+        android:text="DD / MM / YYYY"
+        android:onClick="selectDateOfBirth"
+        android:background="@android:color/white"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:textColor="@color/light_black"
+        />
 
         <!-- date of birth
         <android.support.design.widget.TextInputLayout
@@ -144,12 +155,14 @@
 
         <EditText
             android:id="@+id/create_occupation"
+            android:background="@android:color/white"
+            android:hint="ENTER OCCUPATION"
+            android:imeOptions="actionDone"
+            android:layout_gravity="center"
+            android:inputType="text"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:hint="Enter occupation"
-            android:imeOptions="actionDone"
-            android:inputType="text"
             android:padding="@dimen/edit_text_padding"
             android:textColor="@color/black"
             android:textColorHint="@color/dark_grey"
@@ -164,8 +177,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/input_field_height"
             android:background="@color/green"
-            android:onClick="showDialog"
-            android:text="@string/title_activity_create_account"
+            android:onClick="onAddDetailsPressed"
+            android:text="@string/title_activity_enter_nowtify"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
             android:textSize="@dimen/login_buttons_text_size" />
 

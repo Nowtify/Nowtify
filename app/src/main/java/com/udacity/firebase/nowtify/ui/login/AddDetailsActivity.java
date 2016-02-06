@@ -34,8 +34,8 @@ public class AddDetailsActivity extends BaseActivity implements
     private static final String LOG_TAG = AddDetailsActivity.class.getSimpleName();
     private ProgressDialog mAuthProgressDialog;
     private Firebase mFirebaseRef;
-    private String mEditGender, oldPassword, mEditDateOfBirth;
-    private EditText mCreateNewPassword1, mCreateNewPassword2, mEditOccupation;
+    private String mEditGender, oldPassword, mEditDateOfBirth, mEditOccupation;
+    private EditText mCreateNewPassword1, mCreateNewPassword2;
     private String mUserEmail, mPassword;
 
 
@@ -63,7 +63,7 @@ public class AddDetailsActivity extends BaseActivity implements
     public void initializeScreen() {
         mCreateNewPassword1 = (EditText) findViewById(R.id.create_new_password);
         mCreateNewPassword2 = (EditText) findViewById(R.id.create_retype_password);
-        mEditOccupation = (EditText) findViewById(R.id.edit_text_password);
+        mEditOccupation = "";
         mEditGender = "";
 
         LinearLayout linearLayoutAddDetailsActivity = (LinearLayout) findViewById(R.id.linear_layout_add_details_activity);
@@ -106,6 +106,10 @@ public class AddDetailsActivity extends BaseActivity implements
         }
         if(mEditDateOfBirth==null){
             showErrorToast(getString(R.string.error_please_input_birthdate));
+            return;
+        }
+        if(mEditOccupation.equals("ENTER YOUR OCCUPATION") || mEditOccupation==null || mEditOccupation.equals("") ){
+            showErrorToast(getString(R.string.error_please_input_occupation));
             return;
         }
 
@@ -273,6 +277,17 @@ public class AddDetailsActivity extends BaseActivity implements
 
     public void setDateOfBirth(String selection){
         mEditDateOfBirth = selection;
+        Log.d(LOG_TAG, selection);
+    }
+
+    public void selectOccupation(View view){
+        SetOccupationFragment occupation_dialog = new SetOccupationFragment();
+        occupation_dialog.show(getSupportFragmentManager(), "dialog_occupation_fragment");
+    }
+
+
+    public void setOccupation(String selection) {
+        mEditOccupation = (String) selection;
         Log.d(LOG_TAG, selection);
     }
 

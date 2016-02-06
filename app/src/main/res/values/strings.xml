@@ -161,6 +161,7 @@
     <string name="error_password_do_not_match">Passwords do not match.</string>
     <string name="error_please_input_gender">Please input gender.</string>
     <string name="error_please_input_birthdate">Please input birth date.</string>
+    <string name="error_please_input_occupation">Please input occupation.</string>
 
 
 

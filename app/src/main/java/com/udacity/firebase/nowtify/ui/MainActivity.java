@@ -1,5 +1,6 @@
 package com.udacity.firebase.nowtify.ui;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.Explore.ExploreActivityFragment;
@@ -24,10 +27,12 @@ import com.udacity.firebase.nowtify.utils.Constants;
 /**
  * Represents the home screen of the app which
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private Firebase mUserRef;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private ValueEventListener mUserRefListener;
+    private double latitude,longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,15 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
     }
 
 
@@ -98,6 +112,15 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
 
     @Override
     public void onDestroy() {
@@ -129,6 +152,31 @@ public class MainActivity extends BaseActivity {
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            Log.v("Location", String.valueOf(mLastLocation.getLatitude()));
+            Log.v("Location",String.valueOf(mLastLocation.getLongitude()));
+            latitude = mLastLocation.getLatitude();
+            longitude = mLastLocation.getLongitude();
+        } else {
+            Log.v("Location", "Null");
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
 
     /**
      * SectionPagerAdapter class that extends FragmentStatePagerAdapter to save fragments state

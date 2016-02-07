@@ -19,6 +19,7 @@ import com.firebase.geofire.GeoQuery;
 import com.firebase.geofire.GeoQueryEventListener;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.EntityChild;
+import com.udacity.firebase.nowtify.ui.MainActivity;
 import com.udacity.firebase.nowtify.utils.GeofireUtils;
 
 import java.util.ArrayList;
@@ -187,11 +188,11 @@ public class ExploreActivityFragment extends Fragment {
     }
 
     public double getLatitude(){
-        return 37.7;
+        return ((MainActivity)getActivity()).getLatitude();
     }
 
     public double getLongitude(){
-        return -122.4;
+        return ((MainActivity)getActivity()).getLongitude();
     }
 
     /**

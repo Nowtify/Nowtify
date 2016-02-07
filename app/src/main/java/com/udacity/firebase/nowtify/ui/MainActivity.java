@@ -13,11 +13,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.udacity.firebase.nowtify.R;
+import com.udacity.firebase.nowtify.model.UserFollows;
 import com.udacity.firebase.nowtify.ui.Explore.ExploreActivityFragment;
+import com.udacity.firebase.nowtify.utils.Constants;
+import com.udacity.firebase.nowtify.utils.Utils;
+
+import java.util.ArrayList;
 
 /**
  * Represents the home screen of the app which
@@ -28,6 +36,8 @@ public class MainActivity extends BaseActivity implements
     private ValueEventListener mUserRefListener;
     private double latitude;
     private double longitude;
+    private Firebase firebaseUserFollowsRef;
+    private UserFollows userFollows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +65,35 @@ public class MainActivity extends BaseActivity implements
             Log.v("Location", "Null");
         }
 
+        /////////////
+        /**
+         * Encode user email replacing "." with ","
+         * to be able to use it as a Firebase db key
+         */
+        mEncodedEmail = Utils.encodeEmail("afiq980@gmail,com");
+        firebaseUserFollowsRef = new Firebase(Constants.FIREBASE_URL_ENTITY_USER_FOLLOWS).child(mEncodedEmail);
+
+        /**
+         * Check if current user has logged in at least once
+         */
+        firebaseUserFollowsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userFollows = dataSnapshot.getValue(UserFollows.class);
+                ArrayList<String> toPrint = userFollows.getFollowsInString();
+                for(String str:toPrint){
+                    Log.v(LOG_TAG,str);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.e(LOG_TAG,
+                        getString(R.string.log_error_the_read_failed) +
+                                firebaseError.getMessage());
+            }
+        });
+        /////////////
     }
 
 

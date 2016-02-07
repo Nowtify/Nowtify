@@ -35,7 +35,7 @@ public class ExploreActivityFragment extends Fragment {
     private ListView mListView;
     private ArrayList<EntityChild> resultList = new ArrayList<EntityChild>();
     private ArrayList<String> rawQueryList = new ArrayList<String>();
-    Firebase firebase = new Firebase("https://nowtify.firebaseio.com/geofire");
+    Firebase firebase = new Firebase(Constants.FIREBASE_URL_GEOFIRE);
     GeoFire geoFire = new GeoFire(firebase);
     private GeofireUtils geofireUtils = new GeofireUtils(getActivity());
     private ProgressDialog mRefreshProgressDialog;
@@ -121,6 +121,7 @@ public class ExploreActivityFragment extends Fragment {
          * Query for EntityChildren nearby
          */
         refreshList();
+        Log.v("Refreshed", "Refreshed");
 
         return rootView;
     }

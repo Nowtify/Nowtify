@@ -32,7 +32,8 @@ public class MainActivity extends BaseActivity implements
     private Firebase mUserRef;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private ValueEventListener mUserRefListener;
-    private double latitude,longitude;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +58,6 @@ public class MainActivity extends BaseActivity implements
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-
-                /**
-                 * Set the activity title to current user name if user is not null
-                 */
-/*                if (user != null) {
-                    *//* Assumes that the first word in the user's name is the user's first name. *//*
-                    String firstName = user.getName().split("\\s+")[0];
-                    String title = firstName + "'s Lists";
-                    setTitle(title);
-                }*/
             }
 
             @Override
@@ -159,6 +150,7 @@ public class MainActivity extends BaseActivity implements
             Log.v("Location", String.valueOf(mLastLocation.getLatitude()));
             Log.v("Location",String.valueOf(mLastLocation.getLongitude()));
             latitude = mLastLocation.getLatitude();
+            Log.v("Location", Double.toString(latitude));
             longitude = mLastLocation.getLongitude();
         } else {
             Log.v("Location", "Null");
@@ -233,7 +225,7 @@ public class MainActivity extends BaseActivity implements
                     return getString(R.string.pager_title_explore);
                 case 1:
                 default:
-                    return getString(R.string.pager_title_search);
+                    return getString(R.string.pager_title_now);
             }
         }
     }

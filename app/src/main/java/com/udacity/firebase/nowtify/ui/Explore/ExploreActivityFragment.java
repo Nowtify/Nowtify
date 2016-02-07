@@ -87,13 +87,7 @@ public class ExploreActivityFragment extends Fragment {
          */
         mListView.setAdapter(mEntityChildAdapter);
 
-
-        resultList.add(new EntityChild("test1","test","test","test"));
-        resultList.add(new EntityChild("test2","test","test","test"));
-        resultList.add(new EntityChild("test3","test","test","test"));
-
-
-                // The ArrayAdapter will take data from a source (like our dummy forecast) and
+        // The ArrayAdapter will take data from a source (like our dummy forecast) and
         // use it to populate the ListView it's attached to.
         mEntityChildAdapter =
                 new ExploreListAdapter(
@@ -135,7 +129,12 @@ public class ExploreActivityFragment extends Fragment {
 
     public void refreshList(){
         mRefreshProgressDialog.show();
+        resultList.clear();
+        rawQueryList.clear();
+        geoFire.setLocation("LiKaShing,LiKaShing,LiKaShing,LiKaShing", new GeoLocation(getLatitude(),getLongitude()));
         GeoQuery query = geoFire.queryAtLocation(new GeoLocation(getLatitude(), getLongitude()), 10);
+        Log.v("Location in fragment",Double.toString(getLatitude()));
+        Log.v("Location in fragment",Double.toString(getLongitude()));
         query.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoLocation location) {

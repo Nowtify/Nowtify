@@ -65,5 +65,10 @@ public final class Constants {
      */
     public static final String PASSWORD_PROVIDER = "password";
 
+    /**
+     * Constants for Geofire
+     */
+    public static final String WALKING_DISTANCE = "0.2";
+
 
 }

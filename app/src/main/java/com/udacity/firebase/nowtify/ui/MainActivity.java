@@ -13,23 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.udacity.firebase.nowtify.R;
-import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.Explore.ExploreActivityFragment;
-import com.udacity.firebase.nowtify.utils.Constants;
 
 /**
  * Represents the home screen of the app which
  */
 public class MainActivity extends BaseActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-    private Firebase mUserRef;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private ValueEventListener mUserRefListener;
     private double latitude;
@@ -40,34 +34,6 @@ public class MainActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**
-         * Create Firebase references
-         */
-        mUserRef = new Firebase(Constants.FIREBASE_URL_USERS).child(mEncodedEmail);
-
-        /**
-         * Link layout elements from XML and setup the toolbar
-         */
-        initializeScreen();
-
-        /**
-         * Add ValueEventListeners to Firebase references
-         * to control get data and control behavior and visibility of elements
-         */
-        mUserRefListener = mUserRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Log.e(LOG_TAG,
-                        getString(R.string.log_error_the_read_failed) +
-                                firebaseError.getMessage());
-            }
-        });
-
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -75,6 +41,18 @@ public class MainActivity extends BaseActivity implements
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
+        }
+
+        //Get current or last recorded location
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            Log.v("Location", String.valueOf(mLastLocation.getLatitude()));
+            Log.v("Location",String.valueOf(mLastLocation.getLongitude()));
+            latitude = mLastLocation.getLatitude();
+            Log.v("Location", Double.toString(latitude));
+            longitude = mLastLocation.getLongitude();
+        } else {
+            Log.v("Location", "Null");
         }
 
     }
@@ -138,10 +116,6 @@ public class MainActivity extends BaseActivity implements
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    //for testing
-    private void showToast(String message) {
-        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
-    }
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -155,6 +129,7 @@ public class MainActivity extends BaseActivity implements
         } else {
             Log.v("Location", "Null");
         }
+        initializeScreen();
     }
 
     @Override
@@ -214,7 +189,7 @@ public class MainActivity extends BaseActivity implements
         }
 
         /**
-         * Set string resources as titles for each fragment by it's position
+         * Set string resources as titles for each fragment by its position
          *
          * @param position
          */
@@ -228,5 +203,10 @@ public class MainActivity extends BaseActivity implements
                     return getString(R.string.pager_title_now);
             }
         }
+    }
+
+    //for testing
+    private void showToast(String message) {
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
     }
 }

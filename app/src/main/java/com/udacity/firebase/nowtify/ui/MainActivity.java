@@ -18,6 +18,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
+import com.udacity.firebase.nowtify.ui.Explore.ExploreActivityFragment;
 import com.udacity.firebase.nowtify.utils.Constants;
 
 /**
@@ -153,13 +154,13 @@ public class MainActivity extends BaseActivity {
              */
             switch (position) {
                 case 0:
-                    //fragment = ShoppingListsFragment.newInstance();
+                    fragment = ExploreActivityFragment.newInstance();
                     break;
                 case 1:
-                    //fragment = MealsFragment.newInstance();
+                    fragment = ExploreActivityFragment.newInstance();
                     break;
                 default:
-                    //fragment = ShoppingListsFragment.newInstance();
+                    fragment = ExploreActivityFragment.newInstance();
                     break;
             }
 
@@ -181,10 +182,10 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.pager_title_shopping_lists);
+                    return getString(R.string.pager_title_explore);
                 case 1:
                 default:
-                    return getString(R.string.pager_title_meals);
+                    return getString(R.string.pager_title_search);
             }
         }
     }

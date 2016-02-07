@@ -18,7 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
-import com.udacity.firebase.nowtify.ui.Explore.ExploreActivity;
+import com.udacity.firebase.nowtify.ui.MainActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.Utils;
 
@@ -37,6 +37,7 @@ public class AddDetailsActivity extends BaseActivity implements
     private String mEditGender, oldPassword, mEditDateOfBirth, mEditOccupation;
     private EditText mCreateNewPassword1, mCreateNewPassword2;
     private String mUserEmail, mPassword;
+    private SetOccupationFragment occupation_dialog;
 
 
         @Override
@@ -207,7 +208,7 @@ public class AddDetailsActivity extends BaseActivity implements
                 //changeUtilsMessage(firebaseError);
 
                 if (firebaseError == null) {
-                    Intent intent = new Intent(AddDetailsActivity.this, ExploreActivity.class);
+                    Intent intent = new Intent(AddDetailsActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
@@ -258,9 +259,13 @@ public class AddDetailsActivity extends BaseActivity implements
             mFirebaseRef.removeAuthStateListener(mAuthListener);
         }
 
+        if (occupation_dialog != null && occupation_dialog.isVisible()) {
+            occupation_dialog.dismiss();
+        }
+
     }
 
-    public void selectGender(View view){
+    public void selectGender(View view) {
         SetGenderFragment gender_dialog = new SetGenderFragment();
         gender_dialog.show(getSupportFragmentManager(), "dialog_gender_fragment");
     }
@@ -270,7 +275,7 @@ public class AddDetailsActivity extends BaseActivity implements
         mEditGender = (String) selection;
     }
 
-    public void selectDateOfBirth(View view){
+    public void selectDateOfBirth(View view) {
         SetDateOfBirthFragment dob = new SetDateOfBirthFragment();
         dob.show(getFragmentManager(), "dob");
     }

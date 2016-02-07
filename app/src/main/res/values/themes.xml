@@ -17,7 +17,7 @@
 
     <style name="Toolbar" parent="Widget.AppCompat.Light.ActionBar">
         <item name="android:background">@color/primary</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 
     <style name="CustomTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">

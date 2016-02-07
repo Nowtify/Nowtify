@@ -33,7 +33,7 @@ import com.google.android.gms.common.api.Scope;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
-import com.udacity.firebase.nowtify.ui.Explore.ExploreActivity;
+import com.udacity.firebase.nowtify.ui.MainActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.Utils;
 
@@ -237,7 +237,7 @@ public class LoginActivity extends BaseActivity {
 
                             } else {
                                 Log.v(LOG_TAG, "CP4");
-                                Intent intent = new Intent(LoginActivity.this, ExploreActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();

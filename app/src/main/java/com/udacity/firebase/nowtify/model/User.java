@@ -10,7 +10,7 @@ public class User {
     private String email;
     private String gender;
     private String occupation;
-    private long dateOfBirth;
+    private String dateOfBirth;
     private HashMap<String, Object> timestampJoined;
     private boolean hasLoggedInWithPassword;
 
@@ -28,13 +28,29 @@ public class User {
      * @param email
      * @param timestampJoined
      */
-    public User(String email, HashMap<String, Object> timestampJoined, String gender, long dateOfBirth, String occupation) {
+    public User(String email, HashMap<String, Object> timestampJoined, String gender, String dateOfBirth, String occupation) {
         this.email = email;
         this.timestampJoined = timestampJoined;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.occupation = occupation;
         this.hasLoggedInWithPassword = false;
+    }
+
+    /**
+     * Use this constructor to create new User.
+     * Takes user name, email and timestampJoined as params
+     *
+     * @param email
+     * @param timestampJoined
+     */
+    public User(String email, HashMap<String, Object> timestampJoined, String gender, String dateOfBirth, String occupation, boolean hasLoggedInWithPassword) {
+        this.email = email;
+        this.timestampJoined = timestampJoined;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.occupation = occupation;
+        this.hasLoggedInWithPassword = hasLoggedInWithPassword;
     }
 
     public String getEmail() {
@@ -49,7 +65,7 @@ public class User {
         return occupation;
     }
 
-    public long getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 

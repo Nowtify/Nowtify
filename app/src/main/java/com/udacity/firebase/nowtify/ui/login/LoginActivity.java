@@ -33,7 +33,7 @@ import com.google.android.gms.common.api.Scope;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.User;
 import com.udacity.firebase.nowtify.ui.BaseActivity;
-import com.udacity.firebase.nowtify.ui.Explore.ExploreActivity;
+import com.udacity.firebase.nowtify.ui.MainActivity;
 import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.Utils;
 
@@ -229,6 +229,7 @@ public class LoginActivity extends BaseActivity {
                                 if(userFirstTime == true){
                                     Log.v(LOG_TAG, "CP1");
                                     Intent intent = new Intent(LoginActivity.this, AddDetailsActivity.class);
+                                    intent.putExtra("oldPassword",mEditTextPasswordInput.getText().toString());
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
@@ -236,7 +237,7 @@ public class LoginActivity extends BaseActivity {
 
                             } else {
                                 Log.v(LOG_TAG, "CP4");
-                                Intent intent = new Intent(LoginActivity.this, ExploreActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
@@ -326,8 +327,7 @@ public class LoginActivity extends BaseActivity {
                         mFirebaseRef.changePassword(unprocessedEmail, mEditTextPasswordInput.getText().toString(), mEditTextPasswordInput.getText().toString(), new Firebase.ResultHandler() {
                             @Override
                             public void onSuccess() {
-                                userRef.child(Constants.FIREBASE_PROPERTY_USER_HAS_LOGGED_IN_WITH_PASSWORD).setValue(true);
-                                        /* The password was changed */
+                            /* The password was changed */
                                 Log.d(LOG_TAG, getString(R.string.log_message_password_changed_successfully) + mEditTextPasswordInput.getText().toString());
                                 Log.v(LOG_TAG, "CP3");
                             }

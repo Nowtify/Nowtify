@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.udacity.firebase.nowtify.R;
 
@@ -59,8 +58,7 @@ public class SetOccupationFragment extends DialogFragment{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ((AddDetailsActivity) getActivity()).setOccupation(selection);
-                Toast.makeText(getActivity(), "You chose " + selection, Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(getActivity(), "You chose " + selection, Toast.LENGTH_SHORT).show();
                 Button mButton = (Button) getActivity().findViewById(R.id.occupation_button);
                 mButton.setText(selection);
             }
@@ -69,7 +67,4 @@ public class SetOccupationFragment extends DialogFragment{
         return builder.create();
 
     }
-
-
-
 }

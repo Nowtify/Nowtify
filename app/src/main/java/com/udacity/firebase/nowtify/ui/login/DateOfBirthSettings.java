@@ -29,10 +29,14 @@ public class DateOfBirthSettings implements DatePickerDialog.OnDateSetListener {
 
         if(day<10){
             this.day = "0"+day;
+        } else {
+            this.day = ""+day;
         }
 
         if(mth<10){
             this.mth = "0"+mth;
+        } else {
+            this.mth = ""+mth;
         }
 
 

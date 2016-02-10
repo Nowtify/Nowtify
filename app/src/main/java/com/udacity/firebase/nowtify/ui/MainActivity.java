@@ -1,5 +1,6 @@
 package com.udacity.firebase.nowtify.ui;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,51 +17,73 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.udacity.firebase.nowtify.R;
-import com.udacity.firebase.nowtify.model.User;
+import com.udacity.firebase.nowtify.model.UserFollows;
+import com.udacity.firebase.nowtify.ui.Explore.ExploreActivityFragment;
 import com.udacity.firebase.nowtify.utils.Constants;
+import com.udacity.firebase.nowtify.utils.Utils;
+
+import java.util.ArrayList;
 
 /**
  * Represents the home screen of the app which
  */
-public class MainActivity extends BaseActivity {
-    private Firebase mUserRef;
+public class MainActivity extends BaseActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private ValueEventListener mUserRefListener;
+    private double latitude;
+    private double longitude;
+    private Firebase firebaseUserFollowsRef;
+    private UserFollows userFollows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
+        //Get current or last recorded location
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            Log.v("Location", String.valueOf(mLastLocation.getLatitude()));
+            Log.v("Location",String.valueOf(mLastLocation.getLongitude()));
+            latitude = mLastLocation.getLatitude();
+            Log.v("Location", Double.toString(latitude));
+            longitude = mLastLocation.getLongitude();
+        } else {
+            Log.v("Location", "Null");
+        }
+
+        /////////////
         /**
-         * Create Firebase references
+         * Encode user email replacing "." with ","
+         * to be able to use it as a Firebase db key
          */
-        mUserRef = new Firebase(Constants.FIREBASE_URL_USERS).child(mEncodedEmail);
+        mEncodedEmail = Utils.encodeEmail("afiq980@gmail,com");
+        firebaseUserFollowsRef = new Firebase(Constants.FIREBASE_URL_ENTITY_USER_FOLLOWS).child(mEncodedEmail);
 
         /**
-         * Link layout elements from XML and setup the toolbar
+         * Check if current user has logged in at least once
          */
-        initializeScreen();
-
-        /**
-         * Add ValueEventListeners to Firebase references
-         * to control get data and control behavior and visibility of elements
-         */
-        mUserRefListener = mUserRef.addValueEventListener(new ValueEventListener() {
+        firebaseUserFollowsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-
-                /**
-                 * Set the activity title to current user name if user is not null
-                 */
-/*                if (user != null) {
-                    *//* Assumes that the first word in the user's name is the user's first name. *//*
-                    String firstName = user.getName().split("\\s+")[0];
-                    String title = firstName + "'s Lists";
-                    setTitle(title);
-                }*/
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userFollows = dataSnapshot.getValue(UserFollows.class);
+                ArrayList<String> toPrint = userFollows.getFollowsInString();
+                for(String str:toPrint){
+                    Log.v(LOG_TAG,str);
+                }
             }
 
             @Override
@@ -70,7 +93,7 @@ public class MainActivity extends BaseActivity {
                                 firebaseError.getMessage());
             }
         });
-
+        /////////////
     }
 
 
@@ -97,6 +120,15 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
 
     @Override
     public void onDestroy() {
@@ -123,11 +155,34 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    //for testing
-    private void showToast(String message) {
-        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            Log.v("Location", String.valueOf(mLastLocation.getLatitude()));
+            Log.v("Location",String.valueOf(mLastLocation.getLongitude()));
+            latitude = mLastLocation.getLatitude();
+            Log.v("Location", Double.toString(latitude));
+            longitude = mLastLocation.getLongitude();
+        } else {
+            Log.v("Location", "Null");
+        }
+        initializeScreen();
     }
 
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
 
     /**
      * SectionPagerAdapter class that extends FragmentStatePagerAdapter to save fragments state
@@ -153,13 +208,13 @@ public class MainActivity extends BaseActivity {
              */
             switch (position) {
                 case 0:
-                    //fragment = ShoppingListsFragment.newInstance();
+                    fragment = ExploreActivityFragment.newInstance();
                     break;
                 case 1:
-                    //fragment = MealsFragment.newInstance();
+                    fragment = ExploreActivityFragment.newInstance();
                     break;
                 default:
-                    //fragment = ShoppingListsFragment.newInstance();
+                    fragment = ExploreActivityFragment.newInstance();
                     break;
             }
 
@@ -173,7 +228,7 @@ public class MainActivity extends BaseActivity {
         }
 
         /**
-         * Set string resources as titles for each fragment by it's position
+         * Set string resources as titles for each fragment by its position
          *
          * @param position
          */
@@ -181,11 +236,16 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.pager_title_shopping_lists);
+                    return getString(R.string.pager_title_explore);
                 case 1:
                 default:
-                    return getString(R.string.pager_title_meals);
+                    return getString(R.string.pager_title_now);
             }
         }
+    }
+
+    //for testing
+    private void showToast(String message) {
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
     }
 }

@@ -7,6 +7,10 @@
     <string name="app_name">Nowtify</string>
     <string name="pager_title_shopping_lists">Shopping Lists</string>
     <string name="pager_title_meals">Meals</string>
+    <string name="pager_title_explore">Explore</string>
+    <string name="pager_title_now">Now</string>
+    <string name="pager_title_followings">Followings</string>
+    <string name="pager_title_search">Search</string>
     <string name="remove_item_option">Remove Item</string>
     <string name="positive_button_create">Create</string>
     <string name="text_you">You</string>

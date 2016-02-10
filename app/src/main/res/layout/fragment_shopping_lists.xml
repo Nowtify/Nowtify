@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rl_fragment_shopping_lists"
+    android:id="@+id/rl_fragment_entity_child_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <ListView
-            android:id="@+id/list_view_active_lists"
+            android:id="@+id/list_view_entity_child"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -28,8 +28,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:onClick="showAddListDialog"
-        android:src="@drawable/icon_add"
+        android:onClick="refreshAdapter"
+        android:src="@drawable/icon_profile_add"
         app:borderWidth="0dp"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp"

@@ -1,5 +1,6 @@
 package com.udacity.firebase.nowtify.utils;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.firebase.client.AuthData;
@@ -9,21 +10,27 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ServerValue;
 import com.firebase.client.ValueEventListener;
+import com.udacity.firebase.nowtify.model.EntityChild;
 import com.udacity.firebase.nowtify.model.EntityItemDetails;
 import com.udacity.firebase.nowtify.model.EntityParentDetails;
 import com.udacity.firebase.nowtify.model.User;
+import com.udacity.firebase.nowtify.model.UserFollows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by MohamedAfiq on 23/1/16.
  */
 public class FirebaseUtils{
-
+    Firebase firebase = new Firebase("https://nowtify.firebaseio.com/geofire");
+    Context context;
     FirebaseError firebaseError;
     private static final String LOG_TAG = FirebaseUtils.class.getSimpleName();
 
+    public FirebaseUtils(Context context){this.context=context;}
 
     public FirebaseError updateUserDetails(String email, AuthData authData, String gender, String dateOfBirth, String occupation){
 
@@ -61,35 +68,26 @@ public class FirebaseUtils{
     }
 
     public EntityItemDetails getEntityItemDetails (String pushId){
-        final EntityItemDetails[] entityItemDetails = new EntityItemDetails[1];
-        final boolean[] checker = {false};
+        final EntityItemDetails[] entityItemDetails = {new EntityItemDetails()};
 
         Log.v(LOG_TAG, "getEntityItemDetailsStart");
 
-        final Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS);
-        Query queryRef = firebaseRef.equalTo(pushId);
+        final Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(pushId);
 
-
-        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        /**
+         * Check if current user has logged in at least once
+         */
+        firebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 entityItemDetails[0] = dataSnapshot.getValue(EntityItemDetails.class);
-                Log.v(LOG_TAG, "onDataChange");
-                checker[0] = true;
-
+                Log.v("Entity Item Details", entityItemDetails[0].getLongDesc());
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                entityItemDetails[0] = null;
-                Log.v(LOG_TAG, "onCancelled");
             }
         });
-
-        while(checker[0] ==false){
-            Log.v(LOG_TAG, "getEntityItemDetailsEnd");
-        }
-
 
         return entityItemDetails[0];
     }
@@ -144,6 +142,81 @@ public class FirebaseUtils{
 
     private void changeUtilsMessage(FirebaseError firebaseError) {
         this.firebaseError = firebaseError;
+    }
+
+
+    public ArrayList<EntityChild> convertRawQueryToEntityChild(ArrayList<String> rawQueryKeys){
+        ArrayList<EntityChild> toReturn = null;
+
+        if(rawQueryKeys != null){
+            toReturn = new ArrayList<EntityChild>();
+        } else {
+            return toReturn;
+        }
+
+        for(String string:rawQueryKeys){
+            EntityChild entityChild;
+            toReturn.add(createEntityChild(string));
+        }
+
+        return toReturn;
+    }
+
+    public EntityChild createEntityChild(String string){
+        List<String> splitter;
+        EntityChild entityChild;
+        splitter = Arrays.asList(string.split(","));
+        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(3));
+        return entityChild;
+    }
+
+    public ArrayList<EntityChild> convertEntityChildsToFollowedEntityChild(ArrayList<EntityChild> rawEntityChild, ArrayList<String> userFollowList){
+        ArrayList<EntityChild> toReturn = new ArrayList<EntityChild>();
+
+        if(rawEntityChild==null || userFollowList==null ){
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data"));
+            return toReturn;
+        }
+
+        for(EntityChild entityChild:rawEntityChild){
+            if(userFollowList.contains(entityChild.getEntityParentName())){
+                toReturn.add(entityChild);
+            }
+        }
+
+        if(toReturn.size()==0){
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data"));
+        }
+
+        return toReturn;
+    }
+
+    public boolean followEntityParent(String email, String entityParentId, UserFollows userFollows, boolean followOrUnfollow){
+        String mEncodedEmail = Utils.encodeEmail(email);
+        Firebase firebaseUserFollowsRef = new Firebase(Constants.FIREBASE_URL_ENTITY_USER_FOLLOWS).child(mEncodedEmail);
+        HashMap<String, Object> follows = userFollows.getFollows();
+
+        if(followOrUnfollow==true){
+            follows.put(entityParentId,true);
+        } else {
+            follows.remove(entityParentId);
+        }
+        userFollows.setFollows(follows);
+
+        firebaseUserFollowsRef.setValue(userFollows, new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+
+                if (firebaseError == null) {
+                    Log.v("geofireutils","afiq980 follows updated");
+                } else {
+                    return;
+                }
+
+            }
+        });
+
+        return true;
     }
 
 }

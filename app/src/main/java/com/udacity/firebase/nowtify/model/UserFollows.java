@@ -1,6 +1,5 @@
 package com.udacity.firebase.nowtify.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -20,10 +19,6 @@ public class UserFollows {
         return follows;
     }
 
-    public ArrayList<String> getFollowsInString(){
-        ArrayList<String> toReturn = new ArrayList<String>(follows.keySet());
-        return toReturn;
-    }
 
 /*
     public ArrayList<EntityChild> returnFollowedEntities(ArrayList<EntityChild> rawQuery){

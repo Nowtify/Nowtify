@@ -1,74 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="300dp"
     android:background="@android:color/white">
 
     <!--Offer image-->
     <ImageView
-        android:id="@+id/offer_image"
-        android:layout_height="130dp"
-        android:layout_width="125dp"
-        android:layout_margin="1dp"
-        android:paddingTop="1dp"
-        android:paddingRight="1dp"
-        android:paddingLeft="1dp"
-        android:src="@mipmap/drink" />
+        android:id="@+id/entity_item_image"
+        android:layout_height="220dp"
+        android:layout_width="fill_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@drawable/coffee"/>
 
     <TextView
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:paddingTop="10dp"
-        android:textSize="18dp"
-        android:fontFamily="roboto"
-        android:textStyle="bold"
-        android:text="Buy One Get One Free"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/offer_image"
-        android:layout_toStartOf="@+id/distance"
-        android:layout_toLeftOf="@+id/distance" />
-
-    <View
-        android:id="@+id/separator"
-        android:background="#000000"
-        android:layout_height="1dp"
-        android:layout_width="wrap_content"
-        android:paddingRight="10dp"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="24dp"
-        android:layout_marginEnd="24dp" />
+        android:id="@+id/entity_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="16sp"
+        android:text="1 For 1 Venti Frappachino"
+        android:layout_marginRight="40dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:layout_below="@id/entity_item_image"
+        android:layout_centerHorizontal="false" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="30m"
-        android:textSize="20dp"
-        android:fontFamily="roboto"
-        android:textStyle="bold"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:id="@+id/distance"
-        android:layout_alignTop="@+id/offer_image"
-        android:layout_above="@+id/separator"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="230dp"
-        android:layout_height="30dp"
-        android:paddingTop="10dp"
-        android:textSize="18dp"
+        android:id="@+id/entity_parent_name"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:textSize="15sp"
+        android:textColor="@color/dark_grey"
         android:text="Starbucks"
-        android:id="@+id/text_view_active_list_item_name"
-        android:layout_below="@+id/separator"
-        android:layout_alignLeft="@+id/separator"
-        android:layout_alignStart="@+id/separator" />
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
+        android:layout_below="@id/entity_item_title"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/entity_item_distance"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:text="30 m"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:background="#4D000000"
+        />
+
+
 
     <!--
     <TextView

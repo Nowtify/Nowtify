@@ -59,12 +59,14 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         /**
          * Grab the needed Textivews and strings
          */
-        TextView textViewListName = (TextView) v.findViewById(R.id.text_view_active_list_item_name);
+        TextView textViewListName = (TextView) v.findViewById(R.id.entity_parent_name);
+        TextView entityItemTitle = (TextView) v.findViewById(R.id.entity_item_title);
         //TextView textViewCreatedByUser = (TextView) v.findViewById(R.id.text_view_created_by_user);
 
 
         /* Set the list name and owner */
         textViewListName.setText(p.getEntityParentName());
+        entityItemTitle.setText(p.getTitle());
         //textViewCreatedByUser.setText(p.getEntityParentName());
 
         return v;

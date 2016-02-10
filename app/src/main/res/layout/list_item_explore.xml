@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#888888"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--Offer image-->
+    <ImageView
+        android:id="@+id/offer_image"
+        android:layout_height="130dp"
+        android:layout_width="125dp"
+        android:layout_margin="1dp"
+        android:paddingTop="1dp"
+        android:paddingRight="1dp"
+        android:paddingLeft="1dp"
+        android:src="@mipmap/drink" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:paddingTop="10dp"
+        android:textSize="18dp"
+        android:fontFamily="roboto"
+        android:textStyle="bold"
+        android:text="Buy One Get One Free"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/offer_image"
+        android:layout_toStartOf="@+id/distance"
+        android:layout_toLeftOf="@+id/distance" />
+
+    <View
+        android:id="@+id/separator"
+        android:background="#e4e4e4"
+        android:layout_height="1dp"
+        android:layout_width="wrap_content"
+        android:paddingRight="10dp"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30m"
+        android:textSize="20dp"
+        android:fontFamily="roboto"
+        android:textStyle="bold"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/distance"
+        android:layout_alignTop="@+id/offer_image"
+        android:layout_above="@+id/separator"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="30dp"
+        android:paddingTop="10dp"
+        android:textSize="18dp"
+        android:text="Starbucks"
+        android:id="@+id/company_name"
+        android:layout_below="@+id/separator"
+        android:layout_alignLeft="@+id/separator"
+        android:layout_alignStart="@+id/separator" />
+
+    <!--
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="35dp"
+        android:textSize="18dp"
+        android:text="Blk 272A edgedale plains"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
+    -->
+
+</RelativeLayout>

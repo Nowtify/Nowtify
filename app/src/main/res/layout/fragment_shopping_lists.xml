@@ -4,7 +4,7 @@
     android:id="@+id/rl_fragment_entity_child_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/white"
     tools:context=".ShoppingListsFragment">
 
     <LinearLayout

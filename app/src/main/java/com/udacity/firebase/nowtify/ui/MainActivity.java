@@ -117,11 +117,13 @@ public class MainActivity extends BaseActivity implements
          * Create SectionPagerAdapter, set it as adapter to viewPager with setOffscreenPageLimit(2)
          **/
         SectionPagerAdapter adapter = new SectionPagerAdapter(getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         /**
          * Setup the mTabLayout with view pager
          */
+        //tabLayout.setSelectedTabIndicatorHeight(15);
+        //tabLayout.setSelectedTabIndicatorColor(00000000);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -183,6 +185,9 @@ public class MainActivity extends BaseActivity implements
                 case 1:
                     fragment = NowActivityFragment.newInstance();
                     break;
+                case 2:
+                    fragment = ExploreActivityFragment.newInstance();
+                    break;
                 default:
                     fragment = ExploreActivityFragment.newInstance();
                     break;
@@ -194,7 +199,7 @@ public class MainActivity extends BaseActivity implements
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         /**
@@ -206,8 +211,11 @@ public class MainActivity extends BaseActivity implements
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.pager_title_explore);
+                    return getString(R.string.pager_title_now);
                 case 1:
+                    return getString(R.string.pager_title_explore);
+                case 2:
+                    return getString(R.string.pager_title_followings);
                 default:
                     return getString(R.string.pager_title_now);
             }

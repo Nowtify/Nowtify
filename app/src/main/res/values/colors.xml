@@ -13,5 +13,7 @@
     <color name="holo_blue_light">#000000</color>
     <color name="green">#12AEA3</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="white">#615b5b</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_material_light">#ffffff</color>
+    <color name="colorBackground">#ffffff</color>
 </resources>

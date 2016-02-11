@@ -90,11 +90,6 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        ////////
-        //FirebaseUtilsTest firebaseUtilsTest = new FirebaseUtilsTest();
-        //firebaseUtilsTest.getEntityItemDetailsTest();
-        ////////
-
     }
 
     @Override

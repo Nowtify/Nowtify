@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#16A48D"
+        android:elevation="4dp"
         />
 
     <android.support.v4.view.ViewPager
@@ -27,5 +28,7 @@
         android:gravity="bottom"
         android:background="#666666"
         app:tabIndicatorColor="@android:color/white"
-        app:tabIndicatorHeight="4dp"/>
+        app:tabIndicatorHeight="4dp"
+        android:elevation="4dp"
+        />
 </LinearLayout>

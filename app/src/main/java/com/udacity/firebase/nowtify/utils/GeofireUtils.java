@@ -23,8 +23,10 @@ public class GeofireUtils {
 
     public GeofireUtils(Context context){this.context=context;}
 
-    public void createLocations(int i){
-        geoFire.setLocation("testID,testPicture,testTitle,testEntityTitle,Address" + i, new GeoLocation(90, 90));
+    public void createLocations(){
+        geoFire.setLocation("testID,testPicture,1-for-1 Coffee with Breakfast and Lunch! Table and chair included!,MoonBucks Coffee,Address", new GeoLocation(1.2965249, 103.8498663));
+        geoFire.setLocation("testID,testPicture,Holy shit this discount is damn good!!! FREE LUNCH!!!,Koufu Cafe,Address", new GeoLocation(1.2965249, 103.8498663));
+        geoFire.setLocation("testID,testPicture,40% off nothing much in this store! 5% off on everything outside of this store!,1992 Restaurant,Address", new GeoLocation(1.2965249, 103.8498663));
     }
 
 

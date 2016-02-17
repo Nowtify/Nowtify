@@ -14,13 +14,24 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
+import com.firebase.geofire.GeoQuery;
+import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.udacity.firebase.nowtify.R;
+import com.udacity.firebase.nowtify.model.EntityChild;
 import com.udacity.firebase.nowtify.model.UserFollows;
 import com.udacity.firebase.nowtify.ui.Explore.ExploreActivityFragment;
 import com.udacity.firebase.nowtify.ui.Explore.NowActivityFragment;
+import com.udacity.firebase.nowtify.utils.Constants;
+import com.udacity.firebase.nowtify.utils.FirebaseUtils;
+import com.udacity.firebase.nowtify.utils.GeofireUtils;
+
+import java.util.ArrayList;
 
 /**
  * Represents the home screen of the app which
@@ -33,6 +44,12 @@ public class MainActivity extends BaseActivity implements
     private double longitude;
     private Firebase firebaseUserFollowsRef;
     private UserFollows userFollows;
+    Firebase firebase = new Firebase(Constants.FIREBASE_URL_GEOFIRE);
+    GeoFire geofire = new GeoFire(firebase);
+    private FirebaseUtils fireBaseUtils = new FirebaseUtils(getParent());
+    private GeofireUtils geofireUtils = new GeofireUtils(getParent());
+    private ArrayList<EntityChild> resultList = new ArrayList<EntityChild>();
+    private ArrayList<String> rawQueryList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +81,54 @@ public class MainActivity extends BaseActivity implements
         } else {
             Log.v("Location", "Null");
         }
+    }
+
+    public void refreshEntityChildList(){
+        //mRefreshProgressDialog.show();
+
+        //to add example locations here
+        //Log.v("Location LiKaShing Lat",Double.toString(getLatitude()));
+        //Log.v("Location LiKaShing Long", Double.toString(getLongitude()));
+
+        //geoFire.setLocation("LiKaShing,LiKaShing,LiKaShing,LiKaShing", new GeoLocation(getLatitude(),getLongitude()));
+        //geoFire.setLocation("Starbucks,Starbucks,Starbucks,Starbucks", new GeoLocation(1.297605,103.850333));
+        //geoFire.setLocation("Tea Party,Tea Party,Tea Party,Tea Party", new GeoLocation(1.297799,103.848661));
+        //geoFire.setLocation("NSM,NSM,NSM,NSM", new GeoLocation(1.296759,103.848548));
+        //geoFire.setLocation("7KickStart,7KickStart,7KickStart,7KickStart", new GeoLocation(1.296461,103.849812));
+
+
+        GeoQuery query = geofire.queryAtLocation(new GeoLocation(getLatitude(), getLongitude()), Double.parseDouble(Constants.WALKING_DISTANCE));
+        Log.v("Location in fragment",Double.toString(getLatitude()));
+        Log.v("Location in fragment",Double.toString(getLongitude()));
+        query.addGeoQueryEventListener(new GeoQueryEventListener() {
+            @Override
+            public void onKeyEntered(String key, GeoLocation location) {
+                //Log.v("GeoFire",key + " " + location.toString());
+                //testLocs.add(key + " " + location.toString());
+                rawQueryList.add(key);
+                Log.v("GeoFire", "Waiting");
+            }
+
+            @Override
+            public void onKeyExited(String key) {
+
+            }
+
+            @Override
+            public void onKeyMoved(String key, GeoLocation location) {
+
+            }
+
+            @Override
+            public void onGeoQueryReady() {
+                resultList = fireBaseUtils.convertRawQueryToEntityChild(rawQueryList);
+            }
+
+            @Override
+            public void onGeoQueryError(FirebaseError error) {
+
+            }
+        });
     }
 
 

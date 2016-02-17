@@ -297,8 +297,8 @@ public class NowActivityFragment extends Fragment {
     }
 
     private void test(){
-        fireBaseUtils.followEntityParent("afiq980@gmail.com", "Shawn Lau", userFollows, true);
-        fireBaseUtils.followEntityParent("afiq980@gmail.com", "NSM", userFollows, false);
+        //fireBaseUtils.followEntityParent("afiq980@gmail.com", "Shawn Lau", userFollows, true);
+        //fireBaseUtils.followEntityParent("afiq980@gmail.com", "NSM", userFollows, false);
         fireBaseUtils.getEntityItemDetails("adidasGroupOffer");
     }
 }

@@ -4,14 +4,14 @@ package com.udacity.firebase.nowtify.model;
  * Created by MohamedAfiq on 27/1/16.
  */
 public class EntityChild {
-    String pushId, image, title, entityParentName, address;
+    String pushId, entityItemDetailsId, title, entityParentName, address;
 
     public EntityChild() {
     }
 
-    public EntityChild(String pushId, String image, String title, String entityParentName, String address) {
+    public EntityChild(String pushId, String entityItemDetailsId, String title, String entityParentName, String address) {
         this.pushId = pushId;
-        this.image = image;
+        this.entityItemDetailsId = entityItemDetailsId;
         this.title = title;
         this.entityParentName = entityParentName;
         this.address = address;
@@ -25,12 +25,12 @@ public class EntityChild {
         this.pushId = pushId;
     }
 
-    public String getImage() {
-        return image;
+    public String getEntityItemDetailsId() {
+        return entityItemDetailsId;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setEntityItemDetailsId(String entityItemDetailsId) {
+        this.entityItemDetailsId = entityItemDetailsId;
     }
 
     public String getTitle() {
@@ -58,6 +58,6 @@ public class EntityChild {
     }
 
     public String toString(){
-        return getPushId()+getImage()+getTitle()+getEntityParentName();
+        return getPushId()+getEntityItemDetailsId()+getTitle()+getEntityParentName();
     }
 }

@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:scrollbars="none" />
 
+    <!--
     <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
         style="@style/FAB"
@@ -26,4 +27,5 @@
         app:borderWidth="0dp"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />
+        -->
 </RelativeLayout>

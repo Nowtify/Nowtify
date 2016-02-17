@@ -1,10 +1,12 @@
 package com.udacity.firebase.nowtify.ui.Explore;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.udacity.firebase.nowtify.R;
@@ -17,6 +19,8 @@ import java.util.List;
  */
 public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
 
+    private boolean isFollowing = false;
+
     public ExploreListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
@@ -27,16 +31,44 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        Button mFollowButton;
         View v = convertView;
 
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
             v = vi.inflate(R.layout.single_active_list_item, null);
+
+            //Creates ViewHolder object that takes in a view and returns the button ID
+            ViewHolder h = new ViewHolder(v);
+            mFollowButton = (Button) h.getButton();
+            v.setTag(h);
         }
 
         EntityChild p = getItem(position);
+        ViewHolder h = (ViewHolder) v.getTag();
+        mFollowButton = h.getButton();
+
+        final boolean isFollowingFinal = isFollowing;
+
+        mFollowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button mFollowButton= (Button) v.findViewById(R.id.entity_item_button);
+
+                if (isFollowingFinal == false) {
+                    mFollowButton.setText("Following");
+                    mFollowButton.setBackgroundColor(Color.parseColor("#e7eecc"));
+                }
+                if (isFollowingFinal == true) {
+                    mFollowButton.setText("Follow");
+                    mFollowButton.setBackgroundColor(666666);
+
+                }
+
+            }
+        });
+
 
 /*        if (p != null) {
             TextView tt1 = (TextView) v.findViewById(R.id.id);
@@ -69,7 +101,29 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         entityItemTitle.setText(p.getTitle());
         //textViewCreatedByUser.setText(p.getEntityParentName());
 
+
+
+
         return v;
     }
+
+    public class ViewHolder{
+        View view;
+        Button button;
+
+        public ViewHolder(View view)
+        {
+            this.view = view;
+        }
+
+        public Button getButton(){
+            if (button == null)
+            {
+                button = (Button) view.findViewById(R.id.entity_item_button);
+            }
+            return button;
+        }
+    }
+
 
 }

@@ -42,6 +42,7 @@ public class ExploreActivityFragment extends Fragment {
     private GeofireUtils geofireUtils = new GeofireUtils(getActivity());
     private ProgressDialog mRefreshProgressDialog;
     ExploreListAdapter mEntityChildAdapter;
+    private boolean mFollowUnfollow = false;
 
     public ExploreActivityFragment() {
         /* Required empty public constructor */
@@ -145,8 +146,8 @@ public class ExploreActivityFragment extends Fragment {
 
 
         GeoQuery query = geoFire.queryAtLocation(new GeoLocation(getLatitude(), getLongitude()), Double.parseDouble(Constants.WALKING_DISTANCE));
-        Log.v("Location in fragment",Double.toString(getLatitude()));
-        Log.v("Location in fragment",Double.toString(getLongitude()));
+        Log.v("Location in fragment", Double.toString(getLatitude()));
+        Log.v("Location in fragment", Double.toString(getLongitude()));
         query.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoLocation location) {
@@ -222,4 +223,23 @@ public class ExploreActivityFragment extends Fragment {
     private void initializeScreen(View rootView) {
         mListView = (ListView) rootView.findViewById(R.id.list_view_entity_child);
     }
+
+
+
+        /*
+        if(!mFollowUnfollow){
+            mFollowUnfollow = true;
+            Button mButton = (Button) ((MainActivity)getActivity()).findViewById(R.id.entity_item_button);
+            mButton.setText("Following");
+            mButton.setBackgroundColor(000000);
+        }
+        if(mFollowUnfollow){
+            mFollowUnfollow = false;
+            Button mButton = (Button) ((MainActivity)getActivity()).findViewById(R.id.entity_item_button);
+            mButton.setText("Follow");
+
+        }
+
+        */
+
 }

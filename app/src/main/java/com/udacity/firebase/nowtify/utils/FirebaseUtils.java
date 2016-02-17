@@ -173,18 +173,25 @@ public class FirebaseUtils{
     public ArrayList<EntityChild> convertEntityChildsToFollowedEntityChild(ArrayList<EntityChild> rawEntityChild, ArrayList<String> userFollowList){
         ArrayList<EntityChild> toReturn = new ArrayList<EntityChild>();
 
+        Log.v("checkcheck", ""+rawEntityChild.size());
+
         if(rawEntityChild==null || userFollowList==null ){
+            Log.v("checkcheck", "null");
             toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data"));
             return toReturn;
         }
 
         for(EntityChild entityChild:rawEntityChild){
+
+            Log.v("checkcheck", entityChild.getEntityParentName());
+
             if(userFollowList.contains(entityChild.getEntityParentName())){
                 toReturn.add(entityChild);
             }
         }
 
         if(toReturn.size()==0){
+            Log.v("checkcheck", "size 0");
             toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data"));
         }
 
@@ -217,6 +224,24 @@ public class FirebaseUtils{
         });
 
         return true;
+    }
+
+    public void getImageFromEntityItemId(String entityItemId){
+        Firebase firebaseEntityItemDetailsImageRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(entityItemId).child("encodedImage");
+        final String[] imageURL = new String[1];
+
+        firebaseEntityItemDetailsImageRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                imageURL[0] = snapshot.getValue().toString().replace(',','.');
+                Log.v("firebaseUtils",imageURL[0]);
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                //System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
+
     }
 
 }

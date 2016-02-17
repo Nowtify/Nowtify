@@ -11,18 +11,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.geofire.GeoFire;
-import com.firebase.geofire.GeoLocation;
-import com.firebase.geofire.GeoQuery;
-import com.firebase.geofire.GeoQueryEventListener;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.EntityChild;
+import com.udacity.firebase.nowtify.model.UserFollows;
 import com.udacity.firebase.nowtify.ui.MainActivity;
-import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.FirebaseUtils;
-import com.udacity.firebase.nowtify.utils.GeofireUtils;
 
 import java.util.ArrayList;
 
@@ -35,14 +28,15 @@ import java.util.ArrayList;
 public class ExploreActivityFragment extends Fragment {
     private ListView mListView;
     private ArrayList<EntityChild> resultList = new ArrayList<EntityChild>();
-    private ArrayList<String> rawQueryList = new ArrayList<String>();
-    Firebase firebase = new Firebase(Constants.FIREBASE_URL_GEOFIRE);
-    GeoFire geoFire = new GeoFire(firebase);
     private FirebaseUtils fireBaseUtils = new FirebaseUtils(getActivity());
-    private GeofireUtils geofireUtils = new GeofireUtils(getActivity());
     private ProgressDialog mRefreshProgressDialog;
     ExploreListAdapter mEntityChildAdapter;
+<<<<<<< HEAD
+    UserFollows userFollows;
+    private ArrayList<String> userFollowList = new ArrayList<String>();
+=======
     private boolean mFollowUnfollow = false;
+>>>>>>> master
 
     public ExploreActivityFragment() {
         /* Required empty public constructor */
@@ -57,6 +51,7 @@ public class ExploreActivityFragment extends Fragment {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+
     }
 
     /**
@@ -73,6 +68,8 @@ public class ExploreActivityFragment extends Fragment {
         mRefreshProgressDialog.setTitle(getString(R.string.progress_dialog_loading));
         mRefreshProgressDialog.setMessage(getString(R.string.progress_dialog_authenticating_with_firebase));
         mRefreshProgressDialog.setCancelable(false);
+        //geofireUtils.createLocations();
+        fireBaseUtils.getImageFromEntityItemId("adidasGroupOffer");
     }
 
     @Override
@@ -116,7 +113,8 @@ public class ExploreActivityFragment extends Fragment {
                     *//* Starts an active showing the details for the selected list *//*
                     startActivity(intent);
                 }*/
-                refreshList();
+                //refreshList();
+                //((MainActivity)getActivity()).refreshEntityChildList();
             }
         });
 
@@ -124,6 +122,8 @@ public class ExploreActivityFragment extends Fragment {
          * Query for EntityChildren nearby
          */
         refreshList();
+        ((MainActivity)getActivity()).refreshEntityChildList();
+
         Log.v("Refreshed", "Refreshed");
 
         return rootView;
@@ -132,6 +132,9 @@ public class ExploreActivityFragment extends Fragment {
     public void refreshList(){
         mRefreshProgressDialog.show();
         resultList.clear();
+<<<<<<< HEAD
+        mRefreshProgressDialog.dismiss();
+=======
         rawQueryList.clear();
 
         //to add example locations here
@@ -180,6 +183,7 @@ public class ExploreActivityFragment extends Fragment {
 
             }
         });
+>>>>>>> master
     }
 
     public void refreshAdapter(){
@@ -192,6 +196,8 @@ public class ExploreActivityFragment extends Fragment {
         mListView.setAdapter(mEntityChildAdapter);
         mEntityChildAdapter.clear();
 
+        resultList = ((MainActivity)getActivity()).getResultList();
+
         for(EntityChild entityChild : resultList) {
             mEntityChildAdapter.add(entityChild);
         }
@@ -199,12 +205,15 @@ public class ExploreActivityFragment extends Fragment {
         mRefreshProgressDialog.dismiss();
     }
 
-    public double getLatitude(){
-        return ((MainActivity)getActivity()).getLatitude();
+    public interface Refresh{
+        public void refreshList();
     }
 
-    public double getLongitude(){
-        return ((MainActivity)getActivity()).getLongitude();
+    /**
+     * Link listview from XML
+     */
+    private void initializeScreen(View rootView) {
+        mListView = (ListView) rootView.findViewById(R.id.list_view_entity_child);
     }
 
     /**
@@ -213,10 +222,12 @@ public class ExploreActivityFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-       //mActiveListAdapter.cleanup();
+        //mActiveListAdapter.cleanup();
         mEntityChildAdapter.clear();
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Link list view from XML
      */
@@ -242,4 +253,5 @@ public class ExploreActivityFragment extends Fragment {
 
         */
 
+>>>>>>> master
 }

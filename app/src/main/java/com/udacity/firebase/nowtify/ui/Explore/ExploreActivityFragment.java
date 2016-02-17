@@ -31,12 +31,9 @@ public class ExploreActivityFragment extends Fragment {
     private FirebaseUtils fireBaseUtils = new FirebaseUtils(getActivity());
     private ProgressDialog mRefreshProgressDialog;
     ExploreListAdapter mEntityChildAdapter;
-<<<<<<< HEAD
     UserFollows userFollows;
     private ArrayList<String> userFollowList = new ArrayList<String>();
-=======
-    private boolean mFollowUnfollow = false;
->>>>>>> master
+
 
     public ExploreActivityFragment() {
         /* Required empty public constructor */
@@ -132,58 +129,7 @@ public class ExploreActivityFragment extends Fragment {
     public void refreshList(){
         mRefreshProgressDialog.show();
         resultList.clear();
-<<<<<<< HEAD
         mRefreshProgressDialog.dismiss();
-=======
-        rawQueryList.clear();
-
-        //to add example locations here
-        Log.v("Location LiKaShing Lat",Double.toString(getLatitude()));
-        Log.v("Location LiKaShing Long", Double.toString(getLongitude()));
-
-        //geoFire.setLocation("LiKaShing,LiKaShing,LiKaShing,LiKaShing", new GeoLocation(getLatitude(),getLongitude()));
-        //geoFire.setLocation("Starbucks,Starbucks,Starbucks,Starbucks", new GeoLocation(1.297605,103.850333));
-        //geoFire.setLocation("Tea Party,Tea Party,Tea Party,Tea Party", new GeoLocation(1.297799,103.848661));
-        //geoFire.setLocation("NSM,NSM,NSM,NSM", new GeoLocation(1.296759,103.848548));
-        //geoFire.setLocation("7KickStart,7KickStart,7KickStart,7KickStart", new GeoLocation(1.296461,103.849812));
-
-
-        GeoQuery query = geoFire.queryAtLocation(new GeoLocation(getLatitude(), getLongitude()), Double.parseDouble(Constants.WALKING_DISTANCE));
-        Log.v("Location in fragment", Double.toString(getLatitude()));
-        Log.v("Location in fragment", Double.toString(getLongitude()));
-        query.addGeoQueryEventListener(new GeoQueryEventListener() {
-            @Override
-            public void onKeyEntered(String key, GeoLocation location) {
-                //Log.v("GeoFire",key + " " + location.toString());
-                //testLocs.add(key + " " + location.toString());
-                rawQueryList.add(key);
-                Log.v("GeoFire", "Waiting");
-            }
-
-            @Override
-            public void onKeyExited(String key) {
-
-            }
-
-            @Override
-            public void onKeyMoved(String key, GeoLocation location) {
-
-            }
-
-            @Override
-            public void onGeoQueryReady() {
-                resultList = fireBaseUtils.convertRawQueryToEntityChild(rawQueryList);
-                refreshAdapter();
-                Log.v("GeoFire", "Done");
-                mRefreshProgressDialog.dismiss();
-            }
-
-            @Override
-            public void onGeoQueryError(FirebaseError error) {
-
-            }
-        });
->>>>>>> master
     }
 
     public void refreshAdapter(){
@@ -226,32 +172,5 @@ public class ExploreActivityFragment extends Fragment {
         mEntityChildAdapter.clear();
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Link list view from XML
-     */
-    private void initializeScreen(View rootView) {
-        mListView = (ListView) rootView.findViewById(R.id.list_view_entity_child);
-    }
 
-
-
-        /*
-        if(!mFollowUnfollow){
-            mFollowUnfollow = true;
-            Button mButton = (Button) ((MainActivity)getActivity()).findViewById(R.id.entity_item_button);
-            mButton.setText("Following");
-            mButton.setBackgroundColor(000000);
-        }
-        if(mFollowUnfollow){
-            mFollowUnfollow = false;
-            Button mButton = (Button) ((MainActivity)getActivity()).findViewById(R.id.entity_item_button);
-            mButton.setText("Follow");
-
-        }
-
-        */
-
->>>>>>> master
 }

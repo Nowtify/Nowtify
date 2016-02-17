@@ -3,7 +3,7 @@
 
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
-        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
@@ -18,6 +18,13 @@
 
     <style name="Toolbar" parent="Widget.AppCompat.Light.ActionBar">
         <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+    <style name="TopBar" parent="AppTheme.Base">
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">#16A48D</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
 

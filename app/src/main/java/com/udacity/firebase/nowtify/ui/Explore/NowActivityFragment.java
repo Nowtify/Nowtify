@@ -11,20 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.EntityChild;
 import com.udacity.firebase.nowtify.model.UserFollows;
 import com.udacity.firebase.nowtify.ui.MainActivity;
-import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.FirebaseUtils;
-import com.udacity.firebase.nowtify.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 /**
@@ -149,7 +142,13 @@ public class NowActivityFragment extends Fragment {
         mEntityChildAdapter.clear();
 
         resultList = ((MainActivity)getActivity()).getResultList();
-        //resultList = fireBaseUtils.convertEntityChildsToFollowedEntityChild(resultList, userFollowList);
+        userFollowList = ((MainActivity)getActivity()).getUserFollowList();
+
+        for(String str:userFollowList){
+            Log.v("UserFollows",str);
+        }
+
+        resultList = fireBaseUtils.convertEntityChildsToFollowedEntityChild(resultList, userFollowList);
 
         for(EntityChild entityChild : resultList) {
             mEntityChildAdapter.add(entityChild);
@@ -159,7 +158,7 @@ public class NowActivityFragment extends Fragment {
     }
 
     public interface Refresh{
-        public void refreshList();
+        public void refreshNowList();
     }
 
     /**
@@ -179,47 +178,4 @@ public class NowActivityFragment extends Fragment {
         mEntityChildAdapter.clear();
     }
 
-    public void getUserFollows(){
-        mEntityChildAdapter.clear();
-        /**
-         * Encode user email replacing "." with ","
-         * to be able to use it as a Firebase db key
-         */
-        String mEncodedEmail = Utils.encodeEmail("afiq980@gmail,com");
-        Firebase firebaseUserFollowsRef = new Firebase(Constants.FIREBASE_URL_ENTITY_USER_FOLLOWS).child(mEncodedEmail);
-
-        /**
-         * Check if current user has logged in at least once
-         */
-        firebaseUserFollowsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                userFollows = dataSnapshot.getValue(UserFollows.class);
-                if (userFollows != null) {
-                    userFollowList = getFollowsInString();
-                    refreshList();
-                } else {
-                    //showErrorToast(getString(R.string.log_error_cannot_find_user));
-                }
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                //showErrorToast(firebaseError.toString());
-                Log.e("NowActivity", getString(R.string.log_error_the_read_failed) + firebaseError.getMessage());
-            }
-        });
-    }
-
-    public ArrayList<String> getFollowsInString(){
-        ArrayList<String> toReturn;
-        HashMap<String, Object> userFollowHashMap = userFollows.getFollows();
-        if(userFollowHashMap!=null){
-            toReturn = new ArrayList<String>(userFollowHashMap.keySet());
-        } else {
-            toReturn = null;
-        }
-        return toReturn;
-    }
 }

@@ -6,12 +6,12 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="geo" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="checkcheck" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cc95730-332b-4c13-81d7-a62f09cd9c62" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/ExploreActivityFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/ExploreActivityFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/NowActivityFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/NowActivityFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -61,13 +61,12 @@
       <file leaf-file-name="NowActivityFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/NowActivityFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.16129">
-              <caret line="146" column="11" selection-start-line="146" selection-start-column="11" selection-end-line="146" selection-end-column="11" />
+            <state vertical-scroll-proportion="-5.7419353">
+              <caret line="143" column="42" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
               <folding>
-                <element signature="e#1283#1296#0" expanded="true" />
-                <element signature="e#2486#2529#0" expanded="true" />
-                <element signature="e#2574#2638#0" expanded="true" />
-                <element signature="e#7453#7498#0" expanded="true" />
+                <element signature="e#988#1001#0" expanded="true" />
+                <element signature="e#2191#2234#0" expanded="true" />
+                <element signature="e#2279#2343#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,8 +75,8 @@
       <file leaf-file-name="ExploreActivityFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/ExploreActivityFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-39.37037">
-              <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+            <state vertical-scroll-proportion="22.037037">
+              <caret line="34" column="44" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="44" />
               <folding>
                 <element signature="e#992#1005#0" expanded="true" />
                 <element signature="e#2211#2254#0" expanded="true" />
@@ -90,23 +89,29 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5606695">
-              <caret line="307" column="5" selection-start-line="307" selection-start-column="5" selection-end-line="307" selection-end-column="5" />
+            <state vertical-scroll-proportion="12.780612">
+              <caret line="338" column="50" selection-start-line="338" selection-start-column="50" selection-end-line="338" selection-end-column="50" />
               <folding>
-                <element signature="e#2236#2249#0" expanded="true" />
-                <element signature="e#2311#2319#0" expanded="true" />
-                <element signature="e#4128#4129#0" expanded="true" />
-                <element signature="e#4161#4162#0" expanded="true" />
-                <element signature="e#6307#6342#0" expanded="true" />
-                <element signature="e#6395#6434#0" expanded="true" />
-                <element signature="e#6487#6529#0" expanded="true" />
-                <element signature="e#6583#6618#0" expanded="true" />
-                <element signature="e#9727#9728#0" expanded="true" />
-                <element signature="e#9758#9759#0" expanded="true" />
-                <element signature="e#9794#9795#0" expanded="true" />
-                <element signature="e#9826#9827#0" expanded="true" />
-                <element signature="e#10640#10641#0" expanded="true" />
-                <element signature="e#10673#10674#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2315#2328#0" expanded="true" />
+                <element signature="e#2390#2398#0" expanded="true" />
+                <element signature="e#4333#4334#0" expanded="true" />
+                <element signature="e#4366#4367#0" expanded="true" />
+                <element signature="e#6512#6551#0" expanded="true" />
+                <element signature="e#6604#6639#0" expanded="true" />
+                <element signature="e#6692#6734#0" expanded="true" />
+                <element signature="e#6788#6823#0" expanded="true" />
+                <element signature="e#9853#9854#0" expanded="true" />
+                <element signature="e#9884#9885#0" expanded="true" />
+                <element signature="e#9920#9921#0" expanded="true" />
+                <element signature="e#9952#9953#0" expanded="true" />
+                <element signature="e#10766#10767#0" expanded="true" />
+                <element signature="e#10799#10800#0" expanded="true" />
+                <element signature="e#10850#10851#0" expanded="true" />
+                <element signature="e#10887#10888#0" expanded="true" />
+                <element signature="e#11091#11092#0" expanded="true" />
+                <element signature="e#11143#11144#0" expanded="true" />
+                <element signature="e#12346#12391#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,7 +151,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="231" column="21" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
+              <caret line="175" column="31" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="31" />
               <folding>
                 <element signature="e#2205#2422#0" expanded="true" />
                 <element signature="e#2421#2422#0" expanded="true" />
@@ -1734,9 +1739,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/GeofireUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/EntityChild.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/ExploreActivityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/NowActivityFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/MainActivity.java" />
       </list>
     </option>
@@ -2151,7 +2156,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18873668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3196347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2271,10 +2276,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="242" column="100" selection-start-line="242" selection-start-column="100" selection-end-line="242" selection-end-column="100" />
           <folding>
-            <element signature="e#1283#1296#0" expanded="true" />
-            <element signature="e#2486#2529#0" expanded="true" />
-            <element signature="e#2574#2638#0" expanded="true" />
-            <element signature="e#7453#7498#0" expanded="true" />
+            <element signature="e#988#1001#0" expanded="true" />
+            <element signature="e#2191#2234#0" expanded="true" />
+            <element signature="e#2279#2343#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2284,20 +2288,26 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="112" column="65" selection-start-line="112" selection-start-column="65" selection-end-line="112" selection-end-column="65" />
           <folding>
-            <element signature="e#2236#2249#0" expanded="true" />
-            <element signature="e#2311#2319#0" expanded="true" />
-            <element signature="e#4128#4129#0" expanded="true" />
-            <element signature="e#4161#4162#0" expanded="true" />
-            <element signature="e#6307#6342#0" expanded="true" />
-            <element signature="e#6395#6434#0" expanded="true" />
-            <element signature="e#6487#6529#0" expanded="true" />
-            <element signature="e#6583#6618#0" expanded="true" />
-            <element signature="e#9727#9728#0" expanded="true" />
-            <element signature="e#9758#9759#0" expanded="true" />
-            <element signature="e#9794#9795#0" expanded="true" />
-            <element signature="e#9826#9827#0" expanded="true" />
-            <element signature="e#10640#10641#0" expanded="true" />
-            <element signature="e#10673#10674#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2315#2328#0" expanded="true" />
+            <element signature="e#2390#2398#0" expanded="true" />
+            <element signature="e#4333#4334#0" expanded="true" />
+            <element signature="e#4366#4367#0" expanded="true" />
+            <element signature="e#6512#6551#0" expanded="true" />
+            <element signature="e#6604#6639#0" expanded="true" />
+            <element signature="e#6692#6734#0" expanded="true" />
+            <element signature="e#6788#6823#0" expanded="true" />
+            <element signature="e#9853#9854#0" expanded="true" />
+            <element signature="e#9884#9885#0" expanded="true" />
+            <element signature="e#9920#9921#0" expanded="true" />
+            <element signature="e#9952#9953#0" expanded="true" />
+            <element signature="e#10766#10767#0" expanded="true" />
+            <element signature="e#10799#10800#0" expanded="true" />
+            <element signature="e#10850#10851#0" expanded="true" />
+            <element signature="e#10887#10888#0" expanded="true" />
+            <element signature="e#11091#11092#0" expanded="true" />
+            <element signature="e#11143#11144#0" expanded="true" />
+            <element signature="e#12346#12391#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2610,49 +2620,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/EntityItemDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/EntityChild.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="68" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
-          <folding>
-            <element signature="e#1284#1285#0" expanded="true" />
-            <element signature="e#1314#1315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="231" column="21" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
-          <folding>
-            <element signature="e#2205#2422#0" expanded="true" />
-            <element signature="e#2421#2422#0" expanded="true" />
-            <element signature="e#3545#3564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/ExploreListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.33223686">
           <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/GeofireUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="83" selection-start-line="28" selection-start-column="83" selection-end-line="28" selection-end-column="83" />
           <folding />
         </state>
       </provider>
@@ -2676,6 +2647,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/GeofireUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="83" selection-start-line="28" selection-start-column="83" selection-end-line="28" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/ExploreActivityFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="22.037037">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="44" />
+          <folding>
+            <element signature="e#992#1005#0" expanded="true" />
+            <element signature="e#2211#2254#0" expanded="true" />
+            <element signature="e#2299#2363#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/utils/FirebaseUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="175" column="31" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="31" />
+          <folding>
+            <element signature="e#2205#2422#0" expanded="true" />
+            <element signature="e#2421#2422#0" expanded="true" />
+            <element signature="e#3545#3564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/login/AddDetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.259259">
@@ -2692,50 +2695,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/ExploreActivityFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/EntityChild.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-39.37037">
-          <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="68" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
           <folding>
-            <element signature="e#992#1005#0" expanded="true" />
-            <element signature="e#2211#2254#0" expanded="true" />
-            <element signature="e#2299#2363#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1314#1315#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/Explore/NowActivityFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.16129">
-          <caret line="146" column="11" selection-start-line="146" selection-start-column="11" selection-end-line="146" selection-end-column="11" />
+        <state vertical-scroll-proportion="-5.7419353">
+          <caret line="143" column="42" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
           <folding>
-            <element signature="e#1283#1296#0" expanded="true" />
-            <element signature="e#2486#2529#0" expanded="true" />
-            <element signature="e#2574#2638#0" expanded="true" />
-            <element signature="e#7453#7498#0" expanded="true" />
+            <element signature="e#988#1001#0" expanded="true" />
+            <element signature="e#2191#2234#0" expanded="true" />
+            <element signature="e#2279#2343#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/model/EntityItemDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udacity/firebase/nowtify/ui/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5606695">
-          <caret line="307" column="5" selection-start-line="307" selection-start-column="5" selection-end-line="307" selection-end-column="5" />
+        <state vertical-scroll-proportion="12.780612">
+          <caret line="338" column="50" selection-start-line="338" selection-start-column="50" selection-end-line="338" selection-end-column="50" />
           <folding>
-            <element signature="e#2236#2249#0" expanded="true" />
-            <element signature="e#2311#2319#0" expanded="true" />
-            <element signature="e#4128#4129#0" expanded="true" />
-            <element signature="e#4161#4162#0" expanded="true" />
-            <element signature="e#6307#6342#0" expanded="true" />
-            <element signature="e#6395#6434#0" expanded="true" />
-            <element signature="e#6487#6529#0" expanded="true" />
-            <element signature="e#6583#6618#0" expanded="true" />
-            <element signature="e#9727#9728#0" expanded="true" />
-            <element signature="e#9758#9759#0" expanded="true" />
-            <element signature="e#9794#9795#0" expanded="true" />
-            <element signature="e#9826#9827#0" expanded="true" />
-            <element signature="e#10640#10641#0" expanded="true" />
-            <element signature="e#10673#10674#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2315#2328#0" expanded="true" />
+            <element signature="e#2390#2398#0" expanded="true" />
+            <element signature="e#4333#4334#0" expanded="true" />
+            <element signature="e#4366#4367#0" expanded="true" />
+            <element signature="e#6512#6551#0" expanded="true" />
+            <element signature="e#6604#6639#0" expanded="true" />
+            <element signature="e#6692#6734#0" expanded="true" />
+            <element signature="e#6788#6823#0" expanded="true" />
+            <element signature="e#9853#9854#0" expanded="true" />
+            <element signature="e#9884#9885#0" expanded="true" />
+            <element signature="e#9920#9921#0" expanded="true" />
+            <element signature="e#9952#9953#0" expanded="true" />
+            <element signature="e#10766#10767#0" expanded="true" />
+            <element signature="e#10799#10800#0" expanded="true" />
+            <element signature="e#10850#10851#0" expanded="true" />
+            <element signature="e#10887#10888#0" expanded="true" />
+            <element signature="e#11091#11092#0" expanded="true" />
+            <element signature="e#11143#11144#0" expanded="true" />
+            <element signature="e#12346#12391#0" expanded="true" />
           </folding>
         </state>
       </provider>

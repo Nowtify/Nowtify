@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
@@ -30,8 +31,10 @@ import com.udacity.firebase.nowtify.ui.Explore.NowActivityFragment;
 import com.udacity.firebase.nowtify.utils.Constants;
 import com.udacity.firebase.nowtify.utils.FirebaseUtils;
 import com.udacity.firebase.nowtify.utils.GeofireUtils;
+import com.udacity.firebase.nowtify.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Represents the home screen of the app which
@@ -43,7 +46,6 @@ public class MainActivity extends BaseActivity implements
     private double latitude;
     private double longitude;
     private Firebase firebaseUserFollowsRef;
-    private UserFollows userFollows;
     Firebase firebase = new Firebase(Constants.FIREBASE_URL_GEOFIRE);
     GeoFire geofire = new GeoFire(firebase);
     private FirebaseUtils fireBaseUtils = new FirebaseUtils(getParent());
@@ -53,6 +55,8 @@ public class MainActivity extends BaseActivity implements
     private ExploreActivityFragment exploreActivityFragment;
     private NowActivityFragment nowActivityFragment;
     private boolean firstTimeCheck = true;
+    UserFollows userFollows;
+    private ArrayList<String> userFollowList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +75,8 @@ public class MainActivity extends BaseActivity implements
         exploreActivityFragment = ExploreActivityFragment.newInstance();
         nowActivityFragment = NowActivityFragment.newInstance();
 
+        getUserFollows();
         initializeScreen();
-
         getCurrentLocation();
         //getUserFollows();
     }
@@ -189,9 +193,9 @@ public class MainActivity extends BaseActivity implements
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.pager_title_now);
-                case 1:
                     return getString(R.string.pager_title_explore);
+                case 1:
+                    return getString(R.string.pager_title_now);
                 case 2:
                     return getString(R.string.pager_title_followings);
                 default:
@@ -212,7 +216,7 @@ public class MainActivity extends BaseActivity implements
          * Create SectionPagerAdapter, set it as adapter to viewPager with setOffscreenPageLimit(2)
          **/
         SectionPagerAdapter adapter = new SectionPagerAdapter(getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(adapter);
         /**
          * Setup the mTabLayout with view pager
@@ -261,12 +265,8 @@ public class MainActivity extends BaseActivity implements
             @Override
             public void onGeoQueryReady() {
                 resultList = fireBaseUtils.convertRawQueryToEntityChild(rawQueryList);
-                if (firstTimeCheck) {
                     refreshList();
-                } else {
-                    refreshList();
-                }
-
+                    refreshNowList();
             }
 
             @Override
@@ -307,10 +307,63 @@ public class MainActivity extends BaseActivity implements
         return resultList;
     }
 
+    public ArrayList<String> getUserFollowList(){
+        return userFollowList;
+    }
+
     @Override
          public void refreshList(){
         exploreActivityFragment.refreshAdapter();
+        //nowActivityFragment.refreshAdapter();
+    }
+
+    @Override
+    public void refreshNowList(){
         nowActivityFragment.refreshAdapter();
+    }
+
+    public void getUserFollows(){
+        //mEntityChildAdapter.clear();
+        /**
+         * Encode user email replacing "." with ","
+         * to be able to use it as a Firebase db key
+         */
+        String mEncodedEmail = Utils.encodeEmail("afiq980@gmail,com");
+        Firebase firebaseUserFollowsRef = new Firebase(Constants.FIREBASE_URL_ENTITY_USER_FOLLOWS).child(mEncodedEmail);
+
+        /**
+         * Check if current user has logged in at least once
+         */
+        firebaseUserFollowsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userFollows = dataSnapshot.getValue(UserFollows.class);
+                if (userFollows != null) {
+                    userFollowList = getFollowsInString();
+                    refreshNowList();
+                } else {
+                    //showErrorToast(getString(R.string.log_error_cannot_find_user));
+                }
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                //showErrorToast(firebaseError.toString());
+                Log.e("NowActivity", getString(R.string.log_error_the_read_failed) + firebaseError.getMessage());
+            }
+        });
+    }
+
+    public ArrayList<String> getFollowsInString(){
+        ArrayList<String> toReturn;
+        HashMap<String, Object> userFollowHashMap = userFollows.getFollows();
+        if(userFollowHashMap!=null){
+            toReturn = new ArrayList<String>(userFollowHashMap.keySet());
+        } else {
+            toReturn = null;
+        }
+        return toReturn;
     }
 
 

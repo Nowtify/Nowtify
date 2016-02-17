@@ -37,7 +37,7 @@ import java.util.ArrayList;
  * Represents the home screen of the app which
  */
 public class MainActivity extends BaseActivity implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ExploreActivityFragment.Refresh, NowActivityFragment.Refresh {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private ValueEventListener mUserRefListener;
     private double latitude;
@@ -50,6 +50,9 @@ public class MainActivity extends BaseActivity implements
     private GeofireUtils geofireUtils = new GeofireUtils(getParent());
     private ArrayList<EntityChild> resultList = new ArrayList<EntityChild>();
     private ArrayList<String> rawQueryList = new ArrayList<String>();
+    private ExploreActivityFragment exploreActivityFragment;
+    private NowActivityFragment nowActivityFragment;
+    private boolean firstTimeCheck = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,70 +68,13 @@ public class MainActivity extends BaseActivity implements
                     .build();
         }
 
+        exploreActivityFragment = ExploreActivityFragment.newInstance();
+        nowActivityFragment = NowActivityFragment.newInstance();
+
+        initializeScreen();
+
         getCurrentLocation();
         //getUserFollows();
-    }
-
-    public void getCurrentLocation(){
-        //Get current or last recorded location
-        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (mLastLocation != null) {
-            Log.v("Location", String.valueOf(mLastLocation.getLatitude()));
-            Log.v("Location",String.valueOf(mLastLocation.getLongitude()));
-            latitude = mLastLocation.getLatitude();
-            Log.v("Location", Double.toString(latitude));
-            longitude = mLastLocation.getLongitude();
-        } else {
-            Log.v("Location", "Null");
-        }
-    }
-
-    public void refreshEntityChildList(){
-        //mRefreshProgressDialog.show();
-
-        //to add example locations here
-        //Log.v("Location LiKaShing Lat",Double.toString(getLatitude()));
-        //Log.v("Location LiKaShing Long", Double.toString(getLongitude()));
-
-        //geoFire.setLocation("LiKaShing,LiKaShing,LiKaShing,LiKaShing", new GeoLocation(getLatitude(),getLongitude()));
-        //geoFire.setLocation("Starbucks,Starbucks,Starbucks,Starbucks", new GeoLocation(1.297605,103.850333));
-        //geoFire.setLocation("Tea Party,Tea Party,Tea Party,Tea Party", new GeoLocation(1.297799,103.848661));
-        //geoFire.setLocation("NSM,NSM,NSM,NSM", new GeoLocation(1.296759,103.848548));
-        //geoFire.setLocation("7KickStart,7KickStart,7KickStart,7KickStart", new GeoLocation(1.296461,103.849812));
-
-
-        GeoQuery query = geofire.queryAtLocation(new GeoLocation(getLatitude(), getLongitude()), Double.parseDouble(Constants.WALKING_DISTANCE));
-        Log.v("Location in fragment",Double.toString(getLatitude()));
-        Log.v("Location in fragment",Double.toString(getLongitude()));
-        query.addGeoQueryEventListener(new GeoQueryEventListener() {
-            @Override
-            public void onKeyEntered(String key, GeoLocation location) {
-                //Log.v("GeoFire",key + " " + location.toString());
-                //testLocs.add(key + " " + location.toString());
-                rawQueryList.add(key);
-                Log.v("GeoFire", "Waiting");
-            }
-
-            @Override
-            public void onKeyExited(String key) {
-
-            }
-
-            @Override
-            public void onKeyMoved(String key, GeoLocation location) {
-
-            }
-
-            @Override
-            public void onGeoQueryReady() {
-                resultList = fireBaseUtils.convertRawQueryToEntityChild(rawQueryList);
-            }
-
-            @Override
-            public void onGeoQueryError(FirebaseError error) {
-
-            }
-        });
     }
 
 
@@ -170,28 +116,6 @@ public class MainActivity extends BaseActivity implements
         super.onDestroy();
     }
 
-    /**
-     * Link layout elements from XML and setup the toolbar
-     */
-    public void initializeScreen() {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        /**
-         * Create SectionPagerAdapter, set it as adapter to viewPager with setOffscreenPageLimit(2)
-         **/
-        SectionPagerAdapter adapter = new SectionPagerAdapter(getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setAdapter(adapter);
-        /**
-         * Setup the mTabLayout with view pager
-         */
-        //tabLayout.setSelectedTabIndicatorHeight(15);
-        //tabLayout.setSelectedTabIndicatorColor(00000000);
-        tabLayout.setupWithViewPager(viewPager);
-    }
-
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -205,20 +129,12 @@ public class MainActivity extends BaseActivity implements
         } else {
             Log.v("Location", "Null");
         }
-        initializeScreen();
+        refreshEntityChildList();
     }
 
     @Override
     public void onConnectionSuspended(int i) {
 
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
     }
 
     /**
@@ -245,16 +161,13 @@ public class MainActivity extends BaseActivity implements
              */
             switch (position) {
                 case 0:
-                    fragment = ExploreActivityFragment.newInstance();
+                    fragment = exploreActivityFragment;
                     break;
                 case 1:
-                    fragment = NowActivityFragment.newInstance();
-                    break;
-                case 2:
-                    fragment = ExploreActivityFragment.newInstance();
+                    fragment = nowActivityFragment;
                     break;
                 default:
-                    fragment = ExploreActivityFragment.newInstance();
+                    //fragment = ExploreActivityFragment.newInstance();
                     break;
             }
 
@@ -264,7 +177,7 @@ public class MainActivity extends BaseActivity implements
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         /**
@@ -287,8 +200,118 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
+    /**
+     * Link layout elements from XML and setup the toolbar
+     */
+    public void initializeScreen() {
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        /**
+         * Create SectionPagerAdapter, set it as adapter to viewPager with setOffscreenPageLimit(2)
+         **/
+        SectionPagerAdapter adapter = new SectionPagerAdapter(getSupportFragmentManager());
+        viewPager.setOffscreenPageLimit(1);
+        viewPager.setAdapter(adapter);
+        /**
+         * Setup the mTabLayout with view pager
+         */
+        //tabLayout.setSelectedTabIndicatorHeight(15);
+        //tabLayout.setSelectedTabIndicatorColor(00000000);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public void refreshEntityChildList(){
+        //mRefreshProgressDialog.show();
+
+        //to add example locations here
+        //Log.v("Location LiKaShing Lat",Double.toString(getLatitude()));
+        //Log.v("Location LiKaShing Long", Double.toString(getLongitude()));
+
+        //geoFire.setLocation("LiKaShing,LiKaShing,LiKaShing,LiKaShing", new GeoLocation(getLatitude(),getLongitude()));
+        //geoFire.setLocation("Starbucks,Starbucks,Starbucks,Starbucks", new GeoLocation(1.297605,103.850333));
+        //geoFire.setLocation("Tea Party,Tea Party,Tea Party,Tea Party", new GeoLocation(1.297799,103.848661));
+        //geoFire.setLocation("NSM,NSM,NSM,NSM", new GeoLocation(1.296759,103.848548));
+        //geoFire.setLocation("7KickStart,7KickStart,7KickStart,7KickStart", new GeoLocation(1.296461,103.849812));
+
+
+        GeoQuery query = geofire.queryAtLocation(new GeoLocation(getLatitude(), getLongitude()), Double.parseDouble(Constants.WALKING_DISTANCE));
+        Log.v("Location in fragment",Double.toString(getLatitude()));
+        Log.v("Location in fragment",Double.toString(getLongitude()));
+        query.addGeoQueryEventListener(new GeoQueryEventListener() {
+            @Override
+            public void onKeyEntered(String key, GeoLocation location) {
+                //Log.v("GeoFire",key + " " + location.toString());
+                //testLocs.add(key + " " + location.toString());
+                rawQueryList.add(key);
+                Log.v("GeoFire", "Waiting");
+            }
+
+            @Override
+            public void onKeyExited(String key) {
+
+            }
+
+            @Override
+            public void onKeyMoved(String key, GeoLocation location) {
+
+            }
+
+            @Override
+            public void onGeoQueryReady() {
+                resultList = fireBaseUtils.convertRawQueryToEntityChild(rawQueryList);
+                if (firstTimeCheck) {
+                    refreshList();
+                } else {
+                    refreshList();
+                }
+
+            }
+
+            @Override
+            public void onGeoQueryError(FirebaseError error) {
+
+            }
+        });
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
     //for testing
     private void showToast(String message) {
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
     }
+
+    public void getCurrentLocation(){
+        //Get current or last recorded location
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            Log.v("Location", String.valueOf(mLastLocation.getLatitude()));
+            Log.v("Location",String.valueOf(mLastLocation.getLongitude()));
+            latitude = mLastLocation.getLatitude();
+            Log.v("Location", Double.toString(latitude));
+            longitude = mLastLocation.getLongitude();
+        } else {
+            Log.v("Location", "Null");
+        }
+    }
+
+    public ArrayList<EntityChild> getResultList(){
+        return resultList;
+    }
+
+    @Override
+         public void refreshList(){
+        exploreActivityFragment.refreshAdapter();
+        nowActivityFragment.refreshAdapter();
+    }
+
+
 }

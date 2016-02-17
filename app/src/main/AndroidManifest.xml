@@ -65,6 +65,17 @@
             android:name=".ui.Explore.ExploreActivity"
             android:label="@string/title_activity_explore"
             android:theme="@style/AppTheme"></activity>
+
+        <activity
+            android:name=".ui.EntityItem.EntityItemDetailsActivity"
+            android:label="Entity Item Details"
+            android:parentActivityName=".ui.MainActivity"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.udacity.firebase.nowtify.ui.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>

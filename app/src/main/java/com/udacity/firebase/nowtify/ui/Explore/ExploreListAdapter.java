@@ -1,16 +1,19 @@
 package com.udacity.firebase.nowtify.ui.Explore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.EntityChild;
+import com.udacity.firebase.nowtify.ui.EntityItem.EntityItemDetailsActivity;
 
 import java.util.List;
 
@@ -20,19 +23,25 @@ import java.util.List;
 public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
 
     private boolean isFollowing = false;
+    private Context context;
 
     public ExploreListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
+        this.context = context;
     }
 
     public ExploreListAdapter(Context context, int resource, List<EntityChild> items) {
         super(context, resource, items);
+        this.context = context;
+
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Button mFollowButton;
         View v = convertView;
+        ImageView mImageView;
+        TextView mEntityItemTitle;
 
         if (v == null) {
             LayoutInflater vi;
@@ -48,9 +57,12 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         EntityChild p = getItem(position);
         ViewHolder h = (ViewHolder) v.getTag();
         mFollowButton = h.getButton();
+        mImageView = (ImageView)h.getImageView();
+        mEntityItemTitle = (TextView) h.getTextView();
 
         final boolean isFollowingFinal = isFollowing;
 
+        //Following button listener
         mFollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +81,24 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
             }
         });
 
+        //Image Listener
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EntityItemDetailsActivity.class);
+                context.startActivity(intent);
+
+            }
+        });
+        //Title Listener
+        mEntityItemTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EntityItemDetailsActivity.class);
+                context.startActivity(intent);
+
+            }
+        });
 
 /*        if (p != null) {
             TextView tt1 = (TextView) v.findViewById(R.id.id);
@@ -110,6 +140,8 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
     public class ViewHolder{
         View view;
         Button button;
+        ImageView imageView;
+        TextView textView;
 
         public ViewHolder(View view)
         {
@@ -123,6 +155,23 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
             }
             return button;
         }
+
+        public ImageView getImageView(){
+            if ( imageView == null)
+            {
+                imageView = (ImageView) view.findViewById(R.id.entity_item_image);
+            }
+            return imageView;
+        }
+
+        public TextView getTextView(){
+            if ( textView == null)
+            {
+                textView = (TextView) view.findViewById(R.id.entity_item_title);
+            }
+            return textView;
+        }
+
     }
 
 

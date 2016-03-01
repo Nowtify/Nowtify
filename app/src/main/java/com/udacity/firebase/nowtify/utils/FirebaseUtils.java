@@ -226,6 +226,7 @@ public class FirebaseUtils{
         return true;
     }
 
+    /*
     public void getImageFromEntityItemId(String entityItemId){
         Firebase firebaseEntityItemDetailsImageRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(entityItemId).child("encodedImage");
         final String[] imageURL = new String[1];
@@ -243,5 +244,5 @@ public class FirebaseUtils{
         });
 
     }
-
+    */
 }

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/entity_item_image1"
+        android:id="@+id/entity_item_image"
         android:layout_height="220dp"
         android:layout_width="fill_parent"
         android:adjustViewBounds="true"
@@ -13,44 +20,251 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:text="Airbnb Breakfast and Bed "
-        android:id="@+id/title1"
-        android:layout_below="@+id/entity_item_image1"
+        android:background="#2e2e2e"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="sans-serif-light"
+        android:text="1-for-1 coffee with breakfast and lunch table and chair included"
+        android:id="@+id/entity_item_title"
+        android:layout_below="@+id/entity_item_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
 
         />
 
-    <TextView
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/entity_parent_name_field"
+        android:layout_below="@+id/entity_item_title">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:text="Starbucks"
+            android:fontFamily="sans-serif-light"
+            android:id="@+id/entity_parent_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#B8B8B8"
+            android:gravity="center"
+            android:text="Opp Singapore Management university school of information systems, 90 stamford road, singapore 178081 "
+            android:fontFamily="sans-serif-light"
+            android:id="@+id/entity_item_address"
+            android:layout_below="@+id/entity_parent_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="0dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey"
-        android:textSize="15sp"
-        android:text=
-            "Stage 1: Confirm ideal date/time, change the colour status of the timetable doc when they confirm (link below)
+        android:id="@+id/entity_item_details_field"
+        android:layout_below="@+id/entity_parent_name_field">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:text="Details"
+            android:fontFamily="sans-serif-light"
+            android:id="@+id/entity_item_detail_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="Opening Hours"
+            android:id="@+id/entity_child_opening_hours_title"
+            android:layout_below="@+id/entity_item_detail_title"
+            android:paddingTop="0dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="11am to 11pm"
+            android:id="@+id/entity_child_opening_hours"
+            android:layout_below="@id/entity_item_detail_title"
+            android:layout_alignParentRight="true"
+            android:paddingTop="0dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
+            />
+
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="Start Date"
+            android:id="@+id/entity_item_start_date_title"
+            android:layout_below="@+id/entity_child_opening_hours_title"
+            android:paddingTop="0dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="1 Mar 16"
+            android:id="@+id/entity_item_start_date"
+            android:layout_below="@id/entity_child_opening_hours"
+            android:layout_alignParentRight="true"
+            android:paddingTop="0dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
+            />
+
+
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="End Date"
+            android:id="@+id/entity_item_end_date_title"
+            android:layout_below="@+id/entity_item_start_date_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="0dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="3 Mar 16"
+            android:id="@+id/entity_item_end_date"
+            android:layout_below="@id/entity_item_start_date"
+            android:layout_alignParentRight="true"
+            android:paddingTop="0dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+
+            />
+
+    </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:id="@+id/entity_item_description_field"
+            android:layout_below="@+id/entity_item_details_field">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:text="Description "
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/entity_item_description_title"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:paddingTop="15dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+
+                />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="Stage 1: Confirm ideal date/time, change the colour status of the timetable doc when they confirm (link below)
 
 Stage 2: If unable to make it, put on hold and let us know, we will wait till all companies in the same day to reply. If happened that same day got company cant make it, we will propose a switch between companies within the same day only.
 
 Stage 3a: If really cannot, we will slot in extra/new companies within the location that recently updated their status (to fill the empty slot).
+            "
+            android:fontFamily="sans-serif-light"
+            android:id="@+id/entity_item_description"
+            android:layout_below="@+id/entity_item_description_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="0dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
 
-"
-        android:layout_below="@+id/title1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+            />
 
-        />
+        </RelativeLayout>
 
 </RelativeLayout>
+
+</ScrollView>

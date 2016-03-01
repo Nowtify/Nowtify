@@ -66,7 +66,7 @@ public class ExploreActivityFragment extends Fragment {
         mRefreshProgressDialog.setMessage(getString(R.string.progress_dialog_authenticating_with_firebase));
         mRefreshProgressDialog.setCancelable(false);
         //geofireUtils.createLocations();
-        fireBaseUtils.getImageFromEntityItemId("adidasGroupOffer");
+       // fireBaseUtils.getImageFromEntityItemId("adidasGroupOffer");
     }
 
     @Override

@@ -166,7 +166,10 @@ public class FirebaseUtils{
         List<String> splitter;
         EntityChild entityChild;
         splitter = Arrays.asList(string.split(","));
-        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(3));
+        List<String> tagsList = Arrays.asList(splitter.get(6).split("/"));
+        ArrayList<String> tagsArrayList = new ArrayList<String>();
+        tagsArrayList.addAll(tagsList);
+        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(4), tagsArrayList);
         return entityChild;
     }
 
@@ -177,7 +180,8 @@ public class FirebaseUtils{
 
         if(rawEntityChild==null || userFollowList==null ){
             Log.v("checkcheck", "null");
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data"));
+            ArrayList<String> tagsArrayList = new ArrayList<String>();
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data",tagsArrayList));
             return toReturn;
         }
 
@@ -192,7 +196,8 @@ public class FirebaseUtils{
 
         if(toReturn.size()==0){
             Log.v("checkcheck", "size 0");
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data"));
+            ArrayList<String> tagsArrayList = new ArrayList<String>();
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data",tagsArrayList));
         }
 
         return toReturn;
@@ -226,9 +231,8 @@ public class FirebaseUtils{
         return true;
     }
 
-    /*
     public void getImageFromEntityItemId(String entityItemId){
-        Firebase firebaseEntityItemDetailsImageRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(entityItemId).child("encodedImage");
+        Firebase firebaseEntityItemDetailsImageRef = new Firebase(Constants.FIREBASE_URL_ENTITY_ITEM_DETAILS).child(entityItemId).child("imageURL");
         final String[] imageURL = new String[1];
 
         firebaseEntityItemDetailsImageRef.addValueEventListener(new ValueEventListener() {
@@ -244,5 +248,5 @@ public class FirebaseUtils{
         });
 
     }
-    */
+
 }

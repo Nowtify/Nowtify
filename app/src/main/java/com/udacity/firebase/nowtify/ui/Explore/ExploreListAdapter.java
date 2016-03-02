@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.ion.Ion;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.EntityChild;
 import com.udacity.firebase.nowtify.ui.EntityItem.EntityItemDetailsActivity;
+import com.udacity.firebase.nowtify.utils.FirebaseUtils;
 
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
 
     private boolean isFollowing = false;
     private Context context;
+    FirebaseUtils firebaseUtils;
+    List<EntityChild> items;
 
     public ExploreListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
@@ -33,7 +37,12 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
     public ExploreListAdapter(Context context, int resource, List<EntityChild> items) {
         super(context, resource, items);
         this.context = context;
+        this.items = items;
+        firebaseUtils = new FirebaseUtils(context);
+    }
 
+    public void followUnfollow(EntityChild entityChild, boolean followOrUnfollow) {
+        firebaseUtils.followEntityParent("afiq980@gmail.com", entityChild.getEntityParentId(), followOrUnfollow);
     }
 
     @Override
@@ -54,28 +63,34 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
             v.setTag(h);
         }
 
-        EntityChild p = getItem(position);
+        final EntityChild p = items.get(position);
         ViewHolder h = (ViewHolder) v.getTag();
         mFollowButton = h.getButton();
         mImageView = (ImageView)h.getImageView();
         mEntityItemTitle = (TextView) h.getTextView();
 
-        final boolean isFollowingFinal = isFollowing;
 
         //Following button listener
         mFollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final boolean isFollowingFinal = isFollowing;
+
                 Button mFollowButton= (Button) v.findViewById(R.id.entity_item_button);
 
                 if (isFollowingFinal == false) {
+                    isFollowing=true; //added 2/3/16
+                    followUnfollow(p,true);
                     mFollowButton.setText("Following");
-                    mFollowButton.setBackgroundColor(Color.parseColor("#e7eecc"));
+                    mFollowButton.setTextColor(Color.parseColor("#FFFFFF"));
+                    mFollowButton.setBackgroundResource(R.drawable.following_button_shape);
                 }
                 if (isFollowingFinal == true) {
+                    isFollowing=false; //added 2/3/16
+                    followUnfollow(p,false);
                     mFollowButton.setText("Follow");
-                    mFollowButton.setBackgroundColor(666666);
-
+                    mFollowButton.setTextColor(Color.parseColor("#12AEA3"));
+                    mFollowButton.setBackgroundResource(R.drawable.follow_button_shape);
                 }
 
             }
@@ -124,6 +139,13 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         TextView textViewListName = (TextView) v.findViewById(R.id.entity_parent_name);
         TextView entityItemTitle = (TextView) v.findViewById(R.id.entity_item_title);
         //TextView textViewCreatedByUser = (TextView) v.findViewById(R.id.text_view_created_by_user);
+
+        Ion.with(context)
+                .load("http://www.mygreatsales.com/wp-content/uploads/2015/12/image.jpeg")
+                .withBitmap()
+                .placeholder(R.drawable.icon_add)
+                .error(R.drawable.icon_profile_add)
+                .intoImageView(mImageView);
 
 
         /* Set the list name and owner */

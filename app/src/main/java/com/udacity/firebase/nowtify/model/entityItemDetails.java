@@ -6,54 +6,38 @@ package com.udacity.firebase.nowtify.model;
 public class EntityItemDetails {
     String parentPushId;
     String title;
-    String shortDesc;
-    String longDesc;
+    String desc;
     String tnc;
-    String encodedImage;
+    String imageURL;
 
     public EntityItemDetails() {
     }
 
-    public EntityItemDetails(String parentPushId, String title, String shortDesc, String longDesc, String tnc, String encodedImage){
-        this.parentPushId=parentPushId;
+    public EntityItemDetails(String title, String desc, String tnc, String imageURL){
         this.title=title;
-        this.shortDesc=shortDesc;
-        this.longDesc=longDesc;
+        this.desc=desc;
         this.tnc=tnc;
-        this.encodedImage=encodedImage;
-    }
-
-
-    public String getParentPushId() {
-        return parentPushId;
+        this.imageURL=imageURL;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getShortDesc() {
-        return shortDesc;
-    }
-
-    public String getLongDesc() {
-        return longDesc;
+    public String getDesc() {
+        return desc;
     }
 
     public String getTnc() {
         return tnc;
     }
 
-    public String getEncodedImage() {
-        return encodedImage;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setShortDesc(String shortDesc) {
-        this.shortDesc = shortDesc;
-    }
-
-    public void setLongDesc(String longDesc) {
-        this.longDesc = longDesc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public void setTitle(String title) {
@@ -63,12 +47,8 @@ public class EntityItemDetails {
     public void setTnc(String tnc) {
         this.tnc = tnc;
     }
-
-    public void setParentPushId(String parentPushId) {
-        this.parentPushId = parentPushId;
-    }
-
-    public void setEncodedImage(String encodedImage) {
-        this.encodedImage = encodedImage;
+    
+    public void setImageURL(String encodedImage) {
+        this.imageURL = imageURL;
     }
 }

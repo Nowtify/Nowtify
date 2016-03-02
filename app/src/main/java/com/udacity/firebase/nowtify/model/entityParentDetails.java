@@ -1,24 +1,27 @@
 package com.udacity.firebase.nowtify.model;
 
+import java.util.HashMap;
+
 /**
  * Created by MohamedAfiq on 27/1/16.
  */
 public class EntityParentDetails {
     String pushId;
+    private HashMap<String, Object> entityItemDetailsID;
     String name;
-    String shortDesc;
-    String longDesc;
+    String desc;
     String address;
     String number;
+    private HashMap<String, Object> tags;
+
 
     public EntityParentDetails() {
     }
 
-    public EntityParentDetails(String pushId, String name, String shortDesc, String longDesc, String address, String number){
+    public EntityParentDetails(String pushId, String name, String desc, String address, String number){
         this.pushId=pushId;
         this.name=name;
-        this.shortDesc=shortDesc;
-        this.longDesc=longDesc;
+        this.desc=desc;
         this.address=address;
         this.number=number;
     }
@@ -31,12 +34,8 @@ public class EntityParentDetails {
         return pushId;
     }
 
-    public String getLongDesc() {
-        return longDesc;
-    }
-
-    public String getShortDesc() {
-        return shortDesc;
+    public String getDesc() {
+        return desc;
     }
 
     public String getName() {
@@ -47,12 +46,16 @@ public class EntityParentDetails {
         return number;
     }
 
+    public HashMap<String, Object> getEntityItemDetailsID(){
+        return entityItemDetailsID;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setLongDesc(String longDesc) {
-        this.longDesc = longDesc;
+    public void setDesc(String longDesc) {
+        this.desc = desc;
     }
 
     public void setName(String name) {
@@ -67,8 +70,8 @@ public class EntityParentDetails {
         this.pushId = pushId;
     }
 
-    public void setShortDesc(String shortDesc) {
-        this.shortDesc = shortDesc;
+    public void setEntityItemDetailsID(HashMap<String, Object> entityItemDetailsID){
+        this.entityItemDetailsID = entityItemDetailsID;
     }
 
 }

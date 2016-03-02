@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:background="@android:color/white">
+    android:background="@color/grey">
 
     <!--Offer image-->
     <ImageView
@@ -11,34 +11,11 @@
         android:layout_width="fill_parent"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:background="@drawable/coffee"/>
-
-    <TextView
-        android:id="@+id/entity_item_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:text="1 For 1 Venti Frappachinooooooooooooooo"
-        android:layout_marginRight="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:layout_below="@id/entity_item_image"
-        android:layout_centerHorizontal="false" />
-
-    <TextView
-        android:id="@+id/entity_parent_name"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:textSize="16sp"
-        android:textColor="@color/dark_grey"
-        android:text="Starbucks"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginRight="120dp"
-        android:layout_below="@id/entity_item_title"
-        android:layout_centerHorizontal="false" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/black"/>
 
     <TextView
         android:id="@+id/entity_item_distance"
@@ -55,18 +32,57 @@
         android:background="#4D000000"
         />
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp"
-        android:paddingBottom="10dp"
-        android:text="Follow"
-        android:textAlignment="center"
-        android:id="@+id/entity_item_button"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/entity_item_title"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_below="@id/entity_item_image"> <!--to give popup effect, add margin and elevation-->
+
+        <TextView
+            android:id="@+id/entity_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="1 For 1 Venti Frappachinooooooooooooooo"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+
+            android:layout_centerHorizontal="false" />
+        <!--android:layout_below="@id/entity_item_image" if removing popup effect permanently-->
+
+        <TextView
+            android:id="@+id/entity_parent_name"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textSize="16sp"
+            android:textColor="@color/dark_grey"
+            android:text="Starbucks"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginRight="120dp"
+            android:layout_below="@id/entity_item_title"
+            android:layout_centerHorizontal="false" />
+
+
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:text="Follow"
+            android:textColor="#12AEA3"
+            android:textAlignment="center"
+            android:id="@+id/entity_item_button"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/entity_item_title"
+            android:background="@drawable/follow_button_shape"
+            />
+
+    </RelativeLayout>
 
     <!--
     <View

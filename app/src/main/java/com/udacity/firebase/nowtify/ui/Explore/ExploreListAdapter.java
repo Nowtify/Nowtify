@@ -3,7 +3,6 @@ package com.udacity.firebase.nowtify.ui.Explore;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +37,11 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
     public ExploreListAdapter(Context context, int resource, List<EntityChild> items) {
         super(context, resource, items);
         this.context = context;
-        firebaseUtils = new FirebaseUtils(context);
         this.items = items;
+        firebaseUtils = new FirebaseUtils(context);
     }
 
-    public void followUnfollow (EntityChild entityChild, boolean followOrUnfollow) {
+    public void followUnfollow(EntityChild entityChild, boolean followOrUnfollow) {
         firebaseUtils.followEntityParent("afiq980@gmail.com", entityChild.getEntityParentId(), followOrUnfollow);
     }
 
@@ -70,28 +69,28 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         mImageView = (ImageView)h.getImageView();
         mEntityItemTitle = (TextView) h.getTextView();
 
-        final boolean isFollowingFinal = isFollowing;
 
         //Following button listener
         mFollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final boolean isFollowingFinal = isFollowing;
+
                 Button mFollowButton= (Button) v.findViewById(R.id.entity_item_button);
 
-                boolean isFollowingFinal2 = isFollowingFinal;
-
-                if (isFollowingFinal2 == false) {
+                if (isFollowingFinal == false) {
+                    isFollowing=true; //added 2/3/16
+                    followUnfollow(p,true);
                     mFollowButton.setText("Following");
-                    mFollowButton.setBackgroundColor(Color.parseColor("#666666"));
-                    followUnfollow(p, false);
-                    Log.v("ListAdapter", "Following");
-                    isFollowingFinal2 = true;
-                } else {
+                    mFollowButton.setTextColor(Color.parseColor("#FFFFFF"));
+                    mFollowButton.setBackgroundResource(R.drawable.following_button_shape);
+                }
+                if (isFollowingFinal == true) {
+                    isFollowing=false; //added 2/3/16
+                    followUnfollow(p,false);
                     mFollowButton.setText("Follow");
-                    mFollowButton.setBackgroundColor(Color.parseColor("#666666"));
-                    followUnfollow(p, true);
-                    Log.v("ListAdapter", "UnFollowing");
-                    isFollowingFinal2 = false;
+                    mFollowButton.setTextColor(Color.parseColor("#12AEA3"));
+                    mFollowButton.setBackgroundResource(R.drawable.follow_button_shape);
                 }
 
             }
@@ -148,7 +147,6 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
                 .error(R.drawable.icon_profile_add)
                 .intoImageView(mImageView);
 
-        //mImageView.getLayoutParams().height = 20;
 
         /* Set the list name and owner */
         textViewListName.setText(p.getEntityParentName());

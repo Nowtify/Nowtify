@@ -46,6 +46,10 @@ public class EntityParentDetails {
         return number;
     }
 
+    public HashMap<String, Object> getEntityItemDetailsID(){
+        return entityItemDetailsID;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -64,6 +68,10 @@ public class EntityParentDetails {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public void setEntityItemDetailsID(HashMap<String, Object> entityItemDetailsID){
+        this.entityItemDetailsID = entityItemDetailsID;
     }
 
 }

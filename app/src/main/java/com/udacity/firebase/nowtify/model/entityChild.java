@@ -1,20 +1,24 @@
 package com.udacity.firebase.nowtify.model;
 
+import java.util.HashMap;
+
 /**
  * Created by MohamedAfiq on 27/1/16.
  */
 public class EntityChild {
     String pushId, entityItemDetailsId, title, entityParentName, address;
+    private HashMap<String, Object> tags;
 
     public EntityChild() {
     }
 
-    public EntityChild(String pushId, String entityItemDetailsId, String title, String entityParentName, String address) {
+    public EntityChild(String pushId, String entityItemDetailsId, String title, String entityParentName, String address, HashMap<String, Object> tags) {
         this.pushId = pushId;
         this.entityItemDetailsId = entityItemDetailsId;
         this.title = title;
         this.entityParentName = entityParentName;
         this.address = address;
+        this.tags = tags;
     }
 
     public String getPushId() {
@@ -55,6 +59,14 @@ public class EntityChild {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public HashMap<String, Object> getTags (){
+        return tags;
+    }
+
+    public void setTags (HashMap<String, Object> tags){
+        this.tags = tags;
     }
 
     public String toString(){

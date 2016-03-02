@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.ion.Ion;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.EntityChild;
 import com.udacity.firebase.nowtify.ui.EntityItem.EntityItemDetailsActivity;
@@ -125,6 +126,9 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         TextView entityItemTitle = (TextView) v.findViewById(R.id.entity_item_title);
         //TextView textViewCreatedByUser = (TextView) v.findViewById(R.id.text_view_created_by_user);
 
+        Ion.with(context)
+                .load("https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/150px-Starbucks_Corporation_Logo_2011.svg.png")
+                .intoImageView(mImageView);
 
         /* Set the list name and owner */
         textViewListName.setText(p.getEntityParentName());

@@ -81,7 +81,7 @@ public class FirebaseUtils{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 entityItemDetails[0] = dataSnapshot.getValue(EntityItemDetails.class);
-                Log.v("Entity Item Details", entityItemDetails[0].getLongDesc());
+                Log.v("Entity Item Details", entityItemDetails[0].getDesc());
             }
 
             @Override

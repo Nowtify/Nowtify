@@ -58,6 +58,6 @@ public class EntityChild {
     }
 
     public String toString(){
-        return getPushId()+getEntityItemDetailsId()+getTitle()+getEntityParentName();
+        return getPushId()+""+getEntityItemDetailsId()+""+getTitle()+""+getEntityParentName()+""+getAddress();
     }
 }

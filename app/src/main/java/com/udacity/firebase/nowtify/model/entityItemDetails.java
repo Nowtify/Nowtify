@@ -13,16 +13,11 @@ public class EntityItemDetails {
     public EntityItemDetails() {
     }
 
-    public EntityItemDetails(String parentPushId, String title, String desc, String tnc, String imageURL){
-        this.parentPushId=parentPushId;
+    public EntityItemDetails(String title, String desc, String tnc, String imageURL){
         this.title=title;
         this.desc=desc;
         this.tnc=tnc;
         this.imageURL=imageURL;
-    }
-
-    public String getParentPushId() {
-        return parentPushId;
     }
 
     public String getTitle() {
@@ -52,11 +47,7 @@ public class EntityItemDetails {
     public void setTnc(String tnc) {
         this.tnc = tnc;
     }
-
-    public void setParentPushId(String parentPushId) {
-        this.parentPushId = parentPushId;
-    }
-
+    
     public void setImageURL(String encodedImage) {
         this.imageURL = imageURL;
     }

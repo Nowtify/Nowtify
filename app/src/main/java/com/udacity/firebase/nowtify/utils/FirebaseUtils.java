@@ -29,6 +29,9 @@ public class FirebaseUtils{
     Context context;
     FirebaseError firebaseError;
     private static final String LOG_TAG = FirebaseUtils.class.getSimpleName();
+    UserFollows userFollows;
+    ArrayList<String> userFollowList = new ArrayList<String>();
+
 
     public FirebaseUtils(Context context){this.context=context;}
 
@@ -166,10 +169,8 @@ public class FirebaseUtils{
         List<String> splitter;
         EntityChild entityChild;
         splitter = Arrays.asList(string.split(","));
-        List<String> tagsList = Arrays.asList(splitter.get(6).split("/"));
         ArrayList<String> tagsArrayList = new ArrayList<String>();
-        tagsArrayList.addAll(tagsList);
-        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(4), tagsArrayList);
+        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(4),splitter.get(4), tagsArrayList);
         return entityChild;
     }
 
@@ -181,7 +182,7 @@ public class FirebaseUtils{
         if(rawEntityChild==null || userFollowList==null ){
             Log.v("checkcheck", "null");
             ArrayList<String> tagsArrayList = new ArrayList<String>();
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
             return toReturn;
         }
 
@@ -197,36 +198,65 @@ public class FirebaseUtils{
         if(toReturn.size()==0){
             Log.v("checkcheck", "size 0");
             ArrayList<String> tagsArrayList = new ArrayList<String>();
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
         }
 
         return toReturn;
     }
 
-    public boolean followEntityParent(String email, String entityParentId, UserFollows userFollows, boolean followOrUnfollow){
-        String mEncodedEmail = Utils.encodeEmail(email);
-        Firebase firebaseUserFollowsRef = new Firebase(Constants.FIREBASE_URL_ENTITY_USER_FOLLOWS).child(mEncodedEmail);
-        HashMap<String, Object> follows = userFollows.getFollows();
+    public EntityChild createEntityChildNew(String string){
+        List<String> splitter;
+        EntityChild entityChild;
+        splitter = Arrays.asList(string.split(","));
+        List<String> tagsList = Arrays.asList(splitter.get(5).split("/"));
+        ArrayList<String> tagsArrayList = new ArrayList<String>();
+        tagsArrayList.addAll(tagsList);
+        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(4),splitter.get(4), tagsArrayList);
+        return entityChild;
+    }
 
-        if(followOrUnfollow==true){
-            follows.put(entityParentId,true);
-        } else {
-            follows.remove(entityParentId);
+    public ArrayList<EntityChild> convertEntityChildsToFollowedEntityChildNew(ArrayList<EntityChild> rawEntityChild, ArrayList<String> userFollowList){
+        ArrayList<EntityChild> toReturn = new ArrayList<EntityChild>();
+
+        Log.v("checkcheck", ""+rawEntityChild.size());
+
+        if(rawEntityChild==null || userFollowList==null ){
+            Log.v("checkcheck", "null");
+            ArrayList<String> tagsArrayList = new ArrayList<String>();
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+            return toReturn;
         }
-        userFollows.setFollows(follows);
 
-        firebaseUserFollowsRef.setValue(userFollows, new Firebase.CompletionListener() {
-            @Override
-            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+        for(EntityChild entityChild:rawEntityChild){
 
-                if (firebaseError == null) {
-                    Log.v("geofireutils","afiq980 follows updated");
-                } else {
-                    return;
-                }
+            Log.v("checkcheck", entityChild.getEntityParentName());
 
+            if(userFollowList.contains(entityChild.getEntityParentName())){
+                toReturn.add(entityChild);
             }
-        });
+        }
+
+        if(toReturn.size()==0){
+            Log.v("checkcheck", "size 0");
+            ArrayList<String> tagsArrayList = new ArrayList<String>();
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+        }
+
+        return toReturn;
+    }
+
+    public boolean followEntityParent(String email, String entityParentId, boolean followOrUnfollow){
+        String mEncodedEmail = Utils.encodeEmail(email);
+        Firebase firebaseUserFollowsRef = new Firebase(Constants.FIREBASE_URL_ENTITY_USER_FOLLOWS).child(mEncodedEmail).child("follows").child(entityParentId);
+
+        if(followOrUnfollow){
+            //HashMap<String,Object> hm = new HashMap<String,Object>();
+            firebaseUserFollowsRef.setValue(true);
+            Log.v("firebaseUtils","Following");
+        } else {
+            firebaseUserFollowsRef.removeValue();
+            Log.v("firebaseUtils", "UnFollowing");
+        }
 
         return true;
     }
@@ -238,15 +268,27 @@ public class FirebaseUtils{
         firebaseEntityItemDetailsImageRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                imageURL[0] = snapshot.getValue().toString().replace(',','.');
-                Log.v("firebaseUtils",imageURL[0]);
+                imageURL[0] = snapshot.getValue().toString().replace(',', '.');
+                Log.v("firebaseUtils", imageURL[0]);
             }
+
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 //System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
 
+    }
+
+    public ArrayList<String> getFollowsInString(){
+        ArrayList<String> toReturn;
+        HashMap<String, Object> userFollowHashMap = userFollows.getFollows();
+        if(userFollowHashMap!=null){
+            toReturn = new ArrayList<String>(userFollowHashMap.keySet());
+        } else {
+            toReturn = null;
+        }
+        return toReturn;
     }
 
 }

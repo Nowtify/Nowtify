@@ -247,7 +247,7 @@ public class MainActivity extends BaseActivity implements
             public void onKeyEntered(String key, GeoLocation location) {
                 //Log.v("GeoFire",key + " " + location.toString());
                 //testLocs.add(key + " " + location.toString());
-                rawQueryList.add(key);
+                rawQueryList.add(key+","+location.latitude+","+location.longitude);
                 Log.v("LOG_TAG", "Waiting");
             }
 

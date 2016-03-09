@@ -170,7 +170,7 @@ public class FirebaseUtils{
         EntityChild entityChild;
         splitter = Arrays.asList(string.split(","));
         ArrayList<String> tagsArrayList = new ArrayList<String>();
-        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(3),splitter.get(3), tagsArrayList);
+        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(3),splitter.get(3), tagsArrayList, Double.parseDouble(splitter.get(5)), Double.parseDouble(splitter.get(6)));
         return entityChild;
     }
 
@@ -182,7 +182,7 @@ public class FirebaseUtils{
         if(rawEntityChild==null || userFollowList==null ){
             Log.v("checkcheck", "null");
             ArrayList<String> tagsArrayList = new ArrayList<String>();
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList, 0.0, 0.0));
             return toReturn;
         }
 
@@ -198,7 +198,7 @@ public class FirebaseUtils{
         if(toReturn.size()==0){
             Log.v("checkcheck", "size 0");
             ArrayList<String> tagsArrayList = new ArrayList<String>();
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList, 0.0, 0.0));
         }
 
         return toReturn;
@@ -211,7 +211,7 @@ public class FirebaseUtils{
         List<String> tagsList = Arrays.asList(splitter.get(5).split("/"));
         ArrayList<String> tagsArrayList = new ArrayList<String>();
         tagsArrayList.addAll(tagsList);
-        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(4),splitter.get(4), tagsArrayList);
+        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(4),splitter.get(4), tagsArrayList, 0.0, 0.0);
         return entityChild;
     }
 
@@ -223,7 +223,7 @@ public class FirebaseUtils{
         if(rawEntityChild==null || userFollowList==null ){
             Log.v("checkcheck", "null");
             ArrayList<String> tagsArrayList = new ArrayList<String>();
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList, 0.0, 0.0));
             return toReturn;
         }
 
@@ -239,7 +239,7 @@ public class FirebaseUtils{
         if(toReturn.size()==0){
             Log.v("checkcheck", "size 0");
             ArrayList<String> tagsArrayList = new ArrayList<String>();
-            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList));
+            toReturn.add(new EntityChild("No Data","No Data","No Data","No Data","No Data","No Data",tagsArrayList, 0.0, 0.0));
         }
 
         return toReturn;

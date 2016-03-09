@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,12 +52,6 @@ public class EntityItemDetailsActivity extends BaseActivity {
         /**
          * Link layout elements from XML and setup the progress dialog
          */
-
-        //test
-
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?daddr="+latitude+","+longitude));
-        startActivity(intent);
 
     }
 
@@ -129,7 +124,7 @@ public class EntityItemDetailsActivity extends BaseActivity {
 
     }
 
-    public void onDirectionPressed(){
+    public void onDirectionsPressed(View view){
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("http://maps.google.com/maps?daddr="+latitude+","+longitude));
         startActivity(intent);

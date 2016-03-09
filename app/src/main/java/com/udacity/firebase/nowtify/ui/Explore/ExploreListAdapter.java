@@ -134,6 +134,8 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
                 intent.putExtra("title", p.getTitle());
                 intent.putExtra("entityParentName", p.getEntityParentName());
                 intent.putExtra("entityItemDetailsId", p.getEntityItemDetailsId());
+                intent.putExtra("latitude", Double.toString(p.getLatitude()));
+                intent.putExtra("longitude", Double.toString(p.getLongitude()));
                 context.startActivity(intent);
             }
         });
@@ -145,6 +147,8 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
                 intent.putExtra("title", p.getTitle());
                 intent.putExtra("entityParentName", p.getEntityParentName());
                 intent.putExtra("entityItemDetailsId", p.getEntityItemDetailsId());
+                intent.putExtra("latitude", Double.toString(p.getLatitude()));
+                intent.putExtra("longitude", Double.toString(p.getLongitude()));
                 context.startActivity(intent);
 
             }

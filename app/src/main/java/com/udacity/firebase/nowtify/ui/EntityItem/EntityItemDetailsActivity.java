@@ -2,6 +2,7 @@ package com.udacity.firebase.nowtify.ui.EntityItem;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -57,6 +58,8 @@ public class EntityItemDetailsActivity extends BaseActivity {
     public void setDetails(){
         //edit here to set views
         //use entityItemDetails.[get]
+        TextView textViewListName = (TextView) findViewById(R.id.entity_parent_name);
+        textViewListName.setText();
 
     }
 }

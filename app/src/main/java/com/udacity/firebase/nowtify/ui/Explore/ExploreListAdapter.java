@@ -132,6 +132,7 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
             public void onClick(View v) {
                 Intent intent = new Intent(context, EntityItemDetailsActivity.class);
                 intent.putExtra("title", p.getTitle());
+                intent.putExtra("entityParentName", p.getEntityParentName());
                 intent.putExtra("entityItemDetailsId", p.getEntityItemDetailsId());
                 context.startActivity(intent);
             }
@@ -141,6 +142,9 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EntityItemDetailsActivity.class);
+                intent.putExtra("title", p.getTitle());
+                intent.putExtra("entityParentName", p.getEntityParentName());
+                intent.putExtra("entityItemDetailsId", p.getEntityItemDetailsId());
                 context.startActivity(intent);
 
             }

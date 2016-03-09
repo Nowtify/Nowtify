@@ -7,12 +7,13 @@ import java.util.ArrayList;
  */
 public class EntityChild {
     String pushId, entityItemDetailsId, title, entityParentId, entityParentName, address;
+    Double latitude, longitude;
     private ArrayList<String> tags;
 
     public EntityChild() {
     }
 
-    public EntityChild(String pushId, String entityItemDetailsId, String title, String entityParentId, String entityParentName, String address, ArrayList<String> tags) {
+    public EntityChild(String pushId, String entityItemDetailsId, String title, String entityParentId, String entityParentName, String address, ArrayList<String> tags, Double latitude, Double longitude) {
         this.pushId = pushId;
         this.entityItemDetailsId = entityItemDetailsId;
         this.title = title;
@@ -20,6 +21,8 @@ public class EntityChild {
         this.entityParentName = entityParentName;
         this.address = address;
         this.tags = tags;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getPushId() {
@@ -78,7 +81,23 @@ public class EntityChild {
         this.tags = tags;
     }
 
+    public Double getLatitude(){
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude){
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude(){
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude){
+        this.longitude = longitude;
+    }
+
     public String toString(){
-        return getPushId()+""+getEntityItemDetailsId()+""+getTitle()+""+getEntityParentName()+""+getAddress();
+        return getPushId()+" "+getEntityItemDetailsId()+" "+getTitle()+" "+getEntityParentName()+" "+getAddress()+" "+getLatitude()+" "+getLongitude();
     }
 }

@@ -1,6 +1,8 @@
 package com.udacity.firebase.nowtify.ui.EntityItem;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -25,9 +27,8 @@ public class EntityItemDetailsActivity extends BaseActivity {
     private FirebaseUtils fireBaseUtils = new FirebaseUtils(getParent());
     private Firebase firebaseRef;
     private EntityItemDetails entityItemDetails;
-    private String mEntityParentName;
-    private String mEntityItemDetailsTitle;
-    private String mEntityItemDetailsId;
+    private String entityParentName, entityItemDetailsTitle, entityItemDetailsId, latitudeString, longitudeString;
+    private Double latitude, longitude;
     private Context context;
 
     @Override
@@ -38,14 +39,24 @@ public class EntityItemDetailsActivity extends BaseActivity {
         context = EntityItemDetailsActivity.this;
 
         //retrieve intent
-        mEntityParentName = getIntent().getStringExtra("entityParentName");
-        mEntityItemDetailsTitle = getIntent().getStringExtra("title");
-        mEntityItemDetailsId = getIntent().getStringExtra("entityItemDetailsId");
+        entityParentName = getIntent().getStringExtra("entityParentName");
+        entityItemDetailsTitle = getIntent().getStringExtra("title");
+        entityItemDetailsId = getIntent().getStringExtra("entityItemDetailsId");
+        latitudeString = getIntent().getStringExtra("latitude");
+        longitudeString = getIntent().getStringExtra("longitude");
+        latitude = Double.parseDouble(latitudeString);
+        longitude = Double.parseDouble(longitudeString);
         getEntityItemDetailsFromId("adidasGroupOffer");
 
         /**
          * Link layout elements from XML and setup the progress dialog
          */
+
+        //test
+
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr="+latitude+","+longitude));
+        startActivity(intent);
 
     }
 
@@ -57,7 +68,7 @@ public class EntityItemDetailsActivity extends BaseActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 entityItemDetails = dataSnapshot.getValue(EntityItemDetails.class);
                 setDetails();
-                Log.v(LOG_TAG,entityItemDetails.getParentPushId());
+                Log.v(LOG_TAG, entityItemDetails.getParentPushId());
             }
 
             @Override
@@ -72,7 +83,7 @@ public class EntityItemDetailsActivity extends BaseActivity {
         //edit here to set views
         //use entityItemDetails.[get]
         TextView mEntityParentNameView = (TextView) findViewById(R.id.entity_parent_name);
-        mEntityParentNameView.setText(mEntityParentName);
+        mEntityParentNameView.setText(entityParentName);
 
         ImageView mEntityItemImageView = (ImageView) findViewById(R.id.entity_item_image);
         Ion.with(context)
@@ -116,5 +127,11 @@ public class EntityItemDetailsActivity extends BaseActivity {
 
 
 
+    }
+
+    public void onDirectionPressed(){
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr="+latitude+","+longitude));
+        startActivity(intent);
     }
 }

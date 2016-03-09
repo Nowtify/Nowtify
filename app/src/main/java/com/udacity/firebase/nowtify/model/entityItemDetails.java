@@ -1,5 +1,7 @@
 package com.udacity.firebase.nowtify.model;
 
+import java.util.HashMap;
+
 /**
  * Created by MohamedAfiq on 27/1/16.
  */
@@ -8,16 +10,21 @@ public class EntityItemDetails {
     String title;
     String desc;
     String tnc;
-    String imageURL;
+    private HashMap<String, Object> images;
 
     public EntityItemDetails() {
     }
 
-    public EntityItemDetails(String title, String desc, String tnc, String imageURL){
+    public EntityItemDetails(String parentPushId, String title, String desc, String tnc, HashMap<String, Object> images){
+        this.parentPushId=parentPushId;
         this.title=title;
         this.desc=desc;
         this.tnc=tnc;
-        this.imageURL=imageURL;
+        this.images=images;
+    }
+
+    public String getParentPushId(){
+        return parentPushId;
     }
 
     public String getTitle() {
@@ -32,8 +39,12 @@ public class EntityItemDetails {
         return tnc;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public HashMap<String, Object> getImages() {
+        return images;
+    }
+
+    public void setParentPushId(String parentPushId){
+        this.parentPushId=parentPushId;
     }
 
     public void setDesc(String desc) {
@@ -48,7 +59,7 @@ public class EntityItemDetails {
         this.tnc = tnc;
     }
     
-    public void setImageURL(String encodedImage) {
-        this.imageURL = imageURL;
+    public void setImages(HashMap<String, Object> images) {
+        this.images = images;
     }
 }

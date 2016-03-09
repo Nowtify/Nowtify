@@ -170,7 +170,7 @@ public class FirebaseUtils{
         EntityChild entityChild;
         splitter = Arrays.asList(string.split(","));
         ArrayList<String> tagsArrayList = new ArrayList<String>();
-        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(4),splitter.get(4), tagsArrayList);
+        entityChild = new EntityChild(splitter.get(0),splitter.get(1),splitter.get(2),splitter.get(3),splitter.get(3),splitter.get(3), tagsArrayList);
         return entityChild;
     }
 

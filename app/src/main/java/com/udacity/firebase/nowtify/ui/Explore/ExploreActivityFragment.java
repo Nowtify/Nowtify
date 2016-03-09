@@ -30,8 +30,8 @@ public class ExploreActivityFragment extends Fragment {
     private ArrayList<EntityChild> resultList = new ArrayList<EntityChild>();
     private FirebaseUtils fireBaseUtils = new FirebaseUtils(getActivity());
     private ProgressDialog mRefreshProgressDialog;
-    ExploreListAdapter mEntityChildAdapter;
-    UserFollows userFollows;
+    private ExploreListAdapter mEntityChildAdapter;
+    private UserFollows userFollows;
     private ArrayList<String> userFollowList = new ArrayList<String>();
 
 

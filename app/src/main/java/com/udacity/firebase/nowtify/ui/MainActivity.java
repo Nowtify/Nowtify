@@ -75,10 +75,9 @@ public class MainActivity extends BaseActivity implements
         exploreActivityFragment = ExploreActivityFragment.newInstance();
         nowActivityFragment = NowActivityFragment.newInstance();
 
-        getUserFollows();
         initializeScreen();
-        getCurrentLocation();
         //getUserFollows();
+        getCurrentLocation();
     }
 
 
@@ -249,7 +248,7 @@ public class MainActivity extends BaseActivity implements
                 //Log.v("GeoFire",key + " " + location.toString());
                 //testLocs.add(key + " " + location.toString());
                 rawQueryList.add(key);
-                Log.v("GeoFire", "Waiting");
+                Log.v("LOG_TAG", "Waiting");
             }
 
             @Override
@@ -265,8 +264,10 @@ public class MainActivity extends BaseActivity implements
             @Override
             public void onGeoQueryReady() {
                 resultList = fireBaseUtils.convertRawQueryToEntityChild(rawQueryList);
-                    refreshList();
-                    refreshNowList();
+                Log.v(LOG_TAG, "getUserFollows");
+                getUserFollows();
+                //refreshList();
+                //refreshNowList();
             }
 
             @Override
@@ -340,9 +341,13 @@ public class MainActivity extends BaseActivity implements
                 userFollows = dataSnapshot.getValue(UserFollows.class);
                 if (userFollows != null) {
                     userFollowList = getFollowsInString();
+                    Log.v(LOG_TAG, "refreshedInGetUserFollows");
                     refreshNowList();
+                    refreshList();
                 } else {
-                    //showErrorToast(getString(R.string.log_error_cannot_find_user));
+                    Log.v(LOG_TAG, "noFollows");
+                    refreshNowList();
+                    refreshList();
                 }
 
             }
@@ -366,5 +371,13 @@ public class MainActivity extends BaseActivity implements
         return toReturn;
     }
 
-
+    public void addOrRemoveFromFollowList(String entityParentName){
+        if (entityParentName!=null){
+            if(userFollowList.contains(entityParentName)){
+                userFollowList.remove(entityParentName);
+            } else {
+                userFollowList.add(entityParentName);
+            }
+        }
+    }
 }

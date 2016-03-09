@@ -3,6 +3,7 @@ package com.udacity.firebase.nowtify.ui.Explore;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,10 @@ import com.koushikdutta.ion.Ion;
 import com.udacity.firebase.nowtify.R;
 import com.udacity.firebase.nowtify.model.EntityChild;
 import com.udacity.firebase.nowtify.ui.EntityItem.EntityItemDetailsActivity;
+import com.udacity.firebase.nowtify.ui.MainActivity;
 import com.udacity.firebase.nowtify.utils.FirebaseUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +31,7 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
     private Context context;
     FirebaseUtils firebaseUtils;
     List<EntityChild> items;
+    private ArrayList<String> userFollowList = new ArrayList<String>();
 
     public ExploreListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
@@ -39,6 +43,7 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         this.context = context;
         this.items = items;
         firebaseUtils = new FirebaseUtils(context);
+        //userFollowList = ((MainActivity)context).getUserFollowList();
     }
 
     public void followUnfollow(EntityChild entityChild, boolean followOrUnfollow) {
@@ -47,6 +52,7 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        userFollowList = ((MainActivity)context).getUserFollowList();
         Button mFollowButton;
         View v = convertView;
         ImageView mImageView;
@@ -68,17 +74,40 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
         mFollowButton = h.getButton();
         mImageView = (ImageView)h.getImageView();
         mEntityItemTitle = (TextView) h.getTextView();
+        final String entityParentName = p.getEntityParentName();
 
+        Log.v("adapter",Integer.toString(userFollowList.size()));
+
+        if(userFollowList.contains(entityParentName)){
+            isFollowing = true;
+            Log.v("adapter","contains");
+        } else {
+            isFollowing = false;
+            Log.v("adapter","does not contain");
+        }
+
+        if (isFollowing == false) {
+            mFollowButton.setText("Follow");
+            mFollowButton.setTextColor(Color.parseColor("#12AEA3"));
+            mFollowButton.setBackgroundResource(R.drawable.follow_button_shape);
+        }
+        if (isFollowing == true) {
+            mFollowButton.setText("Following");
+            mFollowButton.setTextColor(Color.parseColor("#FFFFFF"));
+            mFollowButton.setBackgroundResource(R.drawable.following_button_shape);
+        }
 
         //Following button listener
         mFollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final boolean isFollowingFinal = isFollowing;
 
                 Button mFollowButton= (Button) v.findViewById(R.id.entity_item_button);
 
                 if (isFollowingFinal == false) {
+                    ((MainActivity)context).addOrRemoveFromFollowList(entityParentName);
                     isFollowing=true; //added 2/3/16
                     followUnfollow(p,true);
                     mFollowButton.setText("Following");
@@ -86,6 +115,7 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
                     mFollowButton.setBackgroundResource(R.drawable.following_button_shape);
                 }
                 if (isFollowingFinal == true) {
+                    ((MainActivity)context).addOrRemoveFromFollowList(entityParentName);
                     isFollowing=false; //added 2/3/16
                     followUnfollow(p,false);
                     mFollowButton.setText("Follow");
@@ -101,8 +131,9 @@ public class ExploreListAdapter extends ArrayAdapter<EntityChild> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EntityItemDetailsActivity.class);
+                intent.putExtra("title", p.getTitle());
+                intent.putExtra("entityItemDetailsId", p.getEntityItemDetailsId());
                 context.startActivity(intent);
-
             }
         });
         //Title Listener

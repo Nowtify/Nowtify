@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:background="@drawable/coffee"/>
+            android:background="#000000"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -232,7 +232,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"> <!--white background and margins for popup effect -->
+            android:layout_marginBottom="0dp"> <!--white background and margins for popup effect -->
 
             <TextView
                 android:layout_width="match_parent"
@@ -258,12 +258,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#000000"
-                android:text="Stage 1: Confirm ideal date/time, change the colour status of the timetable doc when they confirm (link below)
-
-Stage 2: If unable to make it, put on hold and let us know, we will wait till all companies in the same day to reply. If happened that same day got company cant make it, we will propose a switch between companies within the same day only.
-
-Stage 3a: If really cannot, we will slot in extra/new companies within the location that recently updated their status (to fill the empty slot).
-            "
+                android:text=""
                 android:fontFamily="sans-serif-light"
                 android:id="@+id/entity_item_description"
                 android:layout_below="@+id/entity_item_description_title"
@@ -279,6 +274,60 @@ Stage 3a: If really cannot, we will slot in extra/new companies within the locat
                 />
 
         </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/entity_item_tnc_field"
+            android:layout_below="@+id/entity_item_description_field"
+            android:background="@color/white"
+            android:elevation="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"> <!--white background and margins for popup effect -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:text="Terms and Conditions"
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/entity_item_tnc_title"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:paddingTop="15dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:text=""
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/entity_item_tnc"
+                android:layout_below="@+id/entity_item_tnc_title"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:paddingTop="0dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
